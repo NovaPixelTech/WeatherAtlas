@@ -1,0 +1,39 @@
+name: Feature request
+description: An idea to make WeatherScope better
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem should this solve?
+      description: The need behind the idea. "I want to..." phrasing helps most.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Describe the idea
+      description: What would you like to see, and how should it feel?
+      placeholder: "A 7-day temperature trend chart for the city, in the app."
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where would it live?
+      options:
+        - City Search
+        - Compare
+        - Climate Filter
+        - Live Cameras
+        - Share / deep link
+        - Other / not sure
+    validations:
+      required: true
+  - type: checkboxes
+    id: willing
+    attributes:
+      label: Would you be willing to test / share feedback?
+      options:
+        - label: Yes, I would use it and report back.

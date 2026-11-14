@@ -1,0 +1,51 @@
+name: Bug report
+description: Something in WeatherScope is wrong or broken
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug in your own words. The more concrete the better.
+      placeholder: "The forecast for Paris showed -2°C while the live data read 6°C."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the app
+        2. Search for ...
+        3. See ...
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser / device
+      description: Browser name and version, and the device (mobile / desktop).
+      placeholder: "Chrome 126 on Android"
+    validations:
+      required: false
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Section
+      options:
+        - City Search
+        - Compare
+        - Climate Filter
+        - Live Cameras
+        - Share / deep link
+        - Other / not sure
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else?
+      description: Console errors, screenshot, or the exact city / region you were using.
+    validations:
+      required: false

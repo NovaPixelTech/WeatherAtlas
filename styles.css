@@ -4816,7 +4816,130 @@ html[data-language-pending='true'] body {
   color: #7dd3fc;
 }
 
+.app-footer .footer-links {
+  margin-top: 8px;
+}
+
+.app-footer .footer-links a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.app-footer .footer-sep {
+  color: var(--text-dim);
+  margin: 0 6px;
+}
+
 /* ==========================================================================
+   Support + feedback dialogs
+   ========================================================================== */
+.action-dialog {
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(165deg, #101c33, #0b1324);
+  color: var(--text-primary);
+  padding: 24px;
+  max-width: min(560px, calc(100vw - 32px));
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.action-dialog::backdrop {
+  background: rgba(3, 8, 18, 0.72);
+}
+
+.dialog-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.dialog-card > p {
+  margin: 0 0 16px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+  margin-top: 16px;
+}
+
+.dialog-actions a,
+.dialog-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--text-primary);
+}
+
+.dialog-actions a:hover,
+.dialog-actions button:hover {
+  background: rgba(56, 189, 248, 0.22);
+}
+
+.dialog-secondary-btn {
+  background: transparent;
+  border-color: rgba(148, 163, 184, 0.4) !important;
+  color: var(--text-secondary) !important;
+}
+
+.donation-btn {
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+  color: #04101f !important;
+  border: none;
+}
+
+.feedback-helpful {
+  text-align: center;
+  padding: 8px 0 4px;
+}
+
+.feedback-helpful p {
+  margin: 0 0 10px;
+}
+
+.feedback-helpful-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.feedback-helpful-actions button {
+  background: rgba(148, 163, 184, 0.15);
+}
+
+.feedback-thanks {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--accent-emerald) !important;
+  font-weight: 700;
+}
+
+.action-dialog > button {
+  margin-top: 18px;
+  width: 100%;
+  background: transparent;
+  border-color: rgba(148, 163, 184, 0.35) !important;
+  color: var(--text-secondary) !important;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== *//* ==========================================================================
    Responsive Breakpoints
    ========================================================================== */
 @media (max-width: 860px) {

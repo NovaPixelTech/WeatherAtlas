@@ -22,6 +22,11 @@
  * its Pages report breaks views and visitors down by section and every filter
  * (country, device, referrer) still applies.
  *
+ * Static pages (the generated city guides) declare their report label in
+ * `window.WEATHERSCOPE_STATIC_PAGE` before this script runs. They send one
+ * virtual pageview of their own, so the same Pages report lists the app
+ * sections and the city guides together.
+ *
  * Loading the real script (instead of hard-coding a snippet) keeps the
  * Website ID in one file and lets a fork disable analytics completely.
  */
@@ -37,15 +42,21 @@
     cameras: { slug: 'live-cameras', title: 'Live Cameras' },
   };
 
+  var MAX_EVENT_NAME = 50;
+  var MAX_EVENT_FIELDS = 12;
+  var MAX_FIELD_LENGTH = 200;
+
   var queue = [];
   var currentSection = '';
   var tracking = false;
 
-  // app.js calls this from setMode(). It is defined before the guards so the
-  // call site never has to care whether analytics is configured or allowed;
-  // an unconfigured or opted-out page simply keeps `tracking` false.
+  // The app and the static pages call these helpers. They are defined before
+  // the guards so a call site never has to care whether analytics is configured
+  // or allowed; an unconfigured or opted-out page simply keeps `tracking` false.
   window.weatherscopeAnalytics = {
     trackSection: trackSection,
+    trackPage: trackPage,
+    trackEvent: trackEvent,
   };
 
   var config = window.WEATHERSCOPE_ANALYTICS;
@@ -81,8 +92,8 @@
   if (config.excludeHash !== false) script.setAttribute('data-exclude-hash', 'true');
   if (config.respectDoNotTrack !== false) script.setAttribute('data-do-not-track', 'true');
 
-  // app.js sends one virtual pageview per section. Turning off the automatic
-  // pageview keeps the landing page from also being counted as a second view.
+  // The app sends one virtual pageview per section, and a static page sends
+  // one for itself. Turning off the automatic pageview avoids a duplicate.
   script.setAttribute('data-auto-pageview', 'false');
 
   var domains = typeof config.domains === 'string' ? config.domains.trim() : '';
@@ -97,6 +108,13 @@
 
   (document.head || document.body || document.documentElement).appendChild(script);
 
+  // Generated pages (cities/*.html) announce their own report label. They do
+  // not use app.js, so without this they would be invisible in the dashboard.
+  var staticPage = window.WEATHERSCOPE_STATIC_PAGE;
+  if (staticPage && typeof staticPage === 'object') {
+    trackPage(staticPage.url, staticPage.title);
+  }
+
   /**
    * Record a visit to one app section. Repeating the active section - a
    * language change calls setMode again, for example - is not a new visit.
@@ -107,7 +125,38 @@
     if (!section) return;
     if (id === currentSection) return;
     currentSection = id;
-    queue.push({ url: sectionUrl(section), title: 'WeatherScope - ' + section.title });
+    trackPage(sectionUrl(section), 'WeatherScope - ' + section.title);
+  }
+
+  /**
+   * Record a page visit under an explicit report path. Static city pages use
+   * this with the path they want to appear in the Pages report.
+   */
+  function trackPage(url, title) {
+    if (!tracking) return;
+    var path = reportPath(url);
+    if (!path) return;
+    queue.push({
+      kind: 'page',
+      url: path,
+      title: cleanText(title) || 'WeatherScope',
+    });
+    flush();
+  }
+
+  /**
+   * Record a named interaction (donation click, feedback vote, ...). Umami
+   * keeps events in their own report, so they do not distort page views.
+   */
+  function trackEvent(name, data) {
+    if (!tracking) return;
+    var eventName = cleanText(name);
+    if (!eventName) return;
+    queue.push({
+      kind: 'event',
+      name: eventName.slice(0, MAX_EVENT_NAME),
+      data: cleanData(data),
+    });
     flush();
   }
 
@@ -116,6 +165,10 @@
     if (!umami || typeof umami.track !== 'function') return;
     var pending = queue.splice(0, queue.length);
     pending.forEach(function (item) {
+      if (item.kind === 'event') {
+        umami.track(item.name, item.data);
+        return;
+      }
       umami.track(function (props) {
         var next = {};
         for (var key in props) {
@@ -135,6 +188,50 @@
       .replace(/index\.html?$/i, '')
       .replace(/\/+$/, '');
     return base + '/' + section.slug;
+  }
+
+  // Accept the relative paths the app generates, an absolute URL, or a bare
+  // path, and always report a leading slash without the domain.
+  function reportPath(value) {
+    var text = cleanText(value);
+    if (!text) return '';
+    if (/^https?:\/\//i.test(text)) {
+      try {
+        var parsed = new URL(text);
+        text = parsed.pathname + parsed.search;
+      } catch (error) {
+        return '';
+      }
+    }
+    return text.charAt(0) === '/' ? text : '/' + text;
+  }
+
+  function cleanText(value) {
+    return typeof value === 'string' ? value.trim() : '';
+  }
+
+  // Umami accepts a small property bag per event. Keep it to primitives so a
+  // bug elsewhere cannot accidentally send a whole object or a huge string.
+  function cleanData(data) {
+    if (!data || typeof data !== 'object' || Array.isArray(data)) return undefined;
+    var clean = {};
+    var fields = 0;
+    for (var key in data) {
+      if (!Object.prototype.hasOwnProperty.call(data, key)) continue;
+      if (fields >= MAX_EVENT_FIELDS) break;
+      var value = data[key];
+      if (typeof value === 'string') {
+        clean[key] = value.slice(0, MAX_FIELD_LENGTH);
+        fields += 1;
+      } else if (typeof value === 'number' && isFinite(value)) {
+        clean[key] = value;
+        fields += 1;
+      } else if (typeof value === 'boolean') {
+        clean[key] = value;
+        fields += 1;
+      }
+    }
+    return fields ? clean : undefined;
   }
 
   function isLocalHost(hostname) {

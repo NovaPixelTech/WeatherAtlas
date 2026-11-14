@@ -414,7 +414,67 @@ Leaving `websiteId` empty disables collection completely: the loader adds no scr
 node --test tests/analytics-wiring.test.js
 ```
 
-`analytics-wiring.test.js` proves the loader is silent with an empty Website ID, on localhost, `file://`, DNT and GPC; that it injects the tracker with `data-exclude-search`, `data-exclude-hash` and `data-do-not-track`; that each section becomes one de-duplicated virtual pageview; that it never sets a cookie or calls `umami.identify()`; and that the README and privacy page keep the documented contract. The full suite is `node --test`.
+`analytics-wiring.test.js` proves the loader is silent with an empty Website ID, on localhost, `file://`, DNT and GPC; that it injects the tracker with `data-exclude-search`, `data-exclude-hash` and `data-do-not-track`; that each section becomes one de-duplicated virtual pageview; that static pages report their own path; that interactions are sent as named events; that it never sets a cookie or calls `umami.identify()`; and that the README and privacy page keep the documented contract. The full suite is `node --test`.
+
+---
+
+## 🚀 Organic growth, donations and feedback
+
+WeatherScope is being built for **organic, long-tail traffic** first, with donations as the revenue path.
+
+### City weather guides (SEO)
+
+The app used to be a single URL, which is the single biggest blocker for organic traffic: a search
+like "weather in Tokyo" had nothing unique on the domain to rank.
+
+- `tools/city-seeds.json` — the first batch of **100 city guides** (top cities by population, ISO country codes).
+- `tools/fetch-city-data.js` — geocodes each city and reads the Open-Meteo 10-year archive to derive real climate averages → `data/city-climate.json`.
+- `tools/build-city-pages.js` — generates `cities/<slug>.html`, the `cities/index.html` guide index and `sitemap.xml`.
+- `tools/city-page.css` — standalone styles for the guides.
+
+Every guide has a unique title, description, H1, climate stats, monthly climate table and FAQ JSON-LD,
+and deep-links into the live app with the shared forecast format.
+
+```powershell
+node tools/fetch-city-data.js
+node tools/build-city-pages.js
+```
+
+To scale later, extend `tools/city-seeds.json` (300+ cities, or curated country/region guides) and re-run
+the two commands.
+
+The full playbook — keyword strategy, roadmap, metrics — lives in **[GROWTH.md](GROWTH.md)**.
+
+### Donations (free while in beta)
+
+The support dialog (`support.js` + `support-config.js`) renders donation actions for **Ko-fi** and
+**PayPal.Me**, plus optional GitHub Sponsors. Nothing shows until a fundraising URL is pasted into
+`support-config.js`:
+
+```js
+window.WEATHERSCOPE_SUPPORT = {
+  enabled: true,
+  koFiUrl: 'https://ko-fi.com/yourname',
+  payPalMeUrl: '',
+  githubSponsorUrl: '',
+  githubRepo: 'NovaPixelTech/WeatherScope',
+  bugIssueUrl: 'https://github.com/NovaPixelTech/WeatherScope/issues/new?labels=bug',
+  featureIssueUrl: 'https://github.com/NovaPixelTech/WeatherScope/issues/new?labels=enhancement',
+};
+```
+
+Donation clicks are tracked as the `donate_click` Umami event.
+
+### Feedback
+
+- The footer opens the **feedback dialog** (helpful vote + GitHub issues).
+- The "Was this helpful?" vote is tracked as the `helpful_vote` event and feeds product iteration.
+- `.github/ISSUE_TEMPLATE/` holds the bug and feature request forms.
+
+### Keep usage free
+
+The product stays free for now; donations fund it. Paid tiers (unlimited saved cities, alerts,
+premium) are deliberately deferred.
 
 ---
 

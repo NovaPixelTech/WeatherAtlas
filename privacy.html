@@ -103,11 +103,12 @@
       <h2>What is measured</h2>
       <p>
         When a page loads, the Umami tracker sends one pageview, and each change of section sends
-        another. It records:
+        another; a generated city guide sends one pageview of its own. It records:
       </p>
       <ul>
         <li><strong>The page path and title</strong>, without the query string or hash. A shared link such as <code>?city=Tokyo</code> is counted as the page, not as the city you looked at.</li>
         <li><strong>Which section you are using</strong> — City Search, Compare, Climate Filter or Live Cameras. The app is a single page, so these are sent as virtual paths such as <code>/WeatherScope/compare</code>; switching sections is not a request to another page.</li>
+        <li><strong>Generated city guides</strong> — one pageview per guide, such as <code>/WeatherScope/cities/tokyo</code>, with its own title and climate summary.</li>
         <li><strong>The referring site</strong> (the page that sent you here) and the site hostname.</li>
         <li><strong>Approximate location</strong> — country, region and city — derived by Umami from the network address. This is not GPS and is often less precise than a city.</li>
         <li><strong>Technical context</strong>: browser, operating system, device type, screen size and browser language.</li>
@@ -143,6 +144,15 @@
         <li>No selling of data, no advertising and no personalisation based on analytics.</li>
       </ul>
 
+      <h2>Interactions recorded</h2>
+      <p>
+        Donations and feedback are sent as <strong>custom events</strong> (for example
+        <code>donate_click</code> when a visitor opens the Ko-fi or PayPal donation page, or
+        <code>helpful_vote</code> when they answer "was this helpful?"), not as pageviews. Events
+        carry no personal information, and they are only sent after consent is given or declined by
+        the usual Do Not Track / Global Privacy Control switches.
+      </p>
+
       <h2>Why the data is kept, and for how long</h2>
       <p>
         The measurements answer practical questions: which pages are used, which countries and
@@ -167,6 +177,19 @@
         <li><strong>JavaScript disabled</strong> also prevents measurement, because the tracker never runs.</li>
         <li>You can ask questions or raise a concern through the project's <a href="https://github.com/NovaPixelTech/WeatherScope/issues" target="_blank" rel="noopener noreferrer">issue tracker</a>.</li>
       </ul>
+
+      <h2>Donations and feedback</h2>
+      <p>
+        Donations go to the maintainer through an external fundraising page (Ko-fi, PayPal.Me or
+        GitHub Sponsors). Clicking the button only opens that page in a new tab; WeatherScope does
+        not send the click anywhere else, and no donation data is shared with the analytics service.
+      </p>
+      <p>
+        Feedback and bug reports are handled through the project's public
+        <a href="https://github.com/NovaPixelTech/WeatherScope/issues" target="_blank" rel="noopener noreferrer">issue tracker</a>.
+        The optional "was this helpful?" vote is sent as a custom analytics event with no personal data
+        attached; it never identifies the visitor.
+      </p>
 
       <h2>Changes</h2>
       <p>

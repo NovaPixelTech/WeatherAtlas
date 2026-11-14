@@ -6,8 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WeatherScope - Climate & City Forecasts</title>
   <meta name="description" content="Search real-time weather conditions by city name or discover cities worldwide meeting your preferred climate conditions." data-i18n-content="app.description" />
+  <link rel="canonical" href="https://novapixeltech.github.io/WeatherScope/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="WeatherScope" />
+  <meta property="og:title" content="WeatherScope - Climate & City Forecasts" />
+  <meta property="og:description" content="Search real-time weather conditions by city name or discover cities worldwide meeting your preferred climate conditions." />
+  <meta property="og:url" content="https://novapixeltech.github.io/WeatherScope/" />
+  <meta property="og:image" content="https://novapixeltech.github.io/WeatherScope/og-image.png" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WeatherScope - Climate & City Forecasts" />
+  <meta name="twitter:description" content="Search real-time weather conditions by city name or discover cities worldwide meeting your preferred climate conditions." />
+  <meta name="twitter:image" content="https://novapixeltech.github.io/WeatherScope/og-image.png" />
   <meta name="application-name" content="WeatherScope" />
   <meta name="theme-color" content="#0b1324" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "WeatherScope",
+    "url": "https://novapixeltech.github.io/WeatherScope/",
+    "description": "Search real-time weather conditions by city name or discover cities worldwide meeting your preferred climate conditions.",
+    "applicationCategory": "WeatherApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <link rel="manifest" href="manifest.webmanifest" />
   <!-- The radar-scope mark: a weather radar seen through a scope ring -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -1120,11 +1149,52 @@
        <p data-i18n-html="footer.providedBy" data-i18n-vars='{"link":"<a href=\"https://open-meteo.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Open-Meteo API</a>"}'>Data provided by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo API</a></p>
        <p class="footer-timezone-note" id="footer-timezone-note">Local times use each city's IANA timezone and tick in real time &middot; Your reference time is detected from your device timezone (<span id="footer-user-zone">--</span>)</p>
        <p class="footer-privacy"><a href="privacy.html" data-i18n="footer.privacy">Privacy &amp; analytics</a></p>
+        <p class="footer-links">
+          <a href="cities/index.html" data-i18n="footer.cities">City Guides</a>
+          <span class="footer-sep">&middot;</span>
+          <a href="#" id="footer-support-link" data-i18n="footer.support">Support WeatherScope</a>
+          <span class="footer-sep">&middot;</span>
+          <a href="#" id="footer-feedback-link" data-i18n="footer.feedback">Send Feedback</a>
+        </p>
     </footer>
   </div>
 
   <!-- Pure forecast logic, no DOM access: loaded before the app so the
        dashboard can render recommendations from data it already has. -->
+  <!-- Support + feedback dialogs, wired by support.js. The donation actions
+       stay hidden until support-config.js carries a fundraising URL. -->
+  <dialog class="action-dialog" id="support-dialog" aria-labelledby="support-dialog-title">
+    <div class="dialog-card">
+      <h2 id="support-dialog-title" data-i18n="support.title">Support WeatherScope</h2>
+      <p data-i18n="support.intro">WeatherScope is free and runs on your goodwill. If it helped you, fuel the next forecast.</p>
+      <div class="dialog-actions" id="support-donations">
+        <a id="support-donate-kofi" class="donation-btn" data-i18n="support.donate" href="" target="_blank" rel="noopener noreferrer" hidden>Buy me a coffee</a>
+        <a id="support-donate-paypal" class="donation-btn" data-i18n="support.paypal" href="" target="_blank" rel="noopener noreferrer" hidden>Donate via PayPal</a>
+        <a id="support-donate-sponsor" class="donation-btn" data-i18n="support.sponsor" href="" target="_blank" rel="noopener noreferrer" hidden>GitHub Sponsors</a>
+      </div>
+      <button type="button" id="support-close" data-dialog="support-dialog" data-i18n="support.close">Close</button>
+    </div>
+  </dialog>
+
+  <dialog class="action-dialog" id="feedback-dialog" aria-labelledby="feedback-dialog-title">
+    <div class="dialog-card">
+      <h2 id="feedback-dialog-title" data-i18n="feedback.title">Share your feedback</h2>
+      <p data-i18n="feedback.intro">What did you search for, and did the forecast hit the mark?</p>
+      <div class="feedback-helpful">
+        <p data-i18n="feedback.helpful">Was this helpful?</p>
+        <div class="feedback-helpful-actions">
+          <button type="button" id="feedback-helpful-yes" data-i18n="feedback.yes" data-helpful-vote data-value="yes">Yes</button>
+          <button type="button" id="feedback-helpful-no" data-i18n="feedback.no" data-helpful-vote data-value="no">No</button>
+        </div>
+      </div>
+      <p id="feedback-thanks" class="feedback-thanks" data-i18n="feedback.thanks" hidden>Thanks for helping WeatherScope get better!</p>
+      <div class="dialog-actions">
+        <a id="feedback-bug-link" class="dialog-secondary-btn" data-i18n="feedback.bug" href="" target="_blank" rel="noopener noreferrer">Report a bug</a>
+        <a id="feedback-feature-link" class="dialog-secondary-btn" data-i18n="feedback.feature" href="" target="_blank" rel="noopener noreferrer">Request a feature</a>
+      </div>
+      <button type="button" id="feedback-close" data-dialog="feedback-dialog" data-i18n="feedback.close">Close</button>
+    </div>
+  </dialog>
   <script src="i18n.js"></script>
   <script src="fr.js"></script>
   <script src="advice.js"></script>
@@ -1139,6 +1209,10 @@
   <script src="favorites.js"></script>
   <!-- Pure weather-alert logic (thresholds, windows, verdicts), no DOM access -->
   <script src="alerts.js"></script>
+  <!-- Support + feedback dialog wiring. Donation / issue URLs live in
+       support-config.js; the actions stay hidden until one is set there. -->
+  <script src="support-config.js"></script>
+  <script src="support.js"></script>
   <script src="app.js"></script>
   <!-- Free, cookieless analytics via Umami Cloud. The Website ID lives in
        analytics-config.js; an empty Website ID loads no tracker at all. -->

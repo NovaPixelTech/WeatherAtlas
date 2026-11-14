@@ -1,0 +1,222 @@
+/* ==========================================================================
+   WeatherScope - generated city guide styles
+   ==========================================================================
+   Standalone stylesheet for the programmatic city pages under /cities/.
+   It is self-contained: these pages do not load the app stylesheet.
+   ========================================================================== */
+
+:root {
+  --ws-bg: #0b1324;
+  --ws-card: #101c33;
+  --ws-border: rgba(56, 189, 248, 0.22);
+  --ws-text: #f1f5f9;
+  --ws-muted: #cbd5e1;
+  --ws-dim: #94a3b8;
+  --ws-accent: #38bdf8;
+  --ws-accent-2: #60a5fa;
+  --ws-radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 50% 0%, #101e38 0%, #0b1324 55%, #040812 100%);
+  color: var(--ws-text);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+.city-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.city-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.city-brand {
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--ws-text);
+  text-decoration: none;
+}
+
+.city-brand span {
+  color: var(--ws-accent);
+}
+
+.city-home {
+  color: var(--ws-accent);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.city-hero {
+  background: linear-gradient(160deg, #101c33, #0b1324);
+  border: 1px solid var(--ws-border);
+  border-radius: var(--ws-radius);
+  padding: 28px;
+}
+
+.city-hero h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+.city-hero .country-line {
+  color: var(--ws-dim);
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.city-hero p.lede {
+  color: var(--ws-muted);
+  font-size: 1.02rem;
+  margin: 0 0 20px;
+}
+
+.city-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, var(--ws-accent), var(--ws-accent-2));
+  color: #04101f;
+  font-weight: 800;
+  padding: 14px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.city-section {
+  margin-top: 28px;
+  background: rgba(16, 28, 51, 0.6);
+  border: 1px solid rgba(56, 189, 248, 0.14);
+  border-radius: var(--ws-radius);
+  padding: 24px;
+}
+
+.city-section h2 {
+  margin: 0 0 14px;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.city-section p,
+.city-section li {
+  color: var(--ws-muted);
+}
+
+.city-section ul {
+  padding-left: 20px;
+}
+
+.city-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.city-stat {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.16);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.city-stat .value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ws-accent);
+}
+
+.city-stat .label {
+  font-size: 0.75rem;
+  color: var(--ws-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+table.city-climate {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+table.city-climate th,
+table.city-climate td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+table.city-climate th {
+  color: var(--ws-dim);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+table.city-climate td.num,
+table.city-climate th.num {
+  text-align: right;
+}
+
+table.city-climate td.num {
+  color: var(--ws-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.faq details {
+  margin-bottom: 10px;
+}
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--ws-text);
+}
+
+.faq p {
+  margin: 8px 0 0;
+}
+
+.city-related h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.city-related ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--ws-muted);
+}
+
+.city-related a {
+  color: var(--ws-accent);
+}
+
+.city-footer {
+  margin-top: 36px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+  font-size: 0.85rem;
+  color: var(--ws-dim);
+}
+
+.city-footer a {
+  color: var(--ws-accent);
+}

@@ -1,0 +1,24 @@
+{
+  "name": "WeatherScope",
+  "short_name": "WeatherScope",
+  "description": "Climate and city forecasts - search real-time weather by city or climate.",
+  "start_url": "/WeatherScope/",
+  "scope": "/WeatherScope/",
+  "display": "standalone",
+  "background_color": "#0b1324",
+  "theme_color": "#0b1324",
+  "icons": [
+    {
+      "src": "/WeatherScope/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/WeatherScope/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

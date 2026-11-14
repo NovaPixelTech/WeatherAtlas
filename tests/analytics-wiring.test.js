@@ -169,7 +169,8 @@ function runLoader(options = {}) {
         },
     navigator,
   };
-  const sandbox = { window, location, navigator, document, console };
+  if (options.staticPage) window.WEATHERSCOPE_STATIC_PAGE = options.staticPage;
+  const sandbox = { window, location, navigator, document, console, URL };
   window.document = document;
   window.location = location;
   sandbox.globalThis = sandbox;
@@ -261,6 +262,84 @@ test('an opted-out or unconfigured page exposes a no-op section API', () => {
   const sent = captureUmami(result);
   result.window.weatherscopeAnalytics.trackSection('compare');
   assert.equal(sent.length, 0);
+});
+
+// Umami's event form is track(name, data), so both arguments matter.
+function captureUmamiCalls(result) {
+  const calls = [];
+  result.window.umami = {
+    track(...args) {
+      calls.push(
+        args.map((arg) =>
+          typeof arg === 'function'
+            ? arg({ website: WEBSITE_ID, url: 'https://example.test/', title: 'Landing' })
+            : arg
+        )
+      );
+    },
+  };
+  return calls;
+}
+
+test('a static city page reports its own path instead of a section', () => {
+  const result = runLoader({
+    staticPage: {
+      url: '/WeatherScope/cities/tokyo',
+      title: 'Weather in Tokyo, Japan - Climate & Monthly Averages',
+    },
+  });
+  const sent = captureUmami(result);
+  result.appended[0].listeners.load();
+
+  assert.equal(sent.length, 1);
+  assert.equal(sent[0].url, '/WeatherScope/cities/tokyo');
+  assert.equal(sent[0].title, 'Weather in Tokyo, Japan - Climate & Monthly Averages');
+});
+
+test('trackPage normalises an absolute URL and refuses an empty one', () => {
+  const result = runLoader();
+  const sent = captureUmami(result);
+  result.window.weatherscopeAnalytics.trackPage(
+    'https://novapixeltech.github.io/WeatherScope/cities/paris',
+    'Paris'
+  );
+  result.window.weatherscopeAnalytics.trackPage('   ', 'Nowhere');
+  assert.equal(sent.length, 1);
+  assert.equal(sent[0].url, '/WeatherScope/cities/paris');
+});
+
+test('an interaction is sent as a named event with primitive properties', () => {
+  const result = runLoader();
+  const calls = captureUmamiCalls(result);
+  result.window.weatherscopeAnalytics.trackEvent('donate_click', {
+    provider: 'kofi',
+    page: '/WeatherScope/cities/tokyo',
+    amount: 3,
+    recurring: false,
+    ignored: { nested: true },
+  });
+
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0][0], 'donate_click');
+  const clean = calls[0][1];
+  assert.equal(clean.provider, 'kofi');
+  assert.equal(clean.page, '/WeatherScope/cities/tokyo');
+  assert.equal(clean.amount, 3);
+  assert.equal(clean.recurring, false);
+});
+test('event names are capped at Umami\'s 50-character limit', () => {
+  const result = runLoader();
+  const calls = captureUmamiCalls(result);
+  result.window.weatherscopeAnalytics.trackEvent('x'.repeat(80), { page: 'test' });
+  assert.equal(calls[0][0].length, 50);
+});
+
+test('an opted-out page silently ignores pageviews and events', () => {
+  const result = runLoader({ config: { provider: 'umami', websiteId: '' } });
+  const calls = captureUmamiCalls(result);
+  result.window.weatherscopeAnalytics.trackPage('/WeatherScope/cities/paris', 'Paris');
+  result.window.weatherscopeAnalytics.trackEvent('helpful_vote', { value: 'yes' });
+  assert.equal(calls.length, 0);
 });
 
 test('an empty Website ID, a disabled config or another provider loads nothing', () => {
