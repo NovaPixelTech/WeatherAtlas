@@ -4817,18 +4817,65 @@ html[data-language-pending='true'] body {
 }
 
 .app-footer .footer-links {
-  margin-top: 8px;
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 .app-footer .footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 15px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  background: rgba(56, 189, 248, 0.08);
   color: var(--accent-cyan);
-  text-decoration: none;
+  font-size: 0.8rem;
   font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
 
-.app-footer .footer-sep {
-  color: var(--text-dim);
-  margin: 0 6px;
+/* The icons are SVG masks tinted with currentColor, so they follow the link
+   colour on hover and stay invisible to assistive technology. */
+.app-footer .footer-links a::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask: var(--footer-icon) center / contain no-repeat;
+  mask: var(--footer-icon) center / contain no-repeat;
+}
+
+.app-footer .footer-links a[data-i18n="footer.cities"] {
+  --footer-icon: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M9%2020l-5.5-2.5v-13L9%207l6-2.5L20.5%207v13L15%2017.5%209%2020z'/%3E%3Cpath%20d='M9%207v13'/%3E%3Cpath%20d='M15%204.5v13'/%3E%3C/svg%3E");
+}
+
+.app-footer .footer-links a[data-i18n="footer.support"] {
+  --footer-icon: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M20.8%204.6a5.5%205.5%200%200%200-7.8%200L12%205.6l-1-1a5.5%205.5%200%200%200-7.8%207.8l1%201L12%2021.2l7.8-7.8%201-1a5.5%205.5%200%200%200%200-7.8z'/%3E%3C/svg%3E");
+}
+
+.app-footer .footer-links a[data-i18n="footer.feedback"] {
+  --footer-icon: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='black'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M21%2015a2%202%200%200%201-2%202H7l-4%204V5a2%202%200%200%201%202-2h14a2%202%200%200%201%202%202z'/%3E%3C/svg%3E");
+}
+
+.app-footer .footer-links a:hover,
+.app-footer .footer-links a:focus-visible {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: rgba(56, 189, 248, 0.6);
+  color: #7dd3fc;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.app-footer .footer-links a:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
 }
 
 /* ==========================================================================
@@ -4844,21 +4891,53 @@ html[data-language-pending='true'] body {
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
 }
 
+/* The UA [hidden] rule loses to display:flex on the rows below, so the
+   dialogs carry their own explicit override. Without it the donation cards
+   would stay visible with empty links. */
+.action-dialog [hidden] {
+  display: none !important;
+}
+
 .action-dialog::backdrop {
   background: rgba(3, 8, 18, 0.72);
 }
 
-.dialog-card h2 {
-  margin: 0 0 8px;
-  font-size: 1.35rem;
+.dialog-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.dialog-icon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #7dd3fc;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(96, 165, 250, 0.16));
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.dialog-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.dialog-head h2 {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
   font-weight: 800;
 }
 
-.dialog-card > p {
-  margin: 0 0 16px;
-  font-size: 0.92rem;
+.dialog-head p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
   color: var(--text-secondary);
-  line-height: 1.55;
 }
 
 .dialog-actions {
@@ -4891,21 +4970,130 @@ html[data-language-pending='true'] body {
   background: rgba(56, 189, 248, 0.22);
 }
 
+.dialog-actions a:focus-visible,
+.dialog-actions button:focus-visible,
+.donation-card:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
 .dialog-secondary-btn {
   background: transparent;
   border-color: rgba(148, 163, 184, 0.4) !important;
   color: var(--text-secondary) !important;
 }
 
-.donation-btn {
+/* The hosted feedback form (Tally, Google Forms, ...) is the primary action;
+   the GitHub issue links stay as secondary options. The selector is spelled
+   out at the same specificity as `.dialog-actions a` so the gradient wins. */
+.dialog-actions a.feedback-form-btn {
+  flex: 1 1 100%;
+  justify-content: center;
   background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
   color: #04101f !important;
   border: none;
 }
 
+.dialog-actions a.feedback-form-btn:hover {
+  background: linear-gradient(90deg, #7dd3fc, #93c5fd);
+}
+
+/* ---- Support dialog: donation cards ------------------------------------- */
+.donation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.donation-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(148, 163, 184, 0.07);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.donation-card:hover {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.55);
+  transform: translateY(-1px);
+}
+
+.donation-brand {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #04101f;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+}
+
+.donation-brand svg {
+  width: 18px;
+  height: 18px;
+}
+
+.donation-brand-kofi {
+  background: linear-gradient(135deg, #00b9fe, #0072bc);
+  color: #ffffff;
+}
+
+.donation-brand-paypal {
+  background: linear-gradient(135deg, #009cde, #003087);
+  color: #ffffff;
+}
+
+.donation-brand-sponsor {
+  background: linear-gradient(135deg, #f85d7f, #b6298d);
+  color: #ffffff;
+}
+
+.donation-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.donation-label {
+  font-weight: 700;
+}
+
+.donation-caption {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.donation-arrow {
+  margin-left: auto;
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+.support-empty {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px dashed rgba(148, 163, 184, 0.4);
+  background: rgba(148, 163, 184, 0.06);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
 .feedback-helpful {
   text-align: center;
-  padding: 8px 0 4px;
+  padding: 4px 0;
 }
 
 .feedback-helpful p {

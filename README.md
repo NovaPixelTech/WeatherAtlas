@@ -449,7 +449,7 @@ The full playbook — keyword strategy, roadmap, metrics — lives in **[GROWTH.
 
 The support dialog (`support.js` + `support-config.js`) renders donation actions for **Ko-fi** and
 **PayPal.Me**, plus optional GitHub Sponsors. Nothing shows until a fundraising URL is pasted into
-`support-config.js`:
+`support-config.js`; with no URL the dialog says so instead of showing dead buttons:
 
 ```js
 window.WEATHERSCOPE_SUPPORT = {
@@ -460,6 +460,7 @@ window.WEATHERSCOPE_SUPPORT = {
   githubRepo: 'NovaPixelTech/WeatherScope',
   bugIssueUrl: 'https://github.com/NovaPixelTech/WeatherScope/issues/new?labels=bug',
   featureIssueUrl: 'https://github.com/NovaPixelTech/WeatherScope/issues/new?labels=enhancement',
+  feedbackFormUrl: 'https://tally.so/r/yourform',
 };
 ```
 
@@ -467,9 +468,12 @@ Donation clicks are tracked as the `donate_click` Umami event.
 
 ### Feedback
 
-- The footer opens the **feedback dialog** (helpful vote + GitHub issues).
+- The footer opens the **feedback dialog** (helpful vote + a hosted form + GitHub issues).
+- `feedbackFormUrl` points at a free hosted form such as **Tally** or **Google Forms**, so visitors
+  can send feedback without a GitHub account. Empty keeps the button hidden.
 - The "Was this helpful?" vote is tracked as the `helpful_vote` event and feeds product iteration.
-- `.github/ISSUE_TEMPLATE/` holds the bug and feature request forms.
+- Opening the hosted form is tracked as `feedback_form_click`; `.github/ISSUE_TEMPLATE/` holds the
+  bug and feature request forms for visitors who prefer GitHub.
 
 ### Keep usage free
 

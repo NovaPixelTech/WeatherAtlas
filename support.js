@@ -52,6 +52,7 @@
 
     // ---- Donation surface -------------------------------------------------
     const donations = element('support-donations');
+    const supportEmpty = element('support-empty');
     const donationButtons = {
       kofi: element('support-donate-kofi'),
       paypal: element('support-donate-paypal'),
@@ -74,17 +75,26 @@
           node.rel = 'noopener noreferrer';
         } else {
           node.hidden = true;
+          node.removeAttribute('href');
         }
       });
-      if (!config.koFiUrl && !config.payPalMeUrl && !config.githubSponsorUrl) {
-        donations.hidden = true;
-      }
+      const anyLink = config.koFiUrl || config.payPalMeUrl || config.githubSponsorUrl;
+      donations.hidden = !anyLink;
+      // With no fundraising URL there is nothing to click, so the dialog says
+      // so instead of showing dead cards.
+      if (supportEmpty) supportEmpty.hidden = !!anyLink;
       // Donation clicks are tracked before the browser opens the fundraising
-      // page, so the analytics event never distorts pageview counts.
+      // page, so the analytics event never distorts pageview counts. The
+      // getAttribute guard keeps a card with no configured link inert even if
+      // a stylesheet ever lets it peek through.
       Object.keys(donationButtons).forEach((key) => {
         const node = donationButtons[key];
         if (!node || node.hidden) return;
-        node.addEventListener('click', function () {
+        node.addEventListener('click', function (event) {
+          if (!node.getAttribute('href')) {
+            event.preventDefault();
+            return;
+          }
           trackEvent('donate_click', { provider: key });
         });
       });
@@ -95,6 +105,27 @@
     const featureLink = element('feedback-feature-link');
     if (bugLink) bugLink.href = config.bugIssueUrl || '';
     if (featureLink) featureLink.href = config.featureIssueUrl || '';
+
+    // ---- Hosted feedback form ---------------------------------------------
+    // A Tally / Google Forms URL lets visitors send feedback without a GitHub
+    // account. Empty (or not http(s)) keeps the button hidden, so the dialog
+    // never offers a dead action.
+    const feedbackFormLink = element('feedback-form-link');
+    if (feedbackFormLink) {
+      const formUrl = typeof config.feedbackFormUrl === 'string' ? config.feedbackFormUrl.trim() : '';
+      if (/^https?:\/\//i.test(formUrl)) {
+        feedbackFormLink.hidden = false;
+        feedbackFormLink.href = formUrl;
+        feedbackFormLink.target = '_blank';
+        feedbackFormLink.rel = 'noopener noreferrer';
+        feedbackFormLink.addEventListener('click', function () {
+          trackEvent('feedback_form_click', { source: 'footer' });
+        });
+      } else {
+        feedbackFormLink.hidden = true;
+        feedbackFormLink.removeAttribute('href');
+      }
+    }
 
     // ---- Dialog openers wired from the footer -----------------------------
     const supportLink = element('footer-support-link');
