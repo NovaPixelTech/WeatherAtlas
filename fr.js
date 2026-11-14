@@ -237,6 +237,7 @@
     "popular.label": "Populaire:",
     "footer.providedBy": "Données fournies par {link}",
     "footer.tagline": "Intelligence météorologique mondiale en temps réel",
+    "footer.privacy": "Confidentialité et statistiques",
     "footer.timezoneNote": "Les heures locales utilisent le fuseau horaire IANA de chaque ville et cochent en temps réel · Votre heure de référence est détectée à partir du fuseau horaire de votre appareil ({zone})",
     "time.sameAsYou": "Même heure que vous",
     "time.sameAsYouShort": "Même heure",

@@ -2424,6 +2424,12 @@ body {
   margin-top: 4px;
 }
 
+.footer-privacy {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
 .data-freshness {
   font-size: 0.78rem;
   color: var(--text-muted);

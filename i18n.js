@@ -431,6 +431,7 @@
       'popular.label': 'Popular:',
       'footer.providedBy': 'Data provided by {link}',
       'footer.tagline': 'Real-time global meteorological intelligence',
+      'footer.privacy': 'Privacy & analytics',
       'footer.timezoneNote': "Local times use each city's IANA timezone and tick in real time · Your reference time is detected from your device timezone ({zone})",
 
       // --- Clocks / time difference -----------------------------------------
@@ -1034,6 +1035,7 @@
       'popular.label': 'Δημοφιλείς:',
       'footer.providedBy': 'Τα δεδομένα παρέχονται από {link}',
       'footer.tagline': 'Παγκόσμια μετεωρολογική νοημοσύνη σε πραγματικό χρόνο',
+      'footer.privacy': 'Απόρρητο & στατιστικά',
       'footer.timezoneNote': 'Οι τοπικές ώρες χρησιμοποιούν τη ζώνη ώρας IANA κάθε πόλης και ενημερώνονται σε πραγματικό χρόνο · Η ώρα αναφοράς σας ανιχνεύεται από τη ζώνη ώρας της συσκευής σας ({zone})',
 
       // --- Clocks / time difference -----------------------------------------
@@ -1637,6 +1639,7 @@
       'popular.label': 'Beliebt:',
       'footer.providedBy': 'Daten bereitgestellt von {link}',
       'footer.tagline': 'Globale Echtzeit-Wetterdaten',
+      'footer.privacy': 'Datenschutz & Statistik',
       'footer.timezoneNote': 'Ortszeiten verwenden die IANA-Zeitzone jeder Stadt und aktualisieren sich in Echtzeit · Ihre Referenzzeit wird aus der Zeitzone Ihres Geräts erkannt ({zone})',
 
       // --- Clocks / time difference -----------------------------------------
@@ -2154,6 +2157,7 @@
       'forecast.precipChanceTitle': 'Probabilità di precipitazioni',
       'popular.label': 'Popolari:', 'footer.providedBy': 'Dati forniti da {link}',
       'footer.tagline': 'Dati meteorologici globali in tempo reale',
+      'footer.privacy': 'Privacy e statistiche',
       'footer.timezoneNote': 'Gli orari locali usano il fuso IANA di ogni città e si aggiornano in tempo reale · Il tuo fuso orario di riferimento è {zone}',
       'time.sameAsYou': 'Stessa ora tua', 'time.sameAsYouShort': 'Stessa ora',
       'time.aheadOf': '{value} avanti a te', 'time.behind': '{value} indietro rispetto a te',
@@ -2587,6 +2591,7 @@
       'forecast.precipChanceTitle': 'Probabilidad de precipitaciones',
       'popular.label': 'Populares:', 'footer.providedBy': 'Datos proporcionados por {link}',
       'footer.tagline': 'Información meteorológica global en tiempo real',
+      'footer.privacy': 'Privacidad y estadísticas',
       'footer.timezoneNote': 'Las horas locales usan la zona IANA de cada ciudad y se actualizan en tiempo real · Tu zona de referencia es {zone}',
       'time.sameAsYou': 'La misma hora que tú', 'time.sameAsYouShort': 'Misma hora',
       'time.aheadOf': '{value} por delante de ti', 'time.behind': '{value} por detrás de ti',

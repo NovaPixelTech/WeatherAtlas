@@ -327,6 +327,79 @@ node --test tests/favorites.test.js tests/server.test.js tests/favorites-wiring.
 
 ---
 
+## 📈 Visitor analytics
+
+WeatherScope uses **[Umami Cloud](https://cloud.umami.is)** for visitor analytics: a free, cookieless, open-source analytics service with its own dashboard. There is no backend in this repository and no build step — the site loads Umami's tracker only when a Website ID is configured.
+
+| The Umami dashboard shows | Notes |
+| --- | --- |
+| **Views / visitors / visits** | Visitors are unique sessions, not cookies. |
+| **Countries / regions / cities** | Approximate, derived from the network address. |
+| **Pages and entry/exit pages** | Path and title, with query strings and hashes excluded. |
+| **Referrers and channels** | Which sites and search engines sent traffic. |
+| **Browsers / OS / devices / languages** | With screen size and realtime activity. |
+| **Goals, funnels, events** | Available on the free plan if you add them later. |
+
+### Free-plan limits (Umami Cloud Hobby)
+
+- $0/month, no card required.
+- Up to **100,000 events per month** (one pageview = one event).
+- **One website** and **six months** of history.
+- Data export is included; US or EU data region is chosen at signup.
+
+Check the current [Umami pricing](https://umami.is/pricing) before a high-traffic launch — free tiers change.
+
+### Setup (one value to paste)
+
+1. Create a free account at **https://cloud.umami.is** (choose the US or EU region).
+2. Add a website. Use `novapixeltech.github.io` as the domain (the project path is not part of a hostname).
+3. Copy the **Website ID** (a UUID such as `94db1cb1-74f4-4a40-ad6c-962362670409`).
+4. Paste it into [`analytics-config.js`](analytics-config.js):
+
+   ```js
+   window.WEATHERSCOPE_ANALYTICS = {
+     provider: 'umami',
+     scriptUrl: 'https://cloud.umami.is/script.js',
+     websiteId: 'paste-the-uuid-here',
+     excludeSearch: true,
+     excludeHash: true,
+     respectDoNotTrack: true,
+     domains: '',
+     enabled: true,
+   };
+   ```
+
+5. Commit and push. Open the Umami dashboard; a pageview appears within a minute of the next visit.
+
+Leaving `websiteId` empty disables collection completely: the loader adds no script and sends no request, so a fork cannot report into your Umami site. The Website ID is public by design; there is no admin token to protect.
+
+### Privacy defaults
+
+- **No cookies.** Umami derives an anonymous session hash on its server from the website ID, IP address, user agent and a salt that rotates monthly. The IP is processed for that hash and for approximate location, but is not stored as an analytics field.
+- **No query strings or hashes.** `excludeSearch` and `excludeHash` keep a shared `?city=Tokyo` link from being recorded as a search.
+- **No account linkage.** WeatherScope never calls `umami.identify()`, so a visit is not tied to a saved city or a local account.
+- **DNT and GPC.** The loader refuses to load the tracker when either signal is present.
+- **No localhost noise.** Local development and `file://` pages are never measured.
+- **Public notice.** [`privacy.html`](privacy.html) is linked from the footer and explains exactly what Umami records. Keep it in sync if you change the provider or retention.
+
+### Honest limits
+
+- **Visitors are sessions, not people.** The salt rotates monthly, and a new network, browser or device starts a new session. Expect the same person to count more than once.
+- **City is approximate.** It comes from IP geolocation, not GPS, and can be empty for some connections.
+- **Ad blockers can drop the tracker.** That is normal for client-side analytics; the dashboard reports what arrived.
+- **Free tier is capped.** 100,000 events/month and six months of history; beyond that, Umami Cloud's paid plan or self-hosting is the next step.
+- **The tracker is third-party code.** It is loaded from `cloud.umami.is`; if that is unacceptable, self-host Umami or use Cloudflare Web Analytics (country-level only).
+
+### Running the tests
+
+```powershell
+node --test tests/analytics-wiring.test.js
+```
+
+`analytics-wiring.test.js` proves the loader is silent with an empty Website ID, on localhost, `file://`, DNT and GPC; that it injects the tracker with `data-exclude-search`, `data-exclude-hash` and `data-do-not-track`; that it never sets a cookie or calls `umami.identify()`; and that the README and privacy page keep the documented contract. The full suite is `node --test`.
+
+---
+
 ## 🔔 Weather alerts
 
 Save a city and you can also decide **when WeatherScope should speak up about it**. An alert is a small rule — a city, a condition, a threshold and a look-ahead window — and the bell beside the account button turns amber with a count the moment one of them matches.

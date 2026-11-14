@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeatherScope - Privacy &amp; analytics</title>
+  <meta name="description" content="What WeatherScope measures with Umami Cloud, what it does not collect, and how to opt out of its cookieless visitor analytics." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #070d1a;
+      --panel: #0f1b33;
+      --border: rgba(148, 184, 255, 0.16);
+      --text: #eaf1ff;
+      --muted: #9fb2d1;
+      --accent: #57d9ff;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--bg); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background:
+        radial-gradient(900px 500px at 8% -10%, rgba(87, 217, 255, 0.16), transparent 60%),
+        radial-gradient(800px 500px at 100% 0%, rgba(111, 140, 255, 0.16), transparent 55%),
+        var(--bg);
+    }
+    a { color: var(--accent); }
+    a:hover { color: #9fe8ff; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    .shell { width: min(820px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+    .brand { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem; }
+    .brand img { width: 42px; height: 42px; }
+    .brand a { color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: -0.02em; }
+    .brand span { display: block; font-size: 0.76rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+    main {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(1.2rem, 4vw, 2.4rem);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    }
+    h1 { margin: 0 0 0.35rem; font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: -0.03em; }
+    .updated { margin: 0 0 1.6rem; font-size: 0.8rem; color: var(--muted); }
+    h2 { margin: 1.8rem 0 0.5rem; font-size: 1.02rem; letter-spacing: -0.01em; }
+    p, li { font-size: 0.94rem; }
+    p { margin: 0 0 0.85rem; color: #d5e2f7; }
+    ul { margin: 0 0 0.9rem; padding-left: 1.2rem; color: #d5e2f7; }
+    li { margin: 0 0 0.4rem; }
+    strong { color: #fff; }
+    .callout {
+      margin: 1.2rem 0;
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(98, 230, 167, 0.32);
+      border-radius: 12px;
+      background: rgba(98, 230, 167, 0.07);
+    }
+    .callout p:last-child { margin-bottom: 0; }
+    footer { margin-top: 1.6rem; font-size: 0.8rem; color: var(--muted); }
+    footer a { margin-right: 1rem; }
+    code {
+      padding: 0.1rem 0.35rem;
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.3);
+      font: 0.85em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="brand">
+      <img src="favicon.svg" alt="" width="42" height="42" />
+      <a href="./">WeatherScope<span>Climate &amp; city forecasts</span></a>
+    </div>
+
+    <main>
+      <h1>Privacy &amp; analytics</h1>
+      <p class="updated">Last updated: 14 November 2026</p>
+
+      <p>
+        WeatherScope is a static weather app published on GitHub Pages. This page explains the
+        visitor measurement it performs and the choices you have. It is written to be read, not to
+        hide behind legal wording.
+      </p>
+
+      <div class="callout">
+        <p>
+          <strong>Short version:</strong> WeatherScope uses <strong>Umami Cloud</strong>, a
+          cookieless analytics service. No cookies are set, no account is linked to a visit, and
+          query strings and URL fragments are excluded. You can opt out by sending Do Not Track or
+          Global Privacy Control, or by blocking the Umami tracker.
+        </p>
+      </div>
+
+      <h2>What is measured</h2>
+      <p>When a page loads, the Umami tracker sends one pageview. It records:</p>
+      <ul>
+        <li><strong>The page path and title</strong>, without the query string or hash. A shared link such as <code>?city=Tokyo</code> is counted as the page, not as the city you looked at.</li>
+        <li><strong>The referring site</strong> (the page that sent you here) and the site hostname.</li>
+        <li><strong>Approximate location</strong> — country, region and city — derived by Umami from the network address. This is not GPS and is often less precise than a city.</li>
+        <li><strong>Technical context</strong>: browser, operating system, device type, screen size and browser language.</li>
+        <li><strong>An anonymous session identifier</strong>, calculated on Umami's server. It is described below.</li>
+      </ul>
+
+      <h2>How visitors are counted</h2>
+      <p>
+        Umami does not store an identifier in your browser. Instead, its server hashes the website
+        ID, the visitor's IP address, the browser's user agent and a secret salt. The salt rotates
+        monthly. The IP address is processed to calculate that hash and to look up the approximate
+        location, but it is not stored as a field in the analytics record.
+      </p>
+      <p>
+        Two consequences are worth knowing. Because the salt rotates, the same person is counted
+        again after the rotation, and changing network or browser can also start a new session.
+        Because the identifier is derived from the network and browser, two people behind the same
+        office network on the same browser may be counted as one. Treat "visitors" as a trend, not
+        as a count of people.
+      </p>
+      <p>
+        As with any hosted service, Umami and its infrastructure providers may process IP addresses
+        transiently in operational or security logs. That is separate from the analytics record,
+        which has no IP field.
+      </p>
+
+      <h2>What is not collected</h2>
+      <ul>
+        <li>No cookies and no advertising identifiers.</li>
+        <li>No name, email or account is linked to a visit. WeatherScope never calls Umami's <code>identify()</code> function, and accounts and saved cities are not used for analytics.</li>
+        <li>No query strings or URL fragments, so a shared city link is not recorded as a search.</li>
+        <li>No cross-site tracking: Umami's identifier includes this website's ID, so it cannot join a visit to another site.</li>
+        <li>No selling of data, no advertising and no personalisation based on analytics.</li>
+      </ul>
+
+      <h2>Why the data is kept, and for how long</h2>
+      <p>
+        The measurements answer practical questions: which pages are used, which countries and
+        cities visitors come from, and whether the site works on phones. The free Umami Cloud plan
+        keeps analytics history for <strong>six months</strong>. Aggregate data can be exported from
+        the Umami dashboard.
+      </p>
+
+      <h2>Who processes it</h2>
+      <ul>
+        <li><strong>Umami Cloud</strong> receives the pageview and provides the analytics dashboard. Its data region (United States or European Union) is chosen when the account is created.</li>
+        <li><strong>GitHub Pages</strong> serves the static site and, like any web host, sees requests to it.</li>
+        <li><strong>Open-Meteo</strong> provides the forecast data shown by the app. Your browser requests it directly when you search for a city.</li>
+        <li><strong>Google Fonts</strong> supplies the typeface used on the page, so your browser requests the font files from Google.</li>
+      </ul>
+
+      <h2>Your choices</h2>
+      <ul>
+        <li><strong>Do Not Track</strong> is honoured: if your browser sends it, the Umami tracker is not loaded.</li>
+        <li><strong>Global Privacy Control</strong> is honoured: WeatherScope checks it before loading the tracker.</li>
+        <li><strong>A content blocker</strong> that blocks <code>cloud.umami.is</code> prevents measurement. The app works exactly the same.</li>
+        <li><strong>JavaScript disabled</strong> also prevents measurement, because the tracker never runs.</li>
+        <li>You can ask questions or raise a concern through the project's <a href="https://github.com/NovaPixelTech/WeatherScope/issues" target="_blank" rel="noopener noreferrer">issue tracker</a>.</li>
+      </ul>
+
+      <h2>Changes</h2>
+      <p>
+        If what is measured changes, this page and the date above will change before the new
+        measurement is enabled. The Umami configuration is public in
+        <code>analytics-config.js</code> in the
+        <a href="https://github.com/NovaPixelTech/WeatherScope" target="_blank" rel="noopener noreferrer">WeatherScope repository</a>,
+        so the description here can be checked against the code.
+      </p>
+    </main>
+
+    <footer>
+      <a href="./">&larr; Back to WeatherScope</a>
+      <a href="https://umami.is/privacy" target="_blank" rel="noopener noreferrer">Umami's privacy policy</a>
+    </footer>
+  </div>
+</body>
+</html>

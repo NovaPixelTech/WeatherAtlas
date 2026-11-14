@@ -1119,6 +1119,7 @@
     <footer class="app-footer">
        <p data-i18n-html="footer.providedBy" data-i18n-vars='{"link":"<a href=\"https://open-meteo.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Open-Meteo API</a>"}'>Data provided by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo API</a></p>
        <p class="footer-timezone-note" id="footer-timezone-note">Local times use each city's IANA timezone and tick in real time &middot; Your reference time is detected from your device timezone (<span id="footer-user-zone">--</span>)</p>
+       <p class="footer-privacy"><a href="privacy.html" data-i18n="footer.privacy">Privacy &amp; analytics</a></p>
     </footer>
   </div>
 
@@ -1139,5 +1140,9 @@
   <!-- Pure weather-alert logic (thresholds, windows, verdicts), no DOM access -->
   <script src="alerts.js"></script>
   <script src="app.js"></script>
+  <!-- Free, cookieless analytics via Umami Cloud. The Website ID lives in
+       analytics-config.js; an empty Website ID loads no tracker at all. -->
+  <script src="analytics-config.js"></script>
+  <script src="analytics.js" defer></script>
 </body>
 </html>
