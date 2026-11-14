@@ -23,14 +23,13 @@ const OUT = path.join(__dirname, '..', 'data', 'city-climate.json');
 const PROGRESS = 'C:\\Users\\giong\\AppData\\Local\\Temp\\opencode\\cityfetch-progress.log';
 const ARCHIVE_START = '2015-01-01';
 const ARCHIVE_END = '2024-12-31';
-const DAYS = 3653; // 2015-01-01 .. 2024-12-31 inclusive
+
+const GEO_URL = 'https://geocoding-api.open-meteo.com/v1/search';
+const ARCHIVE_URL = 'https://archive-api.open-meteo.com/v1/archive';
 
 function log(line) {
   fs.appendFileSync(PROGRESS, `${new Date().toISOString()} ${line}\n`);
 }
-
-const GEO_URL = 'https://geocoding-api.open-meteo.com/v1/search';
-const ARCHIVE_URL = 'https://archive-api.open-meteo.com/v1/archive';
 
 async function fetchJson(url) {
   let lastError;
@@ -41,9 +40,9 @@ async function fetchJson(url) {
     clearTimeout(timer);
     if (response.ok) return response.json();
     lastError = new Error(`${url} -> HTTP ${response.status}`);
-    const retryAfter = Number(response.headers.get('retry-after') || 2);
+    const waitMs = [15000, 30000, 60000][attempt] || 15000;
     if (response.status === 429 && attempt < 3) {
-      await new Promise((resolve) => setTimeout(resolve, retryAfter * 1000));
+      await new Promise((resolve) => setTimeout(resolve, waitMs));
       continue;
     }
     break;
@@ -104,6 +103,11 @@ function pad2(value) {
   return String(value).padStart(2, '0');
 }
 
+function round1(value) {
+  const rounded = Math.round(value * 10) / 10;
+  return Number.isFinite(rounded) ? rounded : 0;
+}
+
 function computeClimate(times, maxes, mins, rains) {
   const monthly = [];
   for (let month = 1; month <= 12; month += 1) {
@@ -129,26 +133,25 @@ function computeClimate(times, maxes, mins, rains) {
   const annualMeanHighC = round1(maxes.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0) / maxes.length);
   const annualMeanLowC = round1(mins.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0) / mins.length);
   const annualMeanC = round1(
-    maxes.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0) / maxes.length -
-      (annualMeanHighC - annualMeanLowC) / 2
+    (annualMeanHighC + annualMeanLowC) / 2
   );
   const annualPrecipMm = round1(rains.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0));
   let hottestMonth = 1;
   let coldestMonth = 1;
-  monthly.forEach((entry, index) => {
+  monthly.forEach((entry) => {
     if (entry.avgHighC > monthly[hottestMonth - 1].avgHighC) hottestMonth = entry.month;
     if (entry.avgHighC < monthly[coldestMonth - 1].avgHighC) coldestMonth = entry.month;
   });
   let wettestMonth = 1;
   let driestMonth = 1;
-  monthly.forEach((entry, index) => {
+  monthly.forEach((entry) => {
     if (entry.precipMm > monthly[wettestMonth - 1].precipMm) wettestMonth = entry.month;
     if (entry.precipMm < monthly[driestMonth - 1].precipMm) driestMonth = entry.month;
   });
   return {
     avgHighC: annualMeanHighC,
     avgLowC: annualMeanLowC,
-    annualMeanC: annualMeanC,
+    annualMeanC,
     annualPrecipMm,
     hottestMonth,
     coldestMonth,
@@ -158,14 +161,33 @@ function computeClimate(times, maxes, mins, rains) {
   };
 }
 
-function round1(value) {
-  return Math.round(value * 10) / 10;
+function slugify(value) {
+  const ascii = String(value)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+  return ascii.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
 async function main() {
   const seeds = JSON.parse(fs.readFileSync(SEEDS, 'utf8'));
-  const cities = [];
+  // Resume support: keep cities already fetched in a previous run.
+  let cities = [];
+  if (fs.existsSync(OUT)) {
+    try {
+      const parsed = JSON.parse(fs.readFileSync(OUT, 'utf8'));
+      if (Array.isArray(parsed)) cities = parsed;
+    } catch (e) {
+      cities = [];
+    }
+  }
+  const existingSlugs = new Set(cities.map((c) => c.slug));
+  const existingNames = new Set(cities.map((c) => String(c.name || '').toLowerCase()));
   for (const seed of seeds) {
+    if (existingSlugs.has(slugify(seed.name)) || existingNames.has(seed.name.toLowerCase())) {
+      log(`skip-existing ${seed.name}`);
+      continue;
+    }
     log(`start ${seed.name}`);
     try {
       const geo = await geocode(seed.name, seed.countryCode);
@@ -173,28 +195,20 @@ async function main() {
       const archive = await readArchive(geo.latitude, geo.longitude);
       const climate = computeClimate(archive.times, archive.maxes, archive.mins, archive.rains);
       const slug = slugify(geo.name || seed.name);
-      cities.push({
-        ...geo,
-        slug,
-        climate,
-      });
-      log(`done ${seed.name}`);
+      cities.push({ ...geo, slug, climate });
+      existingSlugs.add(slug);
+      existingNames.add(String(geo.name || seed.name).toLowerCase());
+      // Persist after every success so a crash never loses progress.
+      fs.mkdirSync(path.join(__dirname, '..', 'data'), { recursive: true });
+      fs.writeFileSync(OUT, `${JSON.stringify(cities, null, 2)}\n`);
+      log(`done ${seed.name} (total ${cities.length})`);
     } catch (error) {
       log(`skip ${seed.name}: ${error.message}`);
     }
-    await new Promise((resolve) => setTimeout(resolve, 300));
+    // Be polite to Open-Meteo to avoid rate limits.
+    await new Promise((resolve) => setTimeout(resolve, 6000));
   }
-  fs.mkdirSync(path.join(__dirname, '..', 'data'), { recursive: true });
-  fs.writeFileSync(OUT, `${JSON.stringify(cities, null, 2)}\n`);
   console.log(`wrote ${cities.length} cities to data/city-climate.json`);
-}
-
-function slugify(value) {
-  const ascii = String(value)
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase();
-  return ascii.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
 main().catch((error) => {
