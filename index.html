@@ -1205,7 +1205,13 @@
           <span class="donation-arrow" aria-hidden="true">&nearr;</span>
         </a>
       </div>
-      <p class="support-empty" id="support-empty" data-i18n="support.empty" hidden>No donation links are configured yet &mdash; for now, your feedback is the best way to support WeatherScope.</p>
+      <div class="support-empty" id="support-empty" hidden>
+        <span class="support-empty-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </span>
+        <p data-i18n="support.empty">No donation links are configured yet &mdash; for now, your feedback is the best way to support WeatherScope.</p>
+        <button type="button" id="support-empty-feedback" class="support-empty-action" data-i18n="footer.feedback">Send Feedback</button>
+      </div>
       <button type="button" id="support-close" data-dialog="support-dialog" data-i18n="support.close">Close</button>
     </div>
   </dialog>

@@ -83,6 +83,16 @@
       // With no fundraising URL there is nothing to click, so the dialog says
       // so instead of showing dead cards.
       if (supportEmpty) supportEmpty.hidden = !!anyLink;
+
+      // When donations are unavailable, the empty state offers a one-click
+      // shortcut to the feedback dialog so support never dead-ends.
+      const emptyFeedback = element('support-empty-feedback');
+      if (emptyFeedback) {
+        emptyFeedback.addEventListener('click', function () {
+          trackEvent('feedback_open', { source: 'support_empty' });
+          openDialog('feedback-dialog');
+        });
+      }
       // Donation clicks are tracked before the browser opens the fundraising
       // page, so the analytics event never distorts pageview counts. The
       // getAttribute guard keeps a card with no configured link inert even if

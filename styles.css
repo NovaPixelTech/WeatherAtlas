@@ -4828,24 +4828,25 @@ html[data-language-pending='true'] body {
 .app-footer .footer-links a {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 7px 15px;
+  gap: 8px;
+  padding: 9px 18px;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(56, 189, 248, 0.32);
-  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(96, 165, 250, 0.08));
   color: var(--accent-cyan);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
   text-decoration: none;
-  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  box-shadow: 0 2px 8px rgba(56, 189, 248, 0.12);
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 /* The icons are SVG masks tinted with currentColor, so they follow the link
    colour on hover and stay invisible to assistive technology. */
 .app-footer .footer-links a::before {
   content: "";
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   flex: none;
   background-color: currentColor;
   -webkit-mask: var(--footer-icon) center / contain no-repeat;
@@ -4866,11 +4867,12 @@ html[data-language-pending='true'] body {
 
 .app-footer .footer-links a:hover,
 .app-footer .footer-links a:focus-visible {
-  background: rgba(56, 189, 248, 0.18);
-  border-color: rgba(56, 189, 248, 0.6);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(96, 165, 250, 0.16));
+  border-color: rgba(56, 189, 248, 0.7);
   color: #7dd3fc;
   text-decoration: none;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(56, 189, 248, 0.25);
 }
 
 .app-footer .footer-links a:focus-visible {
@@ -5081,14 +5083,59 @@ html[data-language-pending='true'] body {
 }
 
 .support-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   margin: 0;
-  padding: 12px 14px;
+  padding: 18px 16px;
   border-radius: var(--radius-md);
-  border: 1px dashed rgba(148, 163, 184, 0.4);
-  background: rgba(148, 163, 184, 0.06);
+  border: 1px dashed rgba(56, 189, 248, 0.35);
+  background: linear-gradient(160deg, rgba(56, 189, 248, 0.08), rgba(96, 165, 250, 0.05));
   color: var(--text-secondary);
   font-size: 0.88rem;
   line-height: 1.5;
+  text-align: center;
+}
+
+.support-empty-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.support-empty-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.support-empty p {
+  margin: 0;
+}
+
+.support-empty-action {
+  margin-top: 2px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  background: rgba(56, 189, 248, 0.14);
+  color: var(--accent-cyan);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.support-empty-action:hover {
+  background: rgba(56, 189, 248, 0.24);
+  border-color: rgba(56, 189, 248, 0.7);
+  transform: translateY(-1px);
 }
 
 .feedback-helpful {
