@@ -19,7 +19,7 @@
   <meta name="theme-color" content="#0b1324" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="city-page.css" />
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebPage","name":"WeatherScope City Weather Guides","url":"https://novapixeltech.github.io/WeatherScope/cities/index.html","description":"Browse WeatherScope city weather guides with real climate averages, monthly statistics and a direct link to the live forecast for the city."}
   </script>
@@ -34,31 +34,94 @@
       <h1>Weather guides by city</h1>
       <div class="country-line">Real climate averages for the world's major cities</div>
       <p class="lede">Every guide combines long-term climate averages with a direct link into the live WeatherScope forecast for that city.</p>
+      <div class="city-search">
+        <input type="search" id="city-search" placeholder="Search a city or country…" autocomplete="off" />
+        <span class="city-search-count" id="city-search-count"></span>
+      </div>
     </section>
-    <section class="city-section">
-      <h2>Cities</h2>
-      <p>Browse the guides by country:</p>
-    <h2>China</h2>
-    <ul>
-        <li><a href="shanghai.html">Shanghai</a>, CN</li>
-        <li><a href="beijing.html">Beijing</a>, CN</li>
-        <li><a href="guangzhou.html">Guangzhou</a>, CN</li>
-        <li><a href="shenzhen.html">Shenzhen</a>, CN</li>
-    </ul>
-    <h2>South Korea</h2>
-    <ul>
-        <li><a href="seoul.html">Seoul</a>, KR</li>
-        <li><a href="busan.html">Busan</a>, KR</li>
-    </ul>
-    <h2>Japan</h2>
-    <ul>
-        <li><a href="tokyo.html">Tokyo</a>, JP</li>
-        <li><a href="osaka.html">Osaka</a>, JP</li>
-    </ul>
+    <section class="city-country">
+      <h2 class="city-country-title">China<span class="city-country-count">4</span></h2>
+      <div class="city-grid">
+      <a class="city-card" href="shanghai.html" data-city="shanghai" data-country="china">
+        <span class="city-card-name">Shanghai</span>
+        <span class="city-card-meta">CN · China</span>
+        <span class="city-card-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="city-card" href="beijing.html" data-city="beijing" data-country="china">
+        <span class="city-card-name">Beijing</span>
+        <span class="city-card-meta">CN · China</span>
+        <span class="city-card-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="city-card" href="guangzhou.html" data-city="guangzhou" data-country="china">
+        <span class="city-card-name">Guangzhou</span>
+        <span class="city-card-meta">CN · China</span>
+        <span class="city-card-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="city-card" href="shenzhen.html" data-city="shenzhen" data-country="china">
+        <span class="city-card-name">Shenzhen</span>
+        <span class="city-card-meta">CN · China</span>
+        <span class="city-card-arrow" aria-hidden="true">→</span>
+      </a>
+      </div>
+    </section>
+    <section class="city-country">
+      <h2 class="city-country-title">South Korea<span class="city-country-count">2</span></h2>
+      <div class="city-grid">
+      <a class="city-card" href="seoul.html" data-city="seoul" data-country="south korea">
+        <span class="city-card-name">Seoul</span>
+        <span class="city-card-meta">KR · South Korea</span>
+        <span class="city-card-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="city-card" href="busan.html" data-city="busan" data-country="south korea">
+        <span class="city-card-name">Busan</span>
+        <span class="city-card-meta">KR · South Korea</span>
+        <span class="city-card-arrow" aria-hidden="true">→</span>
+      </a>
+      </div>
+    </section>
+    <section class="city-country">
+      <h2 class="city-country-title">Japan<span class="city-country-count">2</span></h2>
+      <div class="city-grid">
+      <a class="city-card" href="tokyo.html" data-city="tokyo" data-country="japan">
+        <span class="city-card-name">Tokyo</span>
+        <span class="city-card-meta">JP · Japan</span>
+        <span class="city-card-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="city-card" href="osaka.html" data-city="osaka" data-country="japan">
+        <span class="city-card-name">Osaka</span>
+        <span class="city-card-meta">JP · Japan</span>
+        <span class="city-card-arrow" aria-hidden="true">→</span>
+      </a>
+      </div>
     </section>
     <footer class="city-footer">
       <p><a href="../index.html">Open WeatherScope</a> · <a href="https://github.com/NovaPixelTech/WeatherScope/issues">Report an issue</a></p>
     </footer>
   </main>
+  <script>
+    (function () {
+      var input = document.getElementById('city-search');
+      var count = document.getElementById('city-search-count');
+      var cards = document.querySelectorAll('.city-card');
+      var countries = document.querySelectorAll('.city-country');
+      function update() {
+        var q = (input.value || '').trim().toLowerCase();
+        var visible = 0;
+        cards.forEach(function (card) {
+          var hay = (card.getAttribute('data-city') + ' ' + card.getAttribute('data-country')).toLowerCase();
+          var show = !q || hay.indexOf(q) !== -1;
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        countries.forEach(function (sec) {
+          var any = false;
+          sec.querySelectorAll('.city-card').forEach(function (c) { if (c.style.display !== 'none') any = true; });
+          sec.style.display = any ? '' : 'none';
+        });
+        if (count) count.textContent = q ? (visible + ' of ' + cards.length + ' cities') : (cards.length + ' cities');
+      }
+      if (input) { input.addEventListener('input', update); update(); }
+    })();
+  </script>
 </body>
 </html>

@@ -266,15 +266,18 @@ function buildCityIndexHtml(cities) {
     return pop(b[1]) - pop(a[1]);
   });
   const sections = countries.map(([country, list]) => {
-    const entries = list
-      .slice()
-      .sort((a, b) => (b.population || 0) - (a.population || 0))
-      .map((city) => `        <li><a href="${esc(city.slug)}.html">${esc(city.name)}</a>, ${esc(city.countryCode)}</li>`)
-      .join('\n');
-    return `    <h2>${esc(country)}</h2>
-    <ul>
-${entries}
-    </ul>`;
+    const sorted = list.slice().sort((a, b) => (b.population || 0) - (a.population || 0));
+    const cards = sorted.map((city) => `      <a class="city-card" href="${esc(city.slug)}.html" data-city="${esc(city.name).toLowerCase()}" data-country="${esc(country).toLowerCase()}">
+        <span class="city-card-name">${esc(city.name)}</span>
+        <span class="city-card-meta">${esc(city.countryCode)} \u00b7 ${esc(country)}</span>
+        <span class="city-card-arrow" aria-hidden="true">\u2192</span>
+      </a>`).join('\n');
+    return `    <section class="city-country">
+      <h2 class="city-country-title">${esc(country)}<span class="city-country-count">${sorted.length}</span></h2>
+      <div class="city-grid">
+${cards}
+      </div>
+    </section>`;
   }).join('\n');
   const title = 'City Weather Guides - Climate Averages & Live Forecasts | WeatherScope';
   const description = 'Browse WeatherScope city weather guides with real climate averages, monthly statistics and a direct link to the live forecast for the city.';
@@ -307,7 +310,7 @@ ${entries}
   <meta name="theme-color" content="#0b1324" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
-  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="city-page.css" />
   <script type="application/ld+json">
   ${JSON.stringify(jsonLd)}
   </script>
@@ -322,16 +325,41 @@ ${entries}
       <h1>Weather guides by city</h1>
       <div class="country-line">Real climate averages for the world's major cities</div>
       <p class="lede">Every guide combines long-term climate averages with a direct link into the live WeatherScope forecast for that city.</p>
+      <div class="city-search">
+        <input type="search" id="city-search" placeholder="Search a city or country\u2026" autocomplete="off" />
+        <span class="city-search-count" id="city-search-count"></span>
+      </div>
     </section>
-    <section class="city-section">
-      <h2>Cities</h2>
-      <p>Browse the guides by country:</p>
 ${sections}
-    </section>
     <footer class="city-footer">
       <p><a href="../index.html">Open WeatherScope</a> \u00b7 <a href="https://github.com/NovaPixelTech/WeatherScope/issues">Report an issue</a></p>
     </footer>
   </main>
+  <script>
+    (function () {
+      var input = document.getElementById('city-search');
+      var count = document.getElementById('city-search-count');
+      var cards = document.querySelectorAll('.city-card');
+      var countries = document.querySelectorAll('.city-country');
+      function update() {
+        var q = (input.value || '').trim().toLowerCase();
+        var visible = 0;
+        cards.forEach(function (card) {
+          var hay = (card.getAttribute('data-city') + ' ' + card.getAttribute('data-country')).toLowerCase();
+          var show = !q || hay.indexOf(q) !== -1;
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        countries.forEach(function (sec) {
+          var any = false;
+          sec.querySelectorAll('.city-card').forEach(function (c) { if (c.style.display !== 'none') any = true; });
+          sec.style.display = any ? '' : 'none';
+        });
+        if (count) count.textContent = q ? (visible + ' of ' + cards.length + ' cities') : (cards.length + ' cities');
+      }
+      if (input) { input.addEventListener('input', update); update(); }
+    })();
+  </script>
 </body>
 </html>`;
 }
@@ -351,6 +379,7 @@ function main() {
   const cities = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
   const withClimate = cities.filter((city) => city && city.climate && city.slug);
   fs.mkdirSync(CITIES_DIR, { recursive: true });
+  fs.copyFileSync(path.join(__dirname, 'city-page.css'), path.join(CITIES_DIR, 'city-page.css'));
   fs.writeFileSync(path.join(CITIES_DIR, 'index.html'), buildCityIndexHtml(withClimate));
   console.log(`wrote cities/index.html with ${withClimate.length} guides`);
 
