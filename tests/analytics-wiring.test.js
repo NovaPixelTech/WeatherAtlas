@@ -33,6 +33,7 @@ const client = read('analytics.js');
 const config = read('analytics-config.js');
 const privacyHtml = read('privacy.html');
 const readme = read('README.md');
+const app = read('app.js');
 
 // Privacy claims are allowed to be stated in comments; this is the code that
 // actually runs, with comments stripped.
@@ -107,6 +108,21 @@ test('the README documents the Umami setup and its free limits', () => {
   assert.match(readme, /cities/i);
 });
 
+test('the docs explain the per-section report', () => {
+  assert.match(readme, /Per-section statistics/);
+  assert.match(readme, /city-search/);
+  assert.match(readme, /live-cameras/);
+  assert.match(privacyHtml, /City Search/);
+  assert.match(privacyHtml, /virtual paths/i);
+});
+
+test('setMode reports the active mode as a section', () => {
+  const start = app.indexOf('function setMode(mode)');
+  assert.notEqual(start, -1, 'setMode is missing');
+  const body = app.slice(start, start + 800);
+  assert.match(body, /weatherscopeAnalytics[\s\S]*trackSection\(mode\)/);
+});
+
 // ==========================================================================
 // Loader behaviour, against a small hand-written browser
 // ==========================================================================
@@ -120,8 +136,12 @@ function runLoader(options = {}) {
     createElement() {
       return {
         attrs: {},
+        listeners: {},
         setAttribute(name, value) {
           this.attrs[name] = value;
+        },
+        addEventListener(name, handler) {
+          this.listeners[name] = handler;
         },
       };
     },
@@ -171,6 +191,76 @@ test('a configured site injects the Umami tracker with the privacy switches', ()
   assert.equal(script.attrs['data-exclude-hash'], 'true');
   assert.equal(script.attrs['data-do-not-track'], 'true');
   assert.equal(script.attrs['data-domains'], undefined);
+});
+
+// Feed the loader a fake umami.track and collect what it would send. The
+// callback form must receive the default payload, so one is supplied here.
+function captureUmami(result) {
+  const sent = [];
+  result.window.umami = {
+    track(arg) {
+      sent.push(
+        typeof arg === 'function'
+          ? arg({ website: WEBSITE_ID, url: 'https://example.test/', title: 'Landing' })
+          : arg
+      );
+    },
+  };
+  return sent;
+}
+
+test('the automatic pageview is off, because sections are sent by hand', () => {
+  const { appended } = runLoader();
+  assert.equal(appended[0].attrs['data-auto-pageview'], 'false');
+});
+
+test('each app mode reports its own virtual page path', () => {
+  const result = runLoader();
+  const sent = captureUmami(result);
+  result.window.weatherscopeAnalytics.trackSection('city');
+  result.window.weatherscopeAnalytics.trackSection('compare');
+  result.window.weatherscopeAnalytics.trackSection('climate');
+  result.window.weatherscopeAnalytics.trackSection('cameras');
+
+  assert.deepEqual(
+    sent.map((payload) => [payload.url, payload.title]),
+    [
+      ['/WeatherScope/city-search', 'WeatherScope - City Search'],
+      ['/WeatherScope/compare', 'WeatherScope - Compare Locations'],
+      ['/WeatherScope/climate-filter', 'WeatherScope - Climate Filter'],
+      ['/WeatherScope/live-cameras', 'WeatherScope - Live Cameras'],
+    ]
+  );
+  // Default properties (the website id) survive the URL override.
+  assert.equal(sent[0].website, WEBSITE_ID);
+});
+
+test('repeating a section, or naming an unknown one, is not a pageview', () => {
+  const result = runLoader();
+  const sent = captureUmami(result);
+  result.window.weatherscopeAnalytics.trackSection('city');
+  result.window.weatherscopeAnalytics.trackSection('city');
+  result.window.weatherscopeAnalytics.trackSection('nope');
+  assert.equal(sent.length, 1);
+});
+
+test('a section chosen before the tracker loads is sent when it does', () => {
+  const result = runLoader();
+  result.window.weatherscopeAnalytics.trackSection('climate');
+  assert.equal(result.appended.length, 1);
+
+  const sent = captureUmami(result);
+  result.appended[0].listeners.load();
+  assert.equal(sent.length, 1);
+  assert.equal(sent[0].url, '/WeatherScope/climate-filter');
+});
+
+test('an opted-out or unconfigured page exposes a no-op section API', () => {
+  const result = runLoader({ config: { provider: 'umami', websiteId: '' } });
+  assert.equal(typeof result.window.weatherscopeAnalytics.trackSection, 'function');
+  const sent = captureUmami(result);
+  result.window.weatherscopeAnalytics.trackSection('compare');
+  assert.equal(sent.length, 0);
 });
 
 test('an empty Website ID, a disabled config or another provider loads nothing', () => {

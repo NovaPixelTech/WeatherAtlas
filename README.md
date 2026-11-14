@@ -335,10 +335,27 @@ WeatherScope uses **[Umami Cloud](https://cloud.umami.is)** for visitor analytic
 | --- | --- |
 | **Views / visitors / visits** | Visitors are unique sessions, not cookies. |
 | **Countries / regions / cities** | Approximate, derived from the network address. |
-| **Pages and entry/exit pages** | Path and title, with query strings and hashes excluded. |
+| **Pages and entry/exit pages** | One row per section (virtual paths), with query strings and hashes excluded. |
 | **Referrers and channels** | Which sites and search engines sent traffic. |
 | **Browsers / OS / devices / languages** | With screen size and realtime activity. |
 | **Goals, funnels, events** | Available on the free plan if you add them later. |
+
+### Per-section statistics
+
+WeatherScope is a single-page app: City Search, Compare, Climate Filter and Live Cameras share one URL, so a plain page counter would fold every visit into one row. The loader fixes that:
+
+- Umami's automatic pageview is disabled (`data-auto-pageview="false"`), so the landing is counted once.
+- `setMode()` in `app.js` reports the active section as a **virtual pageview** with its own path and title.
+- Repeating the active section — re-clicking its tab or changing language — is de-duplicated.
+
+| Section | Reported path |
+| --- | --- |
+| City Search | `/WeatherScope/city-search` |
+| Compare Locations | `/WeatherScope/compare` |
+| Climate Filter | `/WeatherScope/climate-filter` |
+| Live Cameras | `/WeatherScope/live-cameras` |
+
+Open **Pages** (or **Breakdown → Path**) in the Umami dashboard to see views and visitors per section. The filter panel combines a section with country, device, browser or referrer, so questions like "which countries use Compare?" are answerable. The virtual paths are report labels, not real files: clicking one in the dashboard may show a 404, which is harmless.
 
 ### Free-plan limits (Umami Cloud Hobby)
 
@@ -378,6 +395,7 @@ Leaving `websiteId` empty disables collection completely: the loader adds no scr
 - **No cookies.** Umami derives an anonymous session hash on its server from the website ID, IP address, user agent and a salt that rotates monthly. The IP is processed for that hash and for approximate location, but is not stored as an analytics field.
 - **No query strings or hashes.** `excludeSearch` and `excludeHash` keep a shared `?city=Tokyo` link from being recorded as a search.
 - **No account linkage.** WeatherScope never calls `umami.identify()`, so a visit is not tied to a saved city or a local account.
+- **Sections, not a click trail.** Only the section on screen is named (`/city-search`, `/compare`, …); the app does not record a history of which cards, cities or panels you opened.
 - **DNT and GPC.** The loader refuses to load the tracker when either signal is present.
 - **No localhost noise.** Local development and `file://` pages are never measured.
 - **Public notice.** [`privacy.html`](privacy.html) is linked from the footer and explains exactly what Umami records. Keep it in sync if you change the provider or retention.
@@ -396,7 +414,7 @@ Leaving `websiteId` empty disables collection completely: the loader adds no scr
 node --test tests/analytics-wiring.test.js
 ```
 
-`analytics-wiring.test.js` proves the loader is silent with an empty Website ID, on localhost, `file://`, DNT and GPC; that it injects the tracker with `data-exclude-search`, `data-exclude-hash` and `data-do-not-track`; that it never sets a cookie or calls `umami.identify()`; and that the README and privacy page keep the documented contract. The full suite is `node --test`.
+`analytics-wiring.test.js` proves the loader is silent with an empty Website ID, on localhost, `file://`, DNT and GPC; that it injects the tracker with `data-exclude-search`, `data-exclude-hash` and `data-do-not-track`; that each section becomes one de-duplicated virtual pageview; that it never sets a cookie or calls `umami.identify()`; and that the README and privacy page keep the documented contract. The full suite is `node --test`.
 
 ---
 

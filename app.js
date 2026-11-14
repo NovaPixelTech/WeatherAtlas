@@ -8212,6 +8212,12 @@ const icon = document.createElement('span');
    */
   function setMode(mode) {
     state.searchMode = mode;
+    // The app lives at one URL, so report the section as a virtual pageview.
+    // Repeated calls (a language change re-applies the active mode) are
+    // de-duplicated by analytics.js, not here.
+    if (window.weatherscopeAnalytics && window.weatherscopeAnalytics.trackSection) {
+      window.weatherscopeAnalytics.trackSection(mode);
+    }
     if (mode !== 'cameras' && cameraState.openCameraCity) closeCameraCitySurface();
 
     MODES.forEach(({ mode: id }) => {

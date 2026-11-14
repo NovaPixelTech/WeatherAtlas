@@ -101,9 +101,13 @@
       </div>
 
       <h2>What is measured</h2>
-      <p>When a page loads, the Umami tracker sends one pageview. It records:</p>
+      <p>
+        When a page loads, the Umami tracker sends one pageview, and each change of section sends
+        another. It records:
+      </p>
       <ul>
         <li><strong>The page path and title</strong>, without the query string or hash. A shared link such as <code>?city=Tokyo</code> is counted as the page, not as the city you looked at.</li>
+        <li><strong>Which section you are using</strong> — City Search, Compare, Climate Filter or Live Cameras. The app is a single page, so these are sent as virtual paths such as <code>/WeatherScope/compare</code>; switching sections is not a request to another page.</li>
         <li><strong>The referring site</strong> (the page that sent you here) and the site hostname.</li>
         <li><strong>Approximate location</strong> — country, region and city — derived by Umami from the network address. This is not GPS and is often less precise than a city.</li>
         <li><strong>Technical context</strong>: browser, operating system, device type, screen size and browser language.</li>

@@ -26,6 +26,11 @@
  *                      e.g. 'novapixeltech.github.io'. Empty means no filter.
  *   enabled            Set false to disable analytics without removing the ID.
  *
+ * Section tracking is always on. WeatherScope is a single-page app, so each
+ * mode switch is sent as a virtual pageview (`/WeatherScope/city-search`,
+ * `/compare`, `/climate-filter`, `/live-cameras`) and Umami's automatic
+ * pageview is disabled, keeping the landing count at one.
+ *
  * The loader also refuses to run on localhost, file:// pages, or when Global
  * Privacy Control is enabled. WeatherScope never calls umami.identify(), so a
  * visit is never linked to an account or a saved city.
