@@ -116,7 +116,7 @@ function climateRows(city) {
   if (!rows.length) {
     rows.push('          <tr><td colspan="5">Climate data is being refreshed for this city.</td></tr>');
   }
-  return rows.join(',\n');
+  return rows.join('\n');
 }
 
 function buildCityHtml(city, faq, related) {
@@ -161,16 +161,14 @@ ${faqItems}
       </div>
     </section>`;
   const statsHtml = `
-      <div class="city-stats">
-        <div class="city-stat"><div class="value">${high}\u00b0C</div><div class="label">Avg high</div></div>
+      <div class="city-stat"><div class="value">${high}\u00b0C</div><div class="label">Avg high</div></div>
         <div class="city-stat"><div class="value">${low}\u00b0C</div><div class="label">Avg low</div></div>
         <div class="city-stat"><div class="value">${num(city.climate.annualMeanC)}\u00b0C</div><div class="label">Annual mean</div></div>
         <div class="city-stat"><div class="value">${precip} mm</div><div class="label">Annual precipitation</div></div>
         <div class="city-stat"><div class="value">${monthName(city.climate.wettestMonth)}</div><div class="label">Wettest month</div></div>
         <div class="city-stat"><div class="value">${monthName(city.climate.driestMonth)}</div><div class="label">Driest month</div></div>
         <div class="city-stat"><div class="value">${monthName(city.climate.hottestMonth)}</div><div class="label">Hottest month</div></div>
-        <div class="city-stat"><div class="value">${monthName(city.climate.coldestMonth)}</div><div class="label">Coldest month</div></div>
-      </div>`;
+        <div class="city-stat"><div class="value">${monthName(city.climate.coldestMonth)}</div><div class="label">Coldest month</div></div>`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -188,7 +186,7 @@ ${faqItems}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${esc(title)}" />
   <meta name="twitter:description" content="${esc(description)}" />
-  <meta name="twitter:image" content="${esc(`${SITE_URL}/WeatherScope/og-image.png`)}" />
+  <meta name="twitter:image" content="${esc(`${SITE_URL}/og-image.png`)}" />
   <meta name="theme-color" content="#0b1324" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
@@ -222,9 +220,7 @@ ${faqItems}
 
     <section class="city-section">
       <h2>Climate at a glance</h2>
-      <div class="city-stats">
 ${statsHtml}
-      </div>
     </section>
 
     <section class="city-section">
