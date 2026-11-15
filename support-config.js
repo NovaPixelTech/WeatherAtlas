@@ -33,5 +33,5 @@ window.WEATHERSCOPE_SUPPORT = {
   githubRepo: 'NovaPixelTech/WeatherScope',
   bugIssueUrl: 'https://github.com/NovaPixelTech/WeatherScope/issues/new?labels=bug',
   featureIssueUrl: 'https://github.com/NovaPixelTech/WeatherScope/issues/new?labels=enhancement',
-  feedbackFormUrl: '',
+  feedbackFormUrl: 'https://tally.so/r/J1pye4',
 };
