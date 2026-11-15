@@ -125,10 +125,20 @@
       const formUrl = typeof config.feedbackFormUrl === 'string' ? config.feedbackFormUrl.trim() : '';
       if (/^https?:\/\//i.test(formUrl)) {
         feedbackFormLink.hidden = false;
-        feedbackFormLink.href = formUrl;
         feedbackFormLink.target = '_blank';
         feedbackFormLink.rel = 'noopener noreferrer';
+        // Append the current page so the Tally form can capture where the
+        // feedback came from via a hidden field named "page".
+        const withPage = function () {
+          const page = String(window.location.pathname || '') + (window.location.search || '');
+          const sep = formUrl.indexOf('?') === -1 ? '?' : '&';
+          return formUrl + sep + 'page=' + encodeURIComponent(page || '/');
+        };
+        feedbackFormLink.href = withPage();
+        feedbackFormLink.addEventListener('mouseenter', function () { feedbackFormLink.href = withPage(); });
+        feedbackFormLink.addEventListener('focus', function () { feedbackFormLink.href = withPage(); });
         feedbackFormLink.addEventListener('click', function () {
+          feedbackFormLink.href = withPage();
           trackEvent('feedback_form_click', { source: 'footer' });
         });
       } else {
