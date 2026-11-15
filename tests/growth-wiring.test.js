@@ -49,7 +49,7 @@ test('the landing page carries the full SEO + social metadata foundation', () =>
   assert.match(html, /<meta property="og:url" content="https:\/\/novapixeltech\.github\.io\/WeatherAtlas\/" \/>/);
   assert.match(html, /<meta property="og:locale" content="en_US" \/>/);
   assert.match(html, /<meta name="twitter:card" content="summary_large_image" \/>/);
-  assert.match(html, /<meta name="twitter:image" content="https:\/\/novapixeltech\.github\.io\/WeatherAtlas\/og-image\.png" \/>/);
+  assert.match(html, /<meta name="twitter:image" content="https:\/\/novapixeltech\.github\.io\/WeatherAtlas\/og-image-v2\.png" \/>/);
   assert.match(html, /<script type="application\/ld\+json">/);
   assert.match(html, /<script type="application\/ld\+json">\s*\{[\s\S]*"@type": "WebApplication"/);
   assert.match(html, /<link rel="manifest" href="manifest\.webmanifest" \/>/);
