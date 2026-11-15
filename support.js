@@ -110,13 +110,8 @@
       });
     }
 
-    // ---- Bug / feature links ----------------------------------------------
-    const bugLink = element('feedback-bug-link');
-    const featureLink = element('feedback-feature-link');
-    if (bugLink) bugLink.href = config.bugIssueUrl || '';
-    if (featureLink) featureLink.href = config.featureIssueUrl || '';
-
     // ---- Hosted feedback form ---------------------------------------------
+    // (GitHub issue links removed; feedback is collected via the hosted form.)
     // A Tally / Google Forms URL lets visitors send feedback without a GitHub
     // account. Empty (or not http(s)) keeps the button hidden, so the dialog
     // never offers a dead action.
