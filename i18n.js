@@ -684,6 +684,7 @@
       'compareEngine.metricSun': 'Sunrise / sunset',
       'compareEngine.metricPrecipitation': 'Precipitation',
       'compareEngine.metricUv': 'UV index',
+      'compareEngine.metricHumidity': 'Humidity',
       'compareEngine.metricMaxUv': 'Max UV',
       'compareEngine.metricMaxWind': 'Max wind',
       'compareEngine.warmer': 'warmer',
@@ -1323,6 +1324,7 @@
       'compareEngine.metricSun': 'Ανατολή / Δύση',
       'compareEngine.metricPrecipitation': 'Υετός',
       'compareEngine.metricUv': 'Δείκτης UV',
+      'compareEngine.metricHumidity': 'Υγρασία',
       'compareEngine.metricMaxUv': 'Μέγιστος UV',
       'compareEngine.metricMaxWind': 'Μέγιστος άνεμος',
       'compareEngine.warmer': 'θερμότερος',
@@ -1962,6 +1964,7 @@
       'compareEngine.metricSun': 'Sonnenaufgang / -untergang',
       'compareEngine.metricPrecipitation': 'Niederschlag',
       'compareEngine.metricUv': 'UV-Index',
+      'compareEngine.metricHumidity': 'Luftfeuchtigkeit',
       'compareEngine.metricMaxUv': 'Max. UV',
       'compareEngine.metricMaxWind': 'Max. Wind',
       'compareEngine.warmer': 'wärmer',
@@ -2453,7 +2456,7 @@
       'compareEngine.metricApparent': 'Percepita', 'compareEngine.metricRainChance': 'Probabilità di pioggia',
       'compareEngine.metricWind': 'Vento', 'compareEngine.metricPressure': 'Pressione',
       'compareEngine.metricCloudCover': 'Copertura nuvolosa', 'compareEngine.metricSun': 'Alba / tramonto',
-      'compareEngine.metricPrecipitation': 'Precipitazioni', 'compareEngine.metricUv': 'Indice UV',
+      'compareEngine.metricPrecipitation': 'Precipitazioni', 'compareEngine.metricUv': 'Indice UV', 'compareEngine.metricHumidity': 'Umidità',
       'compareEngine.metricMaxUv': 'UV massimo', 'compareEngine.metricMaxWind': 'Vento massimo',
       'compareEngine.warmer': 'più caldo', 'compareEngine.cooler': 'più fresco',
       'compareEngine.insightTemperature': '{city} è {gap} {word} di {other}.',
@@ -2922,7 +2925,7 @@
       'compareEngine.metricApparent': 'Sensación térmica', 'compareEngine.metricRainChance': 'Probabilidad de lluvia',
       'compareEngine.metricWind': 'Viento', 'compareEngine.metricPressure': 'Presión',
       'compareEngine.metricCloudCover': 'Nubosidad', 'compareEngine.metricSun': 'Amanecer / atardecer',
-      'compareEngine.metricPrecipitation': 'Precipitaciones', 'compareEngine.metricUv': 'Índice UV',
+      'compareEngine.metricPrecipitation': 'Precipitaciones', 'compareEngine.metricUv': 'Índice UV', 'compareEngine.metricHumidity': 'Humedad',
       'compareEngine.metricMaxUv': 'UV máximo', 'compareEngine.metricMaxWind': 'Viento máximo',
       'compareEngine.warmer': 'más cálido', 'compareEngine.cooler': 'más fresco',
       'compareEngine.insightTemperature': 'En {city} hace {gap} {word} que en {other}.',
@@ -3312,14 +3315,16 @@
         // non-English language is allowed to overwrite it.
         const english = translations[DEFAULT_LANG][key];
         if (typeof english !== 'string') continue;
+        let value = english;
         if (current !== DEFAULT_LANG) {
           const translated = translations[current] && translations[current][key];
-          if (typeof translated === 'string') {
-            node[property] = interpolate(translated, readVars(node));
-            continue;
-          }
+          if (typeof translated === 'string') value = translated;
         }
-        node[property] = interpolate(english, readVars(node));
+        value = interpolate(value, readVars(node));
+        // `aria-label` is not a DOM property: assigning `node['aria-label']`
+        // would only create an expando and leave the attribute English.
+        if (property === 'aria-label') node.setAttribute('aria-label', value);
+        else node[property] = value;
       }
     });
 

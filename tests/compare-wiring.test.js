@@ -253,6 +253,58 @@ test('the auto-refresh interval skips a hidden comparison', () => {
 });
 
 // ==========================================================================
+// 4b. Language
+// --------------------------------------------------------------------------
+// The static headings are translated by `applyTranslations`, but the slot
+// captions and table headers are baked into the DOM when a row or table is
+// first built. A cache keyed on the cities alone therefore pins whatever
+// language was active at that moment: switching the picker changed the
+// headings while the comparison itself stayed Greek. These two tests keep the
+// language in every cache key and keep a language switch from restarting a
+// live camera.
+// ==========================================================================
+
+test('the compare render caches are keyed on the active language, not just the cities', () => {
+  const block = compareBlock();
+
+  assert.match(appSource, /function activeLanguageTag\(\)/,
+    'the app has no language tag helper');
+  assert.match(appSource, /window\.I18n\.getLanguage\(\)/,
+    'activeLanguageTag must read the live language, not a captured copy');
+
+  const slotKey = block.match(/const signature = \[activeLanguageTag\(\), locations[\s\S]*?join\('\|'\);/);
+  assert.ok(slotKey,
+    'renderCompareSlots still keys its cache on the city list alone, so its slot captions freeze in the old language');
+
+  const tableKey = block.match(/const signature = \[activeLanguageTag\(\), table\.columns[\s\S]*?join\('\|'\);/);
+  assert.ok(tableKey,
+    'renderCompareTable still keys its cache on the columns alone, so its headers and metric labels freeze in the old language');
+});
+
+test('a language switch repaints camera labels without restarting the streams', () => {
+  assert.match(appSource, /function repaintCameraLabels\(refs\)/,
+    'the camera card has no label-only repaint');
+  assert.match(appSource, /const languageChanged = container\.dataset\.language !== language;/,
+    'renderCompareCameras does not notice a language change');
+  assert.match(appSource, /if \(languageChanged\)[\s\S]{0,400}?repaintCameraLabels\(refs\);/,
+    'a language change never repaints the mounted camera labels');
+  // The repaint must not tear down the media: that is what `releaseCameraMedia`
+  // and a signature rebuild are for, and neither belongs in the switch.
+  assert.doesNotMatch(
+    appSource.match(/if \(languageChanged\)[\s\S]*?repaintCameraLabels\(refs\);/)[0],
+    /releaseCompareCameras|releaseCameraMedia|resetCameraCard/,
+    'a language switch must not restart the camera just to change its labels'
+  );
+});
+
+test('switching language clears a compare notice painted in the old one', () => {
+  const handler = appSource.match(/if \(isCompareVisible\(\)\) \{[\s\S]*?renderCompareSection\(\);/);
+  assert.ok(handler, 'the language-change handler no longer repaints the comparison');
+  assert.match(handler[0], /setCompareNotice\(''\)/,
+    'a transient Greek notice would be left under an English comparison');
+});
+
+// ==========================================================================
 // 5. Styling
 // ==========================================================================
 

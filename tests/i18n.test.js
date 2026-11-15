@@ -243,3 +243,87 @@ test('the localized-name index is derived from the codes, not maintained by hand
   assert.doesNotMatch(i18nSource, /'SPANIEN':\s*'de'/, 'a German name for Spain must not answer German');
   assert.match(i18nSource, /Intl\.DisplayNames/);
 });
+
+// ==========================================================================
+// Attribute translation
+// --------------------------------------------------------------------------
+// `aria-label` is an attribute, not a DOM property. Assigning
+// `node['aria-label'] = value` only creates a JavaScript expando and leaves
+// the real attribute in the markup language - which is why the comparison's
+// camera region kept an English accessible name on a Greek page. These tests
+// exercise the real code against a tiny fake DOM, so the regression cannot
+// come back without a failure.
+// ==========================================================================
+
+function fakeNode(attributes) {
+  const attrs = { ...attributes };
+  return {
+    attrs,
+    textContent: attrs.textContent || '',
+    getAttribute(name) {
+      return Object.prototype.hasOwnProperty.call(attrs, name) ? attrs[name] : null;
+    },
+    setAttribute(name, value) {
+      attrs[name] = String(value);
+    },
+  };
+}
+
+function fakeDocument(nodesByAttribute) {
+  return {
+    title: '',
+    documentElement: { setAttribute() {} },
+    querySelectorAll(selector) {
+      const attribute = selector.replace(/^\[|\]$/g, '');
+      return nodesByAttribute[attribute] || [];
+    },
+  };
+}
+
+function withLanguage(lang, run) {
+  const previous = I18n.getLanguage();
+  try {
+    I18n.setLanguage(lang, { persist: false });
+    return run();
+  } finally {
+    I18n.setLanguage(previous, { persist: false });
+  }
+}
+
+test('data-i18n-aria-label writes the real attribute, never a JS expando', () => {
+  withLanguage('el', () => {
+    const cameras = fakeNode({
+      'aria-label': 'Live cameras for the compared locations',
+      'data-i18n-aria-label': 'camera.compareAria',
+    });
+
+    I18n.applyTranslations(fakeDocument({ 'data-i18n-aria-label': [cameras] }));
+
+    const expected = I18n.translations.el['camera.compareAria'];
+    assert.equal(cameras.getAttribute('aria-label'), expected,
+      'the accessible name stayed in the markup language');
+    assert.equal(
+      Object.prototype.hasOwnProperty.call(cameras, 'aria-label'),
+      false,
+      'assigning node["aria-label"] created an expando instead of updating the attribute'
+    );
+  });
+});
+
+test('every data-i18n-* attribute follows the same active language', () => {
+  withLanguage('fr', () => {
+    const nodes = {
+      'data-i18n': [fakeNode({ 'data-i18n': 'compare.heading' })],
+      'data-i18n-placeholder': [fakeNode({ placeholder: 'Search', 'data-i18n-placeholder': 'search.placeholderCity' })],
+      'data-i18n-aria-label': [fakeNode({ 'aria-label': 'Live cameras', 'data-i18n-aria-label': 'camera.compareAria' })],
+      'data-i18n-title': [fakeNode({ title: 'Title', 'data-i18n-title': 'app.title' })],
+    };
+
+    I18n.applyTranslations(fakeDocument(nodes));
+
+    assert.equal(nodes['data-i18n'][0].textContent, I18n.translations.fr['compare.heading']);
+    assert.equal(nodes['data-i18n-placeholder'][0].placeholder, I18n.translations.fr['search.placeholderCity']);
+    assert.equal(nodes['data-i18n-aria-label'][0].getAttribute('aria-label'), I18n.translations.fr['camera.compareAria']);
+    assert.equal(nodes['data-i18n-title'][0].title, I18n.translations.fr['app.title']);
+  });
+});

@@ -62,7 +62,7 @@ function loadController(sandboxGlobals) {
   vm.runInContext(engineSource, sandbox, { filename: 'cameras.js' });
 
   const factory = vm.runInContext(
-    `(function (t, tp, REQUEST_TIMEOUT, elements, state) {
+    `(function (t, tp, REQUEST_TIMEOUT, elements, state, activeLanguageTag) {
       ${controllerSource}
       return {
         CAMERA_PANEL_HTML,
@@ -99,7 +99,8 @@ function loadController(sandboxGlobals) {
     (oneKey, manyKey, count, vars, englishOne) => (count === 1 ? englishOne : englishOne),
     12000,
     sandboxGlobals.elements,
-    sandboxGlobals.state
+    sandboxGlobals.state,
+    () => 'en'
   );
 }
 

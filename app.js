@@ -44,6 +44,18 @@
     return t(key, Object.assign({ count }, vars), fallback);
   }
 
+  /**
+   * The active UI language, as a short tag.
+   *
+   * The comparison caches its rendered rows and tables, and the camera cards
+   * paint dictionary text into nodes they keep. Both need a value to compare
+   * against, so this is the one place that reads it; absent i18n, English is
+   * the honest answer rather than a blank tag.
+   */
+  function activeLanguageTag() {
+    return (window.I18n && typeof window.I18n.getLanguage === 'function' && window.I18n.getLanguage()) || 'en';
+  }
+
   /** A condition label for a WMO code in the active language. */
   function conditionText(code) {
     if (window.I18n && typeof window.I18n.conditionLabel === 'function') {
@@ -4831,6 +4843,9 @@ ${CAMERA_PANEL_HTML}
     const picked = locations.filter((slot) => slot && slot.city && slot.city.latitude !== undefined);
 
     const signature = picked.map((slot) => cityIdOf(slot.city)).join('~');
+    const language = activeLanguageTag();
+    const languageChanged = container.dataset.language !== language;
+    container.dataset.language = language;
     if (container.dataset.signature !== signature) {
       releaseCompareCameras();
       container.dataset.signature = signature;
@@ -4860,6 +4875,15 @@ ${CAMERA_PANEL_HTML}
         if (city && city !== refs.cameraCity) resetCameraCard(refs, city);
       }
     });
+
+    // A language switch must not restart a live stream: repaint just the labels.
+    if (languageChanged) {
+      cameraState.panels.forEach((refs) => {
+        if (refs.cameraHost && refs.cameraHost.classList.contains('compare-camera-mount')) {
+          repaintCameraLabels(refs);
+        }
+      });
+    }
   }
 
   /** Hand back every camera the comparison is holding open. */
@@ -5223,6 +5247,51 @@ ${CAMERA_PANEL_HTML}
     return isPlayableStream(camera)
       ? t('camera.live', null, 'Live')
       : t('camera.still', null, 'Live still');
+  }
+
+  /**
+   * Repaint the language-bound labels of an already-mounted camera card.
+   *
+   * The frame, stream and polling timer are left alone: a language switch is
+   * not a reason to interrupt a live view. Only the text that was resolved
+   * from the dictionary at paint time is rewritten.
+   */
+  function repaintCameraLabels(refs) {
+    if (!refs || !refs.cameraRecord) return;
+    const record = refs.cameraRecord;
+    const camera = activeCamera(refs);
+
+    if (!camera) {
+      if (record.status === 'unknown') {
+        showCameraNote(refs, t('camera.throttled', null, 'Camera lookup unavailable right now'));
+      } else {
+        showCameraNote(refs, t('camera.none', null, 'No free public camera for this city'));
+      }
+      return;
+    }
+
+    if (refs.cameraBadge) {
+      refs.cameraBadge.hidden = false;
+      refs.cameraBadge.textContent = cameraBadgeLabel(camera);
+    }
+    if (refs.cameraNext && refs.cameraNextLabel) {
+      const total = Array.isArray(record.cameras) ? record.cameras.length : 0;
+      if (total > 1) {
+        refs.cameraNextLabel.textContent = t('camera.next', { index: (refs.cameraIndex || 0) + 1, total },
+          `Next camera (${(refs.cameraIndex || 0) + 1}/${total})`);
+      }
+    }
+    if (refs.cameraDistance) {
+      const distance = typeof camera.distanceKm === 'number' ? camera.distanceKm : null;
+      if (distance !== null) {
+        refs.cameraDistance.textContent = tp('camera.distanceOne', 'camera.distanceMany', distance,
+          { distance }, `${distance} km away`);
+      }
+    }
+    if (refs.cameraImage && camera.name) {
+      refs.cameraImage.alt = t('camera.alt', { place: camera.name }, `Live camera view: ${camera.name}`);
+    }
+    setCameraPausedState(refs, refs.cameraPaused);
   }
 
   /** True when this camera should be *played* rather than polled. */
@@ -7304,9 +7373,9 @@ ${CAMERA_PANEL_HTML}
     const container = elements.compareSlots;
     const locations = state.compareLocations;
 
-    const signature = locations
+    const signature = [activeLanguageTag(), locations
       .map((slot) => (slot && slot.city ? `${slot.city.name}|${slot.city.latitude}|${slot.city.longitude}` : '-'))
-      .join('~');
+      .join('~')].join('|');
     if (container.dataset.signature === signature) return;
 
     container.dataset.signature = signature;
@@ -7439,7 +7508,7 @@ ${CAMERA_PANEL_HTML}
   function renderCompareTable(tableEl, table) {
     if (!tableEl) return;
 
-    const signature = table.columns.map((column) => compareEngine().cityKey(column.city)).join('~');
+    const signature = [activeLanguageTag(), table.columns.map((column) => compareEngine().cityKey(column.city)).join('~')].join('|');
     const cached = tableEl.__compareRefs;
 
     let refs = cached;
@@ -8945,7 +9014,12 @@ const toCompare = state.searchMode === 'compare';
         if (state.matchingCities.length && !elements.climateResultsSection.classList.contains('hidden')) {
           renderClimateResults(state.matchingCities, currentClimateCriteria());
         }
-        if (isCompareVisible()) renderCompareSection();
+        if (isCompareVisible()) {
+          // The notice is a transient message painted in the old language;
+          // clear it rather than leave one Greek line under an English section.
+          setCompareNotice('');
+          renderCompareSection();
+        }
         // The account panel and the favorites bar are built from translated
         // strings, so a language change repaints them from the state they hold.
         renderAccountUI();

@@ -473,6 +473,7 @@
     "compareEngine.metricSun": "Lever/coucher du soleil",
     "compareEngine.metricPrecipitation": "Précipitation",
     "compareEngine.metricUv": "Indice UV",
+    "compareEngine.metricHumidity": "Humidité",
     "compareEngine.metricMaxUv": "UV maximum",
     "compareEngine.metricMaxWind": "Vent maximum",
     "compareEngine.warmer": "plus chaud",
