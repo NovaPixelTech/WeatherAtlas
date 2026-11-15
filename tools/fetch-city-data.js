@@ -12,6 +12,11 @@
  *
  * The derived numbers are what the generated city pages render: real, evergreen
  * averages instead of thin placeholder copies of the landing page text.
+ *
+ * Resumable: cities already present in data/city-climate.json are skipped
+ * (matched by slug or by coordinates, since geocoded names can differ from
+ * seed names). The file is persisted after every successful city, so a crash
+ * or rate-limit never loses progress.
  */
 'use strict';
 
@@ -24,25 +29,37 @@ const PROGRESS = 'C:\\Users\\giong\\AppData\\Local\\Temp\\opencode\\cityfetch-pr
 const ARCHIVE_START = '2015-01-01';
 const ARCHIVE_END = '2024-12-31';
 
-const GEO_URL = 'https://geocoding-api.open-meteo.com/v1/search';
-const ARCHIVE_URL = 'https://archive-api.open-meteo.com/v1/archive';
-
 function log(line) {
   fs.appendFileSync(PROGRESS, `${new Date().toISOString()} ${line}\n`);
 }
+
+const GEO_URL = 'https://geocoding-api.open-meteo.com/v1/search';
+const ARCHIVE_URL = 'https://archive-api.open-meteo.com/v1/archive';
 
 async function fetchJson(url) {
   let lastError;
   for (let attempt = 0; attempt < 4; attempt += 1) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 45000);
-    const response = await fetch(url, { signal: controller.signal });
+    let response;
+    try {
+      response = await fetch(url, { signal: controller.signal });
+    } catch (err) {
+      clearTimeout(timer);
+      lastError = err;
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+      continue;
+    }
     clearTimeout(timer);
     if (response.ok) return response.json();
     lastError = new Error(`${url} -> HTTP ${response.status}`);
     const waitMs = [15000, 30000, 60000][attempt] || 15000;
     if (response.status === 429 && attempt < 3) {
       await new Promise((resolve) => setTimeout(resolve, waitMs));
+      continue;
+    }
+    if (response.status >= 500 && attempt < 3) {
+      await new Promise((resolve) => setTimeout(resolve, 5000 * (attempt + 1)));
       continue;
     }
     break;
@@ -103,11 +120,6 @@ function pad2(value) {
   return String(value).padStart(2, '0');
 }
 
-function round1(value) {
-  const rounded = Math.round(value * 10) / 10;
-  return Number.isFinite(rounded) ? rounded : 0;
-}
-
 function computeClimate(times, maxes, mins, rains) {
   const monthly = [];
   for (let month = 1; month <= 12; month += 1) {
@@ -132,9 +144,7 @@ function computeClimate(times, maxes, mins, rains) {
   }
   const annualMeanHighC = round1(maxes.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0) / maxes.length);
   const annualMeanLowC = round1(mins.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0) / mins.length);
-  const annualMeanC = round1(
-    (annualMeanHighC + annualMeanLowC) / 2
-  );
+  const annualMeanC = round1((annualMeanHighC + annualMeanLowC) / 2);
   const annualPrecipMm = round1(rains.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0));
   let hottestMonth = 1;
   let coldestMonth = 1;
@@ -161,6 +171,11 @@ function computeClimate(times, maxes, mins, rains) {
   };
 }
 
+function round1(value) {
+  const rounded = Math.round(value * 10) / 10;
+  return Number.isFinite(rounded) ? rounded : 0;
+}
+
 function slugify(value) {
   const ascii = String(value)
     .normalize('NFD')
@@ -171,7 +186,6 @@ function slugify(value) {
 
 async function main() {
   const seeds = JSON.parse(fs.readFileSync(SEEDS, 'utf8'));
-  // Resume support: keep cities already fetched in a previous run.
   let cities = [];
   if (fs.existsSync(OUT)) {
     try {
@@ -181,31 +195,49 @@ async function main() {
       cities = [];
     }
   }
+  // Dedupe any pre-existing duplicates by slug (keep first).
+  const deduped = [];
+  const seenSlugs0 = new Set();
+  for (const c of cities) {
+    if (seenSlugs0.has(c.slug)) continue;
+    seenSlugs0.add(c.slug);
+    deduped.push(c);
+  }
+  cities = deduped;
+
   const existingSlugs = new Set(cities.map((c) => c.slug));
-  const existingNames = new Set(cities.map((c) => String(c.name || '').toLowerCase()));
+  const existingCoords = new Set(cities.map((c) => `${Number(c.latitude).toFixed(4)},${Number(c.longitude).toFixed(4)}`));
+
   for (const seed of seeds) {
-    if (existingSlugs.has(slugify(seed.name)) || existingNames.has(seed.name.toLowerCase())) {
-      log(`skip-existing ${seed.name}`);
+    log(`start ${seed.name}`);
+    let geo;
+    try {
+      geo = await geocode(seed.name, seed.countryCode);
+    } catch (error) {
+      log(`skip ${seed.name}: ${error.message}`);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       continue;
     }
-    log(`start ${seed.name}`);
+    const slug = slugify(geo.name || seed.name);
+    const coordKey = `${Number(geo.latitude).toFixed(4)},${Number(geo.longitude).toFixed(4)}`;
+    if (existingSlugs.has(slug) || existingCoords.has(coordKey)) {
+      log(`skip-existing ${seed.name}`);
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      continue;
+    }
+    log(`ok ${geo.name} ${geo.latitude.toFixed(3)},${geo.longitude.toFixed(3)}`);
     try {
-      const geo = await geocode(seed.name, seed.countryCode);
-      log(`ok ${geo.name} ${geo.latitude.toFixed(3)},${geo.longitude.toFixed(3)}`);
       const archive = await readArchive(geo.latitude, geo.longitude);
       const climate = computeClimate(archive.times, archive.maxes, archive.mins, archive.rains);
-      const slug = slugify(geo.name || seed.name);
       cities.push({ ...geo, slug, climate });
       existingSlugs.add(slug);
-      existingNames.add(String(geo.name || seed.name).toLowerCase());
-      // Persist after every success so a crash never loses progress.
+      existingCoords.add(coordKey);
       fs.mkdirSync(path.join(__dirname, '..', 'data'), { recursive: true });
       fs.writeFileSync(OUT, `${JSON.stringify(cities, null, 2)}\n`);
       log(`done ${seed.name} (total ${cities.length})`);
     } catch (error) {
       log(`skip ${seed.name}: ${error.message}`);
     }
-    // Be polite to Open-Meteo to avoid rate limits.
     await new Promise((resolve) => setTimeout(resolve, 6000));
   }
   console.log(`wrote ${cities.length} cities to data/city-climate.json`);
