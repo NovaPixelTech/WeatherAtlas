@@ -2,14 +2,11 @@
  * WeatherScope support + feedback configuration
  * ==========================================================================
  * Everything a visitor can click lives here, so no UI file ever hard-codes a
- * donation or issue URL:
+ * donation or feedback URL:
  *
  *   koFiUrl        Donation page on Ko-fi. Empty hides the donation button.
  *   payPalMeUrl    Donation page on PayPal.Me. Empty hides it too.
  *   githubSponsorUrl  GitHub Sponsors page. Empty hides the sponsor button.
- *   githubRepo     Public repository used for bug reports and feature requests.
- *   feedbackIssueUrl  "New issue" URL with the feature template preselected.
- *   bugIssueUrl        "New issue" URL with the bug template preselected.
  *   feedbackFormUrl    Hosted feedback form (Tally, Google Forms, ...). Empty
  *                      hides the "Open the feedback form" button.
  *
@@ -21,17 +18,12 @@
  *      URL here, so visitors can send feedback without a GitHub account.
  *   4. The UI updates itself - nothing else to rebuild.
  *
- * Empty strings mean "do not show". The support button stays hidden until at
- * least one fundraising link is configured, so a fork that does not fund the
- * project sees no donation UI at all.
+ * Empty strings mean "do not show".
  */
 window.WEATHERSCOPE_SUPPORT = {
   enabled: true,
   koFiUrl: '',
   payPalMeUrl: '',
   githubSponsorUrl: '',
-  githubRepo: 'NovaPixelTech/WeatherScope',
-  bugIssueUrl: 'https://github.com/NovaPixelTech/WeatherScope/issues/new?labels=bug',
-  featureIssueUrl: 'https://github.com/NovaPixelTech/WeatherScope/issues/new?labels=enhancement',
   feedbackFormUrl: 'https://tally.so/r/J1pye4',
 };

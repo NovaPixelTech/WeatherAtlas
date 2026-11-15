@@ -240,7 +240,7 @@ ${faqHtml}
 ${relatedHtml}
     <footer class="city-footer">
       <p>Data provided by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo API</a>.</p>
-      <p><a href="../index.html">Open WeatherScope</a> \u00b7 <a href="https://github.com/NovaPixelTech/WeatherScope/issues">Report an issue</a></p>
+      <p><a href="../index.html">Open WeatherScope</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
     </footer>
   </main>
 
@@ -328,7 +328,7 @@ ${cards}
     </section>
 ${sections}
     <footer class="city-footer">
-      <p><a href="../index.html">Open WeatherScope</a> \u00b7 <a href="https://github.com/NovaPixelTech/WeatherScope/issues">Report an issue</a></p>
+      <p><a href="../index.html">Open WeatherScope</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
     </footer>
   </main>
   <script>

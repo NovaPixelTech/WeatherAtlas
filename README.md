@@ -454,12 +454,9 @@ The support dialog (`support.js` + `support-config.js`) renders donation actions
 ```js
 window.WEATHERSCOPE_SUPPORT = {
   enabled: true,
-  koFiUrl: 'https://ko-fi.com/yourname',
+  koFiUrl: '',
   payPalMeUrl: '',
   githubSponsorUrl: '',
-  githubRepo: 'NovaPixelTech/WeatherScope',
-  bugIssueUrl: 'https://github.com/NovaPixelTech/WeatherScope/issues/new?labels=bug',
-  featureIssueUrl: 'https://github.com/NovaPixelTech/WeatherScope/issues/new?labels=enhancement',
   feedbackFormUrl: 'https://tally.so/r/yourform',
 };
 ```
@@ -468,14 +465,13 @@ Donation clicks are tracked as the `donate_click` Umami event.
 
 ### Feedback
 
-- The footer opens the **feedback dialog** (helpful vote + a hosted form + GitHub issues).
+- The footer opens the **feedback dialog** (helpful vote + a hosted form).
 - `feedbackFormUrl` points at a free hosted form such as **Tally** or **Google Forms**, so visitors
   can send feedback without a GitHub account. Empty keeps the button hidden. The app appends the
   current page as a `?page=` query parameter, so a hidden field named `page` in the form captures
   where the feedback came from.
 - The "Was this helpful?" vote is tracked as the `helpful_vote` event and feeds product iteration.
-- Opening the hosted form is tracked as `feedback_form_click`; `.github/ISSUE_TEMPLATE/` holds the
-  bug and feature request forms for visitors who prefer GitHub.
+- Opening the hosted form is tracked as `feedback_form_click`.
 
 ### Keep usage free
 

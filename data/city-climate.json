@@ -8685,5 +8685,3099 @@
         }
       ]
     }
+  },
+  {
+    "name": "Bogotá",
+    "country": "Colombia",
+    "admin1": "Bogota D.C.",
+    "countryCode": "CO",
+    "latitude": 4.60971,
+    "longitude": -74.08175,
+    "timezone": "America/Bogota",
+    "population": 7674366,
+    "slug": "bogota",
+    "climate": {
+      "avgHighC": 18.9,
+      "avgLowC": 9.4,
+      "annualMeanC": 14.2,
+      "annualPrecipMm": 8887.1,
+      "hottestMonth": 9,
+      "coldestMonth": 7,
+      "wettestMonth": 11,
+      "driestMonth": 8,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 19.2,
+          "avgLowC": 8.9,
+          "avgTempC": 14.1,
+          "precipMm": 566.9,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 19.6,
+          "avgLowC": 9.8,
+          "avgTempC": 14.7,
+          "precipMm": 783.4,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 19,
+          "avgLowC": 10.1,
+          "avgTempC": 14.6,
+          "precipMm": 1219.5,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 18.6,
+          "avgLowC": 9.9,
+          "avgTempC": 14.3,
+          "precipMm": 1192.4,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 18.5,
+          "avgLowC": 10.1,
+          "avgTempC": 14.3,
+          "precipMm": 859.9,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 17.9,
+          "avgLowC": 9.6,
+          "avgTempC": 13.8,
+          "precipMm": 588.4,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 17.8,
+          "avgLowC": 9.2,
+          "avgTempC": 13.5,
+          "precipMm": 470.4,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 18.9,
+          "avgLowC": 9,
+          "avgTempC": 13.9,
+          "precipMm": 237.9,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 19.7,
+          "avgLowC": 8.9,
+          "avgTempC": 14.3,
+          "precipMm": 289.8,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 19.3,
+          "avgLowC": 9.2,
+          "avgTempC": 14.2,
+          "precipMm": 759.3,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 18.8,
+          "avgLowC": 9.4,
+          "avgTempC": 14.1,
+          "precipMm": 1320.2,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 19.3,
+          "avgLowC": 9.1,
+          "avgTempC": 14.2,
+          "precipMm": 599,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Lima",
+    "country": "Peru",
+    "admin1": "Lima Province",
+    "countryCode": "PE",
+    "latitude": -12.04318,
+    "longitude": -77.02824,
+    "timezone": "America/Lima",
+    "population": 7737002,
+    "slug": "lima",
+    "climate": {
+      "avgHighC": 21.9,
+      "avgLowC": 17.2,
+      "annualMeanC": 19.5,
+      "annualPrecipMm": 706.7,
+      "hottestMonth": 2,
+      "coldestMonth": 8,
+      "wettestMonth": 3,
+      "driestMonth": 7,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 24.6,
+          "avgLowC": 19.9,
+          "avgTempC": 22.3,
+          "precipMm": 134.7,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 25.7,
+          "avgLowC": 21,
+          "avgTempC": 23.4,
+          "precipMm": 155.7,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 25.3,
+          "avgLowC": 20.7,
+          "avgTempC": 23,
+          "precipMm": 217.7,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 23.9,
+          "avgLowC": 19.2,
+          "avgTempC": 21.5,
+          "precipMm": 33.6,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 21.7,
+          "avgLowC": 17.1,
+          "avgTempC": 19.4,
+          "precipMm": 6.5,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 20.1,
+          "avgLowC": 15.4,
+          "avgTempC": 17.7,
+          "precipMm": 6.2,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 19.3,
+          "avgLowC": 14.6,
+          "avgTempC": 16.9,
+          "precipMm": 4.6,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 18.9,
+          "avgLowC": 14.2,
+          "avgTempC": 16.6,
+          "precipMm": 5.4,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 19.3,
+          "avgLowC": 14.5,
+          "avgTempC": 16.9,
+          "precipMm": 15,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 19.9,
+          "avgLowC": 15.1,
+          "avgTempC": 17.5,
+          "precipMm": 25,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 21.1,
+          "avgLowC": 16.3,
+          "avgTempC": 18.7,
+          "precipMm": 15.5,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 22.8,
+          "avgLowC": 18.2,
+          "avgTempC": 20.5,
+          "precipMm": 86.8,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Quito",
+    "country": "Ecuador",
+    "admin1": "Pichincha",
+    "countryCode": "EC",
+    "latitude": -0.22985,
+    "longitude": -78.52495,
+    "timezone": "America/Guayaquil",
+    "population": 2781641,
+    "slug": "quito",
+    "climate": {
+      "avgHighC": 17.8,
+      "avgLowC": 8.5,
+      "annualMeanC": 13.2,
+      "annualPrecipMm": 34269.6,
+      "hottestMonth": 9,
+      "coldestMonth": 1,
+      "wettestMonth": 3,
+      "driestMonth": 8,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 17.1,
+          "avgLowC": 8.8,
+          "avgTempC": 13,
+          "precipMm": 3577.4,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 17.3,
+          "avgLowC": 9.2,
+          "avgTempC": 13.3,
+          "precipMm": 3884.3,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 17.1,
+          "avgLowC": 9.1,
+          "avgTempC": 13.1,
+          "precipMm": 5127.9,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 17.2,
+          "avgLowC": 8.9,
+          "avgTempC": 13.1,
+          "precipMm": 4381.7,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 17.3,
+          "avgLowC": 8.8,
+          "avgTempC": 13,
+          "precipMm": 2747.1,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 17.3,
+          "avgLowC": 8,
+          "avgTempC": 12.6,
+          "precipMm": 1468.5,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 17.8,
+          "avgLowC": 7.5,
+          "avgTempC": 12.7,
+          "precipMm": 804.8,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 19.2,
+          "avgLowC": 7.6,
+          "avgTempC": 13.4,
+          "precipMm": 718.6,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 19.6,
+          "avgLowC": 7.8,
+          "avgTempC": 13.7,
+          "precipMm": 1043.8,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 18.3,
+          "avgLowC": 8.5,
+          "avgTempC": 13.4,
+          "precipMm": 2806.3,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 17.6,
+          "avgLowC": 8.9,
+          "avgTempC": 13.2,
+          "precipMm": 3921.3,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 17.4,
+          "avgLowC": 9,
+          "avgTempC": 13.2,
+          "precipMm": 3787.9,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Cairo",
+    "country": "Egypt",
+    "admin1": "Cairo Governorate",
+    "countryCode": "EG",
+    "latitude": 30.06263,
+    "longitude": 31.24967,
+    "timezone": "Africa/Cairo",
+    "population": 9606916,
+    "slug": "cairo",
+    "climate": {
+      "avgHighC": 29.6,
+      "avgLowC": 17,
+      "annualMeanC": 23.3,
+      "annualPrecipMm": 359.9,
+      "hottestMonth": 7,
+      "coldestMonth": 1,
+      "wettestMonth": 3,
+      "driestMonth": 8,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 19.1,
+          "avgLowC": 9,
+          "avgTempC": 14.1,
+          "precipMm": 60.1,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 21,
+          "avgLowC": 9.8,
+          "avgTempC": 15.4,
+          "precipMm": 65.3,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 24.8,
+          "avgLowC": 12.3,
+          "avgTempC": 18.5,
+          "precipMm": 87.7,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 29.7,
+          "avgLowC": 15.2,
+          "avgTempC": 22.4,
+          "precipMm": 20.8,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 34,
+          "avgLowC": 19,
+          "avgTempC": 26.5,
+          "precipMm": 3.4,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 36.7,
+          "avgLowC": 21.8,
+          "avgTempC": 29.3,
+          "precipMm": 1.3,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 38,
+          "avgLowC": 23.4,
+          "avgTempC": 30.7,
+          "precipMm": 0.5,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 37.6,
+          "avgLowC": 23.9,
+          "avgTempC": 30.7,
+          "precipMm": 0.3,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 35.6,
+          "avgLowC": 22.5,
+          "avgTempC": 29,
+          "precipMm": 1,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 31,
+          "avgLowC": 19.5,
+          "avgTempC": 25.3,
+          "precipMm": 27.2,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 26.1,
+          "avgLowC": 15.4,
+          "avgTempC": 20.8,
+          "precipMm": 29.3,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 21.3,
+          "avgLowC": 11.5,
+          "avgTempC": 16.4,
+          "precipMm": 63,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Lagos",
+    "country": "Nigeria",
+    "admin1": "Lagos",
+    "countryCode": "NG",
+    "latitude": 6.45407,
+    "longitude": 3.39467,
+    "timezone": "Africa/Lagos",
+    "population": 15388000,
+    "slug": "lagos",
+    "climate": {
+      "avgHighC": 29.4,
+      "avgLowC": 25.2,
+      "annualMeanC": 27.3,
+      "annualPrecipMm": 13186.1,
+      "hottestMonth": 2,
+      "coldestMonth": 8,
+      "wettestMonth": 6,
+      "driestMonth": 12,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 30.9,
+          "avgLowC": 24.4,
+          "avgTempC": 27.7,
+          "precipMm": 166.9,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 31.1,
+          "avgLowC": 25.7,
+          "avgTempC": 28.4,
+          "precipMm": 319,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 30.9,
+          "avgLowC": 26.8,
+          "avgTempC": 28.8,
+          "precipMm": 733,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 30.8,
+          "avgLowC": 26.8,
+          "avgTempC": 28.8,
+          "precipMm": 685,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 29.9,
+          "avgLowC": 26.2,
+          "avgTempC": 28.1,
+          "precipMm": 1430,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 28.1,
+          "avgLowC": 24.9,
+          "avgTempC": 26.5,
+          "precipMm": 2673.4,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 27.1,
+          "avgLowC": 24.4,
+          "avgTempC": 25.8,
+          "precipMm": 1709.6,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 27,
+          "avgLowC": 24.1,
+          "avgTempC": 25.5,
+          "precipMm": 1171.3,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 27.4,
+          "avgLowC": 24.3,
+          "avgTempC": 25.8,
+          "precipMm": 2050.2,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 28.4,
+          "avgLowC": 24.8,
+          "avgTempC": 26.6,
+          "precipMm": 1499.6,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 29.8,
+          "avgLowC": 25.6,
+          "avgTempC": 27.7,
+          "precipMm": 587.6,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 31,
+          "avgLowC": 24.8,
+          "avgTempC": 27.9,
+          "precipMm": 160.5,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Nairobi",
+    "country": "Kenya",
+    "admin1": "Nairobi County",
+    "countryCode": "KE",
+    "latitude": -1.28333,
+    "longitude": 36.81667,
+    "timezone": "Africa/Nairobi",
+    "population": 4397073,
+    "slug": "nairobi",
+    "climate": {
+      "avgHighC": 24.9,
+      "avgLowC": 14.3,
+      "annualMeanC": 19.6,
+      "annualPrecipMm": 8999.2,
+      "hottestMonth": 2,
+      "coldestMonth": 7,
+      "wettestMonth": 4,
+      "driestMonth": 7,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 26.1,
+          "avgLowC": 14.5,
+          "avgTempC": 20.3,
+          "precipMm": 501.1,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 27.4,
+          "avgLowC": 14.9,
+          "avgTempC": 21.1,
+          "precipMm": 460.1,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 27.4,
+          "avgLowC": 15.4,
+          "avgTempC": 21.4,
+          "precipMm": 743.8,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 25.1,
+          "avgLowC": 15.8,
+          "avgTempC": 20.4,
+          "precipMm": 1859.5,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 23.8,
+          "avgLowC": 14.8,
+          "avgTempC": 19.3,
+          "precipMm": 1056.3,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 23.1,
+          "avgLowC": 13.2,
+          "avgTempC": 18.1,
+          "precipMm": 403.9,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 22.7,
+          "avgLowC": 12.4,
+          "avgTempC": 17.6,
+          "precipMm": 199.3,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 23.4,
+          "avgLowC": 12.7,
+          "avgTempC": 18,
+          "precipMm": 262.9,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 25.1,
+          "avgLowC": 13.3,
+          "avgTempC": 19.2,
+          "precipMm": 331.4,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 26.2,
+          "avgLowC": 14.7,
+          "avgTempC": 20.4,
+          "precipMm": 910.2,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 24.2,
+          "avgLowC": 15.1,
+          "avgTempC": 19.7,
+          "precipMm": 1444.1,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 24.7,
+          "avgLowC": 14.8,
+          "avgTempC": 19.8,
+          "precipMm": 826.6,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Johannesburg",
+    "country": "South Africa",
+    "admin1": "Gauteng",
+    "countryCode": "ZA",
+    "latitude": -26.20227,
+    "longitude": 28.04363,
+    "timezone": "Africa/Johannesburg",
+    "population": 9418183,
+    "slug": "johannesburg",
+    "climate": {
+      "avgHighC": 22.9,
+      "avgLowC": 10.2,
+      "annualMeanC": 16.5,
+      "annualPrecipMm": 6062.4,
+      "hottestMonth": 10,
+      "coldestMonth": 6,
+      "wettestMonth": 1,
+      "driestMonth": 8,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 25.6,
+          "avgLowC": 14.5,
+          "avgTempC": 20,
+          "precipMm": 1170,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 25.2,
+          "avgLowC": 14.4,
+          "avgTempC": 19.8,
+          "precipMm": 1042.5,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 24.3,
+          "avgLowC": 13.1,
+          "avgTempC": 18.7,
+          "precipMm": 607.7,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 21.5,
+          "avgLowC": 10.3,
+          "avgTempC": 15.9,
+          "precipMm": 567.5,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 19.8,
+          "avgLowC": 7.3,
+          "avgTempC": 13.5,
+          "precipMm": 157.3,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 17.1,
+          "avgLowC": 4.1,
+          "avgTempC": 10.6,
+          "precipMm": 78.4,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 17.3,
+          "avgLowC": 3.5,
+          "avgTempC": 10.4,
+          "precipMm": 37.5,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 21,
+          "avgLowC": 6.4,
+          "avgTempC": 13.7,
+          "precipMm": 25.1,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 24.7,
+          "avgLowC": 9.9,
+          "avgTempC": 17.3,
+          "precipMm": 136.5,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 26.1,
+          "avgLowC": 11.7,
+          "avgTempC": 18.9,
+          "precipMm": 391.8,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 26,
+          "avgLowC": 13.2,
+          "avgTempC": 19.6,
+          "precipMm": 765.2,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 25.9,
+          "avgLowC": 14.7,
+          "avgTempC": 20.3,
+          "precipMm": 1082.9,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Cape Town",
+    "country": "South Africa",
+    "admin1": "Western Cape",
+    "countryCode": "ZA",
+    "latitude": -33.92584,
+    "longitude": 18.42322,
+    "timezone": "Africa/Johannesburg",
+    "population": 4772846,
+    "slug": "cape-town",
+    "climate": {
+      "avgHighC": 21,
+      "avgLowC": 13.4,
+      "annualMeanC": 17.2,
+      "annualPrecipMm": 6001.4,
+      "hottestMonth": 1,
+      "coldestMonth": 7,
+      "wettestMonth": 6,
+      "driestMonth": 2,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 25.9,
+          "avgLowC": 17.4,
+          "avgTempC": 21.6,
+          "precipMm": 150.8,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 25.8,
+          "avgLowC": 17.3,
+          "avgTempC": 21.6,
+          "precipMm": 97.4,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 23.9,
+          "avgLowC": 16,
+          "avgTempC": 19.9,
+          "precipMm": 292.6,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 22.1,
+          "avgLowC": 14.1,
+          "avgTempC": 18.1,
+          "precipMm": 319.7,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 19.6,
+          "avgLowC": 12.1,
+          "avgTempC": 15.8,
+          "precipMm": 579.9,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 17.4,
+          "avgLowC": 10.5,
+          "avgTempC": 14,
+          "precipMm": 1236.6,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 16.4,
+          "avgLowC": 9.6,
+          "avgTempC": 13,
+          "precipMm": 1148.4,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 16.5,
+          "avgLowC": 9.8,
+          "avgTempC": 13.2,
+          "precipMm": 817.2,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 18,
+          "avgLowC": 10.9,
+          "avgTempC": 14.4,
+          "precipMm": 497.3,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 21.2,
+          "avgLowC": 13,
+          "avgTempC": 17.1,
+          "precipMm": 353.1,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 22.3,
+          "avgLowC": 14.3,
+          "avgTempC": 18.3,
+          "precipMm": 230.4,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 23.8,
+          "avgLowC": 16,
+          "avgTempC": 19.9,
+          "precipMm": 278,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Sydney",
+    "country": "Australia",
+    "admin1": "New South Wales",
+    "countryCode": "AU",
+    "latitude": -33.86785,
+    "longitude": 151.20732,
+    "timezone": "Australia/Sydney",
+    "population": 5638830,
+    "slug": "sydney",
+    "climate": {
+      "avgHighC": 21.9,
+      "avgLowC": 13.7,
+      "annualMeanC": 17.8,
+      "annualPrecipMm": 9763.8,
+      "hottestMonth": 1,
+      "coldestMonth": 6,
+      "wettestMonth": 3,
+      "driestMonth": 9,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 26.6,
+          "avgLowC": 19.4,
+          "avgTempC": 23,
+          "precipMm": 986.2,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 26,
+          "avgLowC": 19.1,
+          "avgTempC": 22.5,
+          "precipMm": 1058.3,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 24.8,
+          "avgLowC": 17.9,
+          "avgTempC": 21.4,
+          "precipMm": 1514.6,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 22.5,
+          "avgLowC": 14.5,
+          "avgTempC": 18.5,
+          "precipMm": 959.1,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 19.5,
+          "avgLowC": 11.1,
+          "avgTempC": 15.3,
+          "precipMm": 621.7,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 16.8,
+          "avgLowC": 9,
+          "avgTempC": 12.9,
+          "precipMm": 768.8,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 16.9,
+          "avgLowC": 8,
+          "avgTempC": 12.5,
+          "precipMm": 653.8,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 18.1,
+          "avgLowC": 8.6,
+          "avgTempC": 13.4,
+          "precipMm": 492.7,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 20.6,
+          "avgLowC": 10.6,
+          "avgTempC": 15.6,
+          "precipMm": 486,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 22.4,
+          "avgLowC": 13.3,
+          "avgTempC": 17.8,
+          "precipMm": 745,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 23.6,
+          "avgLowC": 15.4,
+          "avgTempC": 19.5,
+          "precipMm": 816.7,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 25.7,
+          "avgLowC": 17.6,
+          "avgTempC": 21.7,
+          "precipMm": 660.9,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Melbourne",
+    "country": "Australia",
+    "admin1": "Victoria",
+    "countryCode": "AU",
+    "latitude": -37.814,
+    "longitude": 144.96332,
+    "timezone": "Australia/Melbourne",
+    "population": 5435590,
+    "slug": "melbourne",
+    "climate": {
+      "avgHighC": 19.7,
+      "avgLowC": 10.3,
+      "annualMeanC": 15,
+      "annualPrecipMm": 7391.1,
+      "hottestMonth": 1,
+      "coldestMonth": 7,
+      "wettestMonth": 11,
+      "driestMonth": 2,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 26.5,
+          "avgLowC": 15.2,
+          "avgTempC": 20.8,
+          "precipMm": 716.7,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 25.6,
+          "avgLowC": 14.5,
+          "avgTempC": 20,
+          "precipMm": 312.8,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 24.1,
+          "avgLowC": 13.7,
+          "avgTempC": 18.9,
+          "precipMm": 386.9,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 20.1,
+          "avgLowC": 10.8,
+          "avgTempC": 15.4,
+          "precipMm": 648.5,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 16.3,
+          "avgLowC": 8.6,
+          "avgTempC": 12.4,
+          "precipMm": 610.2,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 13.7,
+          "avgLowC": 6.6,
+          "avgTempC": 10.1,
+          "precipMm": 611.4,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 13.2,
+          "avgLowC": 6.4,
+          "avgTempC": 9.8,
+          "precipMm": 558.2,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 14.3,
+          "avgLowC": 6.8,
+          "avgTempC": 10.5,
+          "precipMm": 599,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 16.6,
+          "avgLowC": 7.7,
+          "avgTempC": 12.2,
+          "precipMm": 668.3,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 19.7,
+          "avgLowC": 9.2,
+          "avgTempC": 14.4,
+          "precipMm": 801.7,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 21.8,
+          "avgLowC": 11.4,
+          "avgTempC": 16.6,
+          "precipMm": 808.8,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 24.6,
+          "avgLowC": 13.1,
+          "avgTempC": 18.8,
+          "precipMm": 668.6,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Auckland",
+    "country": "New Zealand",
+    "admin1": "Auckland",
+    "countryCode": "NZ",
+    "latitude": -36.84853,
+    "longitude": 174.76349,
+    "timezone": "Pacific/Auckland",
+    "population": 1547200,
+    "slug": "auckland",
+    "climate": {
+      "avgHighC": 18.4,
+      "avgLowC": 13.4,
+      "annualMeanC": 15.9,
+      "annualPrecipMm": 12051.4,
+      "hottestMonth": 2,
+      "coldestMonth": 7,
+      "wettestMonth": 7,
+      "driestMonth": 12,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 22.8,
+          "avgLowC": 17.5,
+          "avgTempC": 20.2,
+          "precipMm": 874.5,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 23.1,
+          "avgLowC": 17.8,
+          "avgTempC": 20.4,
+          "precipMm": 1085.2,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 21.7,
+          "avgLowC": 16.4,
+          "avgTempC": 19.1,
+          "precipMm": 915.1,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 19.5,
+          "avgLowC": 14.6,
+          "avgTempC": 17.1,
+          "precipMm": 932.3,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 17.3,
+          "avgLowC": 12.4,
+          "avgTempC": 14.8,
+          "precipMm": 950.3,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 15.3,
+          "avgLowC": 10.9,
+          "avgTempC": 13.1,
+          "precipMm": 962.8,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 14.3,
+          "avgLowC": 9.7,
+          "avgTempC": 12,
+          "precipMm": 1172.9,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 14.5,
+          "avgLowC": 9.4,
+          "avgTempC": 11.9,
+          "precipMm": 1146.2,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 15.5,
+          "avgLowC": 10.5,
+          "avgTempC": 13,
+          "precipMm": 1073.8,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 16.9,
+          "avgLowC": 11.9,
+          "avgTempC": 14.4,
+          "precipMm": 1008.2,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 19,
+          "avgLowC": 13.7,
+          "avgTempC": 16.3,
+          "precipMm": 1069.9,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 21.2,
+          "avgLowC": 16,
+          "avgTempC": 18.6,
+          "precipMm": 860.2,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Zurich",
+    "country": "Switzerland",
+    "admin1": "Canton of Zurich",
+    "countryCode": "CH",
+    "latitude": 47.36667,
+    "longitude": 8.55,
+    "timezone": "Europe/Zurich",
+    "population": 415367,
+    "slug": "zurich",
+    "climate": {
+      "avgHighC": 14.8,
+      "avgLowC": 6.3,
+      "annualMeanC": 10.6,
+      "annualPrecipMm": 12705.6,
+      "hottestMonth": 7,
+      "coldestMonth": 1,
+      "wettestMonth": 5,
+      "driestMonth": 2,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 4.4,
+          "avgLowC": -1.9,
+          "avgTempC": 1.2,
+          "precipMm": 1043.4,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 7.3,
+          "avgLowC": -0.9,
+          "avgTempC": 3.2,
+          "precipMm": 737.8,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 10.8,
+          "avgLowC": 0.9,
+          "avgTempC": 5.8,
+          "precipMm": 793.1,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 14.5,
+          "avgLowC": 3.9,
+          "avgTempC": 9.2,
+          "precipMm": 1012.6,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 17.9,
+          "avgLowC": 8.4,
+          "avgTempC": 13.2,
+          "precipMm": 1475.3,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 23.1,
+          "avgLowC": 13.4,
+          "avgTempC": 18.2,
+          "precipMm": 1325,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 25,
+          "avgLowC": 15.4,
+          "avgTempC": 20.2,
+          "precipMm": 1270.9,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 24.7,
+          "avgLowC": 15.4,
+          "avgTempC": 20,
+          "precipMm": 1266,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 19.9,
+          "avgLowC": 11.4,
+          "avgTempC": 15.7,
+          "precipMm": 940.5,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 15.3,
+          "avgLowC": 7.3,
+          "avgTempC": 11.3,
+          "precipMm": 906.6,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 8.7,
+          "avgLowC": 2.5,
+          "avgTempC": 5.6,
+          "precipMm": 948.1,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 5.6,
+          "avgLowC": -0.4,
+          "avgTempC": 2.6,
+          "precipMm": 986.3,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Vienna",
+    "country": "Austria",
+    "admin1": "State of Vienna",
+    "countryCode": "AT",
+    "latitude": 48.20849,
+    "longitude": 16.37208,
+    "timezone": "Europe/Vienna",
+    "population": 1691468,
+    "slug": "vienna",
+    "climate": {
+      "avgHighC": 16,
+      "avgLowC": 7.5,
+      "annualMeanC": 11.8,
+      "annualPrecipMm": 6580.8,
+      "hottestMonth": 7,
+      "coldestMonth": 1,
+      "wettestMonth": 9,
+      "driestMonth": 3,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 4.2,
+          "avgLowC": -1.8,
+          "avgTempC": 1.2,
+          "precipMm": 406,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 7.8,
+          "avgLowC": 0.3,
+          "avgTempC": 4.1,
+          "precipMm": 361.9,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 11.3,
+          "avgLowC": 1.8,
+          "avgTempC": 6.6,
+          "precipMm": 316.3,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 15.8,
+          "avgLowC": 5.7,
+          "avgTempC": 10.7,
+          "precipMm": 503.4,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 19.7,
+          "avgLowC": 10.4,
+          "avgTempC": 15.1,
+          "precipMm": 777.7,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 25.5,
+          "avgLowC": 15.4,
+          "avgTempC": 20.5,
+          "precipMm": 694.3,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 27.5,
+          "avgLowC": 17.3,
+          "avgTempC": 22.4,
+          "precipMm": 602.5,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 27.2,
+          "avgLowC": 17.1,
+          "avgTempC": 22.2,
+          "precipMm": 612.5,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 21.7,
+          "avgLowC": 12.6,
+          "avgTempC": 17.2,
+          "precipMm": 842.6,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 15.9,
+          "avgLowC": 8.1,
+          "avgTempC": 12,
+          "precipMm": 561.6,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 9.4,
+          "avgLowC": 3.1,
+          "avgTempC": 6.3,
+          "precipMm": 442.6,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 5.5,
+          "avgLowC": -0.2,
+          "avgTempC": 2.7,
+          "precipMm": 459.4,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Philadelphia",
+    "country": "United States",
+    "admin1": "Pennsylvania",
+    "countryCode": "US",
+    "latitude": 39.95238,
+    "longitude": -75.16362,
+    "timezone": "America/New_York",
+    "population": 1573916,
+    "slug": "philadelphia",
+    "climate": {
+      "avgHighC": 18.4,
+      "avgLowC": 8.7,
+      "annualMeanC": 13.6,
+      "annualPrecipMm": 12332.2,
+      "hottestMonth": 7,
+      "coldestMonth": 1,
+      "wettestMonth": 7,
+      "driestMonth": 11,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 5.4,
+          "avgLowC": -3,
+          "avgTempC": 1.2,
+          "precipMm": 921.8,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 7.5,
+          "avgLowC": -2.3,
+          "avgTempC": 2.6,
+          "precipMm": 885,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 11.5,
+          "avgLowC": 0.9,
+          "avgTempC": 6.2,
+          "precipMm": 1106.1,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 17.4,
+          "avgLowC": 6.4,
+          "avgTempC": 11.9,
+          "precipMm": 1064.7,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 22.7,
+          "avgLowC": 12.3,
+          "avgTempC": 17.5,
+          "precipMm": 1072.8,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 27.9,
+          "avgLowC": 17.4,
+          "avgTempC": 22.6,
+          "precipMm": 1064.6,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 30.9,
+          "avgLowC": 21.1,
+          "avgTempC": 26,
+          "precipMm": 1199.8,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 29.5,
+          "avgLowC": 20.2,
+          "avgTempC": 24.8,
+          "precipMm": 1136.1,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 26.2,
+          "avgLowC": 16.7,
+          "avgTempC": 21.5,
+          "precipMm": 1041.8,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 19.9,
+          "avgLowC": 10.5,
+          "avgTempC": 15.2,
+          "precipMm": 982.8,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 13.2,
+          "avgLowC": 3.8,
+          "avgTempC": 8.5,
+          "precipMm": 764.4,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 8.2,
+          "avgLowC": 0.1,
+          "avgTempC": 4.2,
+          "precipMm": 1092.3,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Atlanta",
+    "country": "United States",
+    "admin1": "Georgia",
+    "countryCode": "US",
+    "latitude": 33.749,
+    "longitude": -84.38798,
+    "timezone": "America/New_York",
+    "population": 510823,
+    "slug": "atlanta",
+    "climate": {
+      "avgHighC": 22.1,
+      "avgLowC": 12.1,
+      "annualMeanC": 17.1,
+      "annualPrecipMm": 15478,
+      "hottestMonth": 7,
+      "coldestMonth": 1,
+      "wettestMonth": 7,
+      "driestMonth": 10,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 11.2,
+          "avgLowC": 1.7,
+          "avgTempC": 6.4,
+          "precipMm": 1338.3,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 14.6,
+          "avgLowC": 4.3,
+          "avgTempC": 9.5,
+          "precipMm": 1474.6,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 18.1,
+          "avgLowC": 7.3,
+          "avgTempC": 12.7,
+          "precipMm": 1249.9,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 21.8,
+          "avgLowC": 10.3,
+          "avgTempC": 16.1,
+          "precipMm": 1194.5,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 26.5,
+          "avgLowC": 15.6,
+          "avgTempC": 21,
+          "precipMm": 1231.7,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 29.7,
+          "avgLowC": 19.8,
+          "avgTempC": 24.7,
+          "precipMm": 1165.8,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 30.9,
+          "avgLowC": 21.7,
+          "avgTempC": 26.3,
+          "precipMm": 1787.3,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 30.3,
+          "avgLowC": 21.2,
+          "avgTempC": 25.7,
+          "precipMm": 1502.4,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 28,
+          "avgLowC": 18.5,
+          "avgTempC": 23.3,
+          "precipMm": 1280.2,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 22.9,
+          "avgLowC": 12.7,
+          "avgTempC": 17.8,
+          "precipMm": 934.3,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 17.1,
+          "avgLowC": 7,
+          "avgTempC": 12,
+          "precipMm": 961.9,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 13.3,
+          "avgLowC": 4.4,
+          "avgTempC": 8.9,
+          "precipMm": 1357.1,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Denver",
+    "country": "United States",
+    "admin1": "Colorado",
+    "countryCode": "US",
+    "latitude": 39.73915,
+    "longitude": -104.9847,
+    "timezone": "America/Denver",
+    "population": 729019,
+    "slug": "denver",
+    "climate": {
+      "avgHighC": 17.8,
+      "avgLowC": 2.3,
+      "annualMeanC": 10.1,
+      "annualPrecipMm": 4436.7,
+      "hottestMonth": 7,
+      "coldestMonth": 1,
+      "wettestMonth": 5,
+      "driestMonth": 12,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 4.9,
+          "avgLowC": -9.5,
+          "avgTempC": -2.3,
+          "precipMm": 218.1,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 6.1,
+          "avgLowC": -9.7,
+          "avgTempC": -1.8,
+          "precipMm": 292.8,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 11.3,
+          "avgLowC": -4.8,
+          "avgTempC": 3.3,
+          "precipMm": 492,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 16,
+          "avgLowC": 0,
+          "avgTempC": 8,
+          "precipMm": 492.8,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 20.2,
+          "avgLowC": 5.3,
+          "avgTempC": 12.8,
+          "precipMm": 983.6,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 28.4,
+          "avgLowC": 12.4,
+          "avgTempC": 20.4,
+          "precipMm": 428.8,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 31.4,
+          "avgLowC": 15.6,
+          "avgTempC": 23.5,
+          "precipMm": 322.5,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 30.4,
+          "avgLowC": 14.8,
+          "avgTempC": 22.6,
+          "precipMm": 328.8,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 27.7,
+          "avgLowC": 10.9,
+          "avgTempC": 19.3,
+          "precipMm": 186.6,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 19,
+          "avgLowC": 3.1,
+          "avgTempC": 11,
+          "precipMm": 290.9,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 11.3,
+          "avgLowC": -3.5,
+          "avgTempC": 3.9,
+          "precipMm": 241.2,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 6.7,
+          "avgLowC": -7,
+          "avgTempC": -0.2,
+          "precipMm": 158.6,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Honolulu",
+    "country": "United States",
+    "admin1": "Hawaii",
+    "countryCode": "US",
+    "latitude": 21.30694,
+    "longitude": -157.85834,
+    "timezone": "Pacific/Honolulu",
+    "population": 350964,
+    "slug": "honolulu",
+    "climate": {
+      "avgHighC": 27,
+      "avgLowC": 22.1,
+      "annualMeanC": 24.6,
+      "annualPrecipMm": 4626.9,
+      "hottestMonth": 8,
+      "coldestMonth": 2,
+      "wettestMonth": 12,
+      "driestMonth": 7,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 25.2,
+          "avgLowC": 20.2,
+          "avgTempC": 22.7,
+          "precipMm": 367.3,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 24.7,
+          "avgLowC": 20,
+          "avgTempC": 22.3,
+          "precipMm": 501.2,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 25,
+          "avgLowC": 20.3,
+          "avgTempC": 22.7,
+          "precipMm": 523.9,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 26,
+          "avgLowC": 21.3,
+          "avgTempC": 23.7,
+          "precipMm": 454.5,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 26.8,
+          "avgLowC": 22,
+          "avgTempC": 24.4,
+          "precipMm": 418.6,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 28,
+          "avgLowC": 23,
+          "avgTempC": 25.5,
+          "precipMm": 258.5,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 28.6,
+          "avgLowC": 23.6,
+          "avgTempC": 26.1,
+          "precipMm": 201,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 29.1,
+          "avgLowC": 24,
+          "avgTempC": 26.5,
+          "precipMm": 369.4,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 29,
+          "avgLowC": 23.9,
+          "avgTempC": 26.5,
+          "precipMm": 273.6,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 28.2,
+          "avgLowC": 23.3,
+          "avgTempC": 25.8,
+          "precipMm": 387.8,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 27,
+          "avgLowC": 22.5,
+          "avgTempC": 24.7,
+          "precipMm": 316.8,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 25.7,
+          "avgLowC": 21.1,
+          "avgTempC": 23.4,
+          "precipMm": 554.3,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Montevideo",
+    "country": "Uruguay",
+    "admin1": "Montevideo Department",
+    "countryCode": "UY",
+    "latitude": -34.90328,
+    "longitude": -56.18816,
+    "timezone": "America/Montevideo",
+    "population": 1270737,
+    "slug": "montevideo",
+    "climate": {
+      "avgHighC": 20.1,
+      "avgLowC": 14.2,
+      "annualMeanC": 17.2,
+      "annualPrecipMm": 9737.8,
+      "hottestMonth": 1,
+      "coldestMonth": 7,
+      "wettestMonth": 4,
+      "driestMonth": 9,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 26.5,
+          "avgLowC": 19.8,
+          "avgTempC": 23.1,
+          "precipMm": 717.5,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 26,
+          "avgLowC": 19.7,
+          "avgTempC": 22.9,
+          "precipMm": 765.8,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 24.3,
+          "avgLowC": 18.2,
+          "avgTempC": 21.3,
+          "precipMm": 874.5,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 21.4,
+          "avgLowC": 15.8,
+          "avgTempC": 18.6,
+          "precipMm": 1102.4,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 17.3,
+          "avgLowC": 12.2,
+          "avgTempC": 14.8,
+          "precipMm": 790.2,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 14.8,
+          "avgLowC": 9.7,
+          "avgTempC": 12.2,
+          "precipMm": 675.2,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 13.8,
+          "avgLowC": 8.6,
+          "avgTempC": 11.2,
+          "precipMm": 1017.6,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 15.4,
+          "avgLowC": 9.4,
+          "avgTempC": 12.4,
+          "precipMm": 891.5,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 16.5,
+          "avgLowC": 10.7,
+          "avgTempC": 13.6,
+          "precipMm": 598.4,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 18.7,
+          "avgLowC": 12.7,
+          "avgTempC": 15.7,
+          "precipMm": 854,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 22.2,
+          "avgLowC": 15.6,
+          "avgTempC": 18.9,
+          "precipMm": 739.2,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 24.7,
+          "avgLowC": 17.8,
+          "avgTempC": 21.3,
+          "precipMm": 711.5,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Caracas",
+    "country": "Venezuela",
+    "admin1": "Distrito Federal",
+    "countryCode": "VE",
+    "latitude": 10.48801,
+    "longitude": -66.87919,
+    "timezone": "America/Caracas",
+    "population": 3000000,
+    "slug": "caracas",
+    "climate": {
+      "avgHighC": 27.2,
+      "avgLowC": 18.7,
+      "annualMeanC": 23,
+      "annualPrecipMm": 10386.4,
+      "hottestMonth": 9,
+      "coldestMonth": 12,
+      "wettestMonth": 11,
+      "driestMonth": 1,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 26.1,
+          "avgLowC": 16.7,
+          "avgTempC": 21.4,
+          "precipMm": 356.5,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 26.8,
+          "avgLowC": 16.9,
+          "avgTempC": 21.9,
+          "precipMm": 402.6,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 27.2,
+          "avgLowC": 17.4,
+          "avgTempC": 22.3,
+          "precipMm": 705.2,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 27.9,
+          "avgLowC": 18.9,
+          "avgTempC": 23.4,
+          "precipMm": 997.8,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 28,
+          "avgLowC": 20,
+          "avgTempC": 24,
+          "precipMm": 758.6,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 27.5,
+          "avgLowC": 19.8,
+          "avgTempC": 23.6,
+          "precipMm": 788.3,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 27.3,
+          "avgLowC": 19.6,
+          "avgTempC": 23.4,
+          "precipMm": 880.4,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 27.7,
+          "avgLowC": 19.5,
+          "avgTempC": 23.6,
+          "precipMm": 1070.7,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 28.2,
+          "avgLowC": 19.8,
+          "avgTempC": 24,
+          "precipMm": 900.6,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 27.4,
+          "avgLowC": 19.3,
+          "avgTempC": 23.4,
+          "precipMm": 1391,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 26.3,
+          "avgLowC": 18.7,
+          "avgTempC": 22.5,
+          "precipMm": 1524.1,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 25.8,
+          "avgLowC": 17.6,
+          "avgTempC": 21.7,
+          "precipMm": 610.6,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Islamabad",
+    "country": "Pakistan",
+    "admin1": "Islamabad",
+    "countryCode": "PK",
+    "latitude": 33.72148,
+    "longitude": 73.04329,
+    "timezone": "Asia/Karachi",
+    "population": 601600,
+    "slug": "islamabad",
+    "climate": {
+      "avgHighC": 26.4,
+      "avgLowC": 17.1,
+      "annualMeanC": 21.8,
+      "annualPrecipMm": 10893.8,
+      "hottestMonth": 6,
+      "coldestMonth": 1,
+      "wettestMonth": 8,
+      "driestMonth": 12,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 15.3,
+          "avgLowC": 6.7,
+          "avgTempC": 11,
+          "precipMm": 913.2,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 18.6,
+          "avgLowC": 9.3,
+          "avgTempC": 13.9,
+          "precipMm": 715,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 22.4,
+          "avgLowC": 13.2,
+          "avgTempC": 17.8,
+          "precipMm": 1346,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 28,
+          "avgLowC": 17.5,
+          "avgTempC": 22.8,
+          "precipMm": 913.4,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 33.1,
+          "avgLowC": 21.9,
+          "avgTempC": 27.5,
+          "precipMm": 425.9,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 35.7,
+          "avgLowC": 25.2,
+          "avgTempC": 30.4,
+          "precipMm": 459.4,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 32.4,
+          "avgLowC": 24.9,
+          "avgTempC": 28.6,
+          "precipMm": 1995,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 31.4,
+          "avgLowC": 24.2,
+          "avgTempC": 27.8,
+          "precipMm": 2176.1,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 31.4,
+          "avgLowC": 22.7,
+          "avgTempC": 27.1,
+          "precipMm": 763.3,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 28.4,
+          "avgLowC": 18.5,
+          "avgTempC": 23.5,
+          "precipMm": 364,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 22,
+          "avgLowC": 12.9,
+          "avgTempC": 17.4,
+          "precipMm": 547.5,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 17.9,
+          "avgLowC": 8.3,
+          "avgTempC": 13.1,
+          "precipMm": 275,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Almaty",
+    "country": "Kazakhstan",
+    "admin1": "Almaty",
+    "countryCode": "KZ",
+    "latitude": 43.25249,
+    "longitude": 76.9115,
+    "timezone": "Asia/Almaty",
+    "population": 1977011,
+    "slug": "almaty",
+    "climate": {
+      "avgHighC": 15.3,
+      "avgLowC": 5.4,
+      "annualMeanC": 10.4,
+      "annualPrecipMm": 6617.3,
+      "hottestMonth": 7,
+      "coldestMonth": 1,
+      "wettestMonth": 4,
+      "driestMonth": 1,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": -0.2,
+          "avgLowC": -8.5,
+          "avgTempC": -4.4,
+          "precipMm": 259.5,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 2.8,
+          "avgLowC": -5.9,
+          "avgTempC": -1.6,
+          "precipMm": 387.5,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 10.3,
+          "avgLowC": 0.4,
+          "avgTempC": 5.3,
+          "precipMm": 852.7,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 17,
+          "avgLowC": 6.5,
+          "avgTempC": 11.7,
+          "precipMm": 1085.5,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 21.7,
+          "avgLowC": 11.3,
+          "avgTempC": 16.5,
+          "precipMm": 1041.7,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 26.9,
+          "avgLowC": 15.7,
+          "avgTempC": 21.3,
+          "precipMm": 478.1,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 30.6,
+          "avgLowC": 19,
+          "avgTempC": 24.8,
+          "precipMm": 360.1,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 28.7,
+          "avgLowC": 17.3,
+          "avgTempC": 23,
+          "precipMm": 311,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 23,
+          "avgLowC": 12,
+          "avgTempC": 17.5,
+          "precipMm": 348.5,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 14.9,
+          "avgLowC": 5.2,
+          "avgTempC": 10,
+          "precipMm": 568.6,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 6.3,
+          "avgLowC": -2.3,
+          "avgTempC": 2,
+          "precipMm": 589.9,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 1.3,
+          "avgLowC": -6.7,
+          "avgTempC": -2.7,
+          "precipMm": 334.2,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Baku",
+    "country": "Azerbaijan",
+    "admin1": "Baku City",
+    "countryCode": "AZ",
+    "latitude": 40.37767,
+    "longitude": 49.89201,
+    "timezone": "Asia/Baku",
+    "population": 2351300,
+    "slug": "baku",
+    "climate": {
+      "avgHighC": 18.8,
+      "avgLowC": 12.9,
+      "annualMeanC": 15.9,
+      "annualPrecipMm": 2779.9,
+      "hottestMonth": 8,
+      "coldestMonth": 1,
+      "wettestMonth": 11,
+      "driestMonth": 8,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 7.7,
+          "avgLowC": 3.1,
+          "avgTempC": 5.4,
+          "precipMm": 249.3,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 8.4,
+          "avgLowC": 3.4,
+          "avgTempC": 5.9,
+          "precipMm": 217.3,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 11,
+          "avgLowC": 5.8,
+          "avgTempC": 8.4,
+          "precipMm": 341.1,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 16.3,
+          "avgLowC": 9.8,
+          "avgTempC": 13.1,
+          "precipMm": 171.2,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 22.1,
+          "avgLowC": 15.2,
+          "avgTempC": 18.6,
+          "precipMm": 243.7,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 28.7,
+          "avgLowC": 21,
+          "avgTempC": 24.9,
+          "precipMm": 82,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 30.8,
+          "avgLowC": 23.5,
+          "avgTempC": 27.2,
+          "precipMm": 110.2,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 31.1,
+          "avgLowC": 23.5,
+          "avgTempC": 27.3,
+          "precipMm": 69.5,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 26.1,
+          "avgLowC": 19.8,
+          "avgTempC": 23,
+          "precipMm": 183,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 19.7,
+          "avgLowC": 14.6,
+          "avgTempC": 17.2,
+          "precipMm": 370.5,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 13.8,
+          "avgLowC": 9.3,
+          "avgTempC": 11.5,
+          "precipMm": 372.9,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 9.8,
+          "avgLowC": 5.7,
+          "avgTempC": 7.8,
+          "precipMm": 369.2,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Tbilisi",
+    "country": "Georgia",
+    "admin1": "Tbilisi",
+    "countryCode": "GE",
+    "latitude": 41.69143,
+    "longitude": 44.83412,
+    "timezone": "Asia/Tbilisi",
+    "population": 1049498,
+    "slug": "tbilisi",
+    "climate": {
+      "avgHighC": 19,
+      "avgLowC": 9.2,
+      "annualMeanC": 14.1,
+      "annualPrecipMm": 5918,
+      "hottestMonth": 8,
+      "coldestMonth": 1,
+      "wettestMonth": 5,
+      "driestMonth": 1,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 7.2,
+          "avgLowC": -1.4,
+          "avgTempC": 2.9,
+          "precipMm": 191.2,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 9.3,
+          "avgLowC": 0,
+          "avgTempC": 4.7,
+          "precipMm": 238.6,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 12.6,
+          "avgLowC": 2.9,
+          "avgTempC": 7.8,
+          "precipMm": 633.4,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 18.3,
+          "avgLowC": 7.4,
+          "avgTempC": 12.9,
+          "precipMm": 706.4,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 22.8,
+          "avgLowC": 12.2,
+          "avgTempC": 17.5,
+          "precipMm": 971.2,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 28.9,
+          "avgLowC": 17.7,
+          "avgTempC": 23.3,
+          "precipMm": 634.9,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 31.1,
+          "avgLowC": 20.1,
+          "avgTempC": 25.6,
+          "precipMm": 471.6,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 31.6,
+          "avgLowC": 20.5,
+          "avgTempC": 26.1,
+          "precipMm": 295.9,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 26.1,
+          "avgLowC": 16.1,
+          "avgTempC": 21.1,
+          "precipMm": 534.4,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 18.8,
+          "avgLowC": 10.1,
+          "avgTempC": 14.4,
+          "precipMm": 589.4,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 12.8,
+          "avgLowC": 4.1,
+          "avgTempC": 8.4,
+          "precipMm": 427.5,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 8,
+          "avgLowC": 0.3,
+          "avgTempC": 4.2,
+          "precipMm": 223.5,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Yerevan",
+    "country": "Armenia",
+    "admin1": "Yerevan",
+    "countryCode": "AM",
+    "latitude": 40.17765,
+    "longitude": 44.5126,
+    "timezone": "Asia/Yerevan",
+    "population": 1144700,
+    "slug": "yerevan",
+    "climate": {
+      "avgHighC": 18.9,
+      "avgLowC": 8.1,
+      "annualMeanC": 13.5,
+      "annualPrecipMm": 4271.6,
+      "hottestMonth": 8,
+      "coldestMonth": 1,
+      "wettestMonth": 5,
+      "driestMonth": 8,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 3.4,
+          "avgLowC": -4.6,
+          "avgTempC": -0.6,
+          "precipMm": 292.2,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 6.6,
+          "avgLowC": -2.4,
+          "avgTempC": 2.1,
+          "precipMm": 272,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 12.2,
+          "avgLowC": 2,
+          "avgTempC": 7.1,
+          "precipMm": 633.3,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 18.3,
+          "avgLowC": 7,
+          "avgTempC": 12.6,
+          "precipMm": 561.1,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 22.8,
+          "avgLowC": 11.3,
+          "avgTempC": 17,
+          "precipMm": 842.7,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 29.9,
+          "avgLowC": 17.1,
+          "avgTempC": 23.5,
+          "precipMm": 235.5,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 33.4,
+          "avgLowC": 20.3,
+          "avgTempC": 26.8,
+          "precipMm": 163.1,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 33.7,
+          "avgLowC": 20.5,
+          "avgTempC": 27.1,
+          "precipMm": 82.1,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 28.4,
+          "avgLowC": 16,
+          "avgTempC": 22.2,
+          "precipMm": 138.9,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 19.9,
+          "avgLowC": 9.6,
+          "avgTempC": 14.7,
+          "precipMm": 398.8,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 11.9,
+          "avgLowC": 2.6,
+          "avgTempC": 7.3,
+          "precipMm": 301.1,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 5.8,
+          "avgLowC": -2.2,
+          "avgTempC": 1.8,
+          "precipMm": 350.8,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Casablanca",
+    "country": "Morocco",
+    "admin1": "Casablanca-Settat",
+    "countryCode": "MA",
+    "latitude": 33.58831,
+    "longitude": -7.61138,
+    "timezone": "Africa/Casablanca",
+    "population": 3665954,
+    "slug": "casablanca",
+    "climate": {
+      "avgHighC": 22.6,
+      "avgLowC": 14.6,
+      "annualMeanC": 18.6,
+      "annualPrecipMm": 3104.9,
+      "hottestMonth": 8,
+      "coldestMonth": 1,
+      "wettestMonth": 3,
+      "driestMonth": 7,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 17.5,
+          "avgLowC": 9,
+          "avgTempC": 13.2,
+          "precipMm": 405.9,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 17.9,
+          "avgLowC": 9.8,
+          "avgTempC": 13.9,
+          "precipMm": 443,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 18.9,
+          "avgLowC": 11,
+          "avgTempC": 14.9,
+          "precipMm": 539,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 20.9,
+          "avgLowC": 13.1,
+          "avgTempC": 17,
+          "precipMm": 272.4,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 23.4,
+          "avgLowC": 15.5,
+          "avgTempC": 19.4,
+          "precipMm": 184.1,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 25.1,
+          "avgLowC": 17.9,
+          "avgTempC": 21.5,
+          "precipMm": 78.7,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 27.1,
+          "avgLowC": 19.7,
+          "avgTempC": 23.4,
+          "precipMm": 8.2,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 27.7,
+          "avgLowC": 20.2,
+          "avgTempC": 24,
+          "precipMm": 13,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 26.4,
+          "avgLowC": 18.8,
+          "avgTempC": 22.6,
+          "precipMm": 76.8,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 25.1,
+          "avgLowC": 16.8,
+          "avgTempC": 20.9,
+          "precipMm": 340,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 21.3,
+          "avgLowC": 12.9,
+          "avgTempC": 17.1,
+          "precipMm": 393.8,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 19.1,
+          "avgLowC": 10.6,
+          "avgTempC": 14.8,
+          "precipMm": 350,
+          "days": 310
+        }
+      ]
+    }
+  },
+  {
+    "name": "Accra",
+    "country": "Ghana",
+    "admin1": "Greater Accra Region",
+    "countryCode": "GH",
+    "latitude": 5.55602,
+    "longitude": -0.1969,
+    "timezone": "Africa/Accra",
+    "population": 1963264,
+    "slug": "accra",
+    "climate": {
+      "avgHighC": 29.7,
+      "avgLowC": 24.3,
+      "annualMeanC": 27,
+      "annualPrecipMm": 9020.1,
+      "hottestMonth": 2,
+      "coldestMonth": 8,
+      "wettestMonth": 6,
+      "driestMonth": 1,
+      "monthly": [
+        {
+          "month": 1,
+          "avgHighC": 31.3,
+          "avgLowC": 24.1,
+          "avgTempC": 27.7,
+          "precipMm": 165.3,
+          "days": 310
+        },
+        {
+          "month": 2,
+          "avgHighC": 31.5,
+          "avgLowC": 25.2,
+          "avgTempC": 28.4,
+          "precipMm": 299.3,
+          "days": 283
+        },
+        {
+          "month": 3,
+          "avgHighC": 31.3,
+          "avgLowC": 25.5,
+          "avgTempC": 28.4,
+          "precipMm": 527.8,
+          "days": 310
+        },
+        {
+          "month": 4,
+          "avgHighC": 31.1,
+          "avgLowC": 25.4,
+          "avgTempC": 28.3,
+          "precipMm": 735.4,
+          "days": 300
+        },
+        {
+          "month": 5,
+          "avgHighC": 30.1,
+          "avgLowC": 25,
+          "avgTempC": 27.5,
+          "precipMm": 1295.7,
+          "days": 310
+        },
+        {
+          "month": 6,
+          "avgHighC": 28.1,
+          "avgLowC": 24,
+          "avgTempC": 26,
+          "precipMm": 1711.5,
+          "days": 300
+        },
+        {
+          "month": 7,
+          "avgHighC": 27.2,
+          "avgLowC": 23.3,
+          "avgTempC": 25.2,
+          "precipMm": 859.9,
+          "days": 310
+        },
+        {
+          "month": 8,
+          "avgHighC": 27.1,
+          "avgLowC": 22.9,
+          "avgTempC": 25,
+          "precipMm": 575.4,
+          "days": 310
+        },
+        {
+          "month": 9,
+          "avgHighC": 27.8,
+          "avgLowC": 23.3,
+          "avgTempC": 25.6,
+          "precipMm": 894.1,
+          "days": 300
+        },
+        {
+          "month": 10,
+          "avgHighC": 29,
+          "avgLowC": 23.9,
+          "avgTempC": 26.4,
+          "precipMm": 1214.6,
+          "days": 310
+        },
+        {
+          "month": 11,
+          "avgHighC": 30.3,
+          "avgLowC": 24.5,
+          "avgTempC": 27.4,
+          "precipMm": 506.1,
+          "days": 300
+        },
+        {
+          "month": 12,
+          "avgHighC": 31.3,
+          "avgLowC": 24.3,
+          "avgTempC": 27.8,
+          "precipMm": 235,
+          "days": 310
+        }
+      ]
+    }
   }
 ]

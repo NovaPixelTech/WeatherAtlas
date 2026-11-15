@@ -73,13 +73,11 @@ test('the web app manifest exists and points at the WeatherScope icons', () => {
   assert.match(manifest, /"display": "standalone"/);
 });
 
-test('the support configuration exposes fundraising and issue destinations', () => {
+test('the support configuration exposes fundraising and feedback destinations', () => {
   assert.match(supportConfig, /koFiUrl/);
   assert.match(supportConfig, /payPalMeUrl/);
   assert.match(supportConfig, /githubSponsorUrl/);
-  assert.match(supportConfig, /githubRepo/);
-  assert.match(supportConfig, /bugIssueUrl/);
-  assert.match(supportConfig, /featureIssueUrl/);
+  assert.match(supportConfig, /feedbackFormUrl/);
 });
 
 test('the support surface wires the dialog, the helpful vote and the analytics events', () => {
