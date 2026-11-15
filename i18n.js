@@ -437,6 +437,13 @@
       'footer.support': 'Support WeatherAtlas',
       'footer.feedback': 'Send Feedback',
 
+      // --- Free-for-everyone banner -------------------------------------------
+      'banner.eyebrow': '100% free · No ads · No sign-up',
+      'banner.title': 'Made free for everyone out to see the world.',
+      'banner.body': 'Every forecast, city guide and live camera, free today and free tomorrow. WeatherAtlas is kept alive by travellers, not by paywalls — if it helps your journey, help keep it free for the next one.',
+      'banner.support': 'Keep WeatherAtlas free',
+      'banner.note': 'Support is optional. The weather stays free either way.',
+
       // --- Support + feedback -------------------------------------------------
       'support.title': 'Support WeatherAtlas',
       'support.intro': "WeatherAtlas is free and runs on your goodwill. If it helped you, fuel the next forecast.",
@@ -1068,6 +1075,13 @@
       'footer.cities': 'Οδηγίες Πόλεων',
       'footer.support': 'Υποστηρίξτε το WeatherAtlas',
       'footer.feedback': 'Στείλτε σχόλιο',
+
+      // --- Free-for-everyone banner -------------------------------------------
+      'banner.eyebrow': '100% δωρεάν · Χωρίς διαφημίσεις · Χωρίς εγγραφή',
+      'banner.title': 'Δωρεάν για όλους όσους βγαίνουν να δουν τον κόσμο.',
+      'banner.body': 'Κάθε πρόγνωση, οδηγός πόλης και ζωντανή κάμερα, δωρεάν σήμερα και δωρεάν αύριο. Το WeatherAtlas ζει χάρη στους ταξιδιώτες, όχι χάρη σε paywalls — αν σε βοηθά στο ταξίδι σου, βοήθήσέ το να μείνει δωρεάν για τον επόμενο.',
+      'banner.support': 'Κράτησέ το WeatherAtlas δωρεάν',
+      'banner.note': 'Η υποστήριξη είναι προαιρετική. Ο καιρός μένει δωρεάν έτσι κι αλλιώς.',
 
       // --- Support + feedback -------------------------------------------------
       'support.title': 'Υποστηρίξτε το WeatherAtlas',
@@ -1701,6 +1715,13 @@
       'footer.support': 'WeatherAtlas unterstützen',
       'footer.feedback': 'Feedback senden',
 
+      // --- Free-for-everyone banner -------------------------------------------
+      'banner.eyebrow': '100 % kostenlos · Keine Werbung · Keine Anmeldung',
+      'banner.title': 'Kostenlos für alle, die hinaus in die Welt wollen.',
+      'banner.body': 'Jede Vorhersage, jeder Stadtführer und jede Live-Kamera – heute kostenlos und morgen auch. WeatherAtlas lebt von Reisenden, nicht von Paywalls. Wenn es dir unterwegs hilft, hilf mit, es für die nächste Reise kostenlos zu halten.',
+      'banner.support': 'WeatherAtlas kostenlos halten',
+      'banner.note': 'Unterstützung ist freiwillig. Das Wetter bleibt so oder so kostenlos.',
+
       // --- Support + feedback -------------------------------------------------
       'support.title': 'Unterstütze WeatherAtlas',
       'support.intro': 'WeatherAtlas ist kostenlos und läuft auf deiner Goodwill. Wenn es dir geholfen hat, unterstütze die nächste Prognose.',
@@ -2247,6 +2268,13 @@
       'footer.support': 'Supporta WeatherAtlas',
       'footer.feedback': 'Invia feedback',
 
+      // --- Free-for-everyone banner -------------------------------------------
+      'banner.eyebrow': '100 % gratis · Nessuna pubblicità · Nessuna registrazione',
+      'banner.title': 'Gratis per tutti quelli che vogliono vedere il mondo.',
+      'banner.body': 'Ogni previsione, guida cittadina e webcam live, gratis oggi e gratis domani. WeatherAtlas vive grazie ai viaggiatori, non ai paywall: se ti è utile in viaggio, aiutalo a restare gratuito per il prossimo.',
+      'banner.support': 'Mantieni WeatherAtlas gratuito',
+      'banner.note': 'Il supporto è facoltativo. Il meteo resta gratuito in ogni caso.',
+
       // --- Support + feedback -------------------------------------------------
       'support.title': 'Supporta WeatherAtlas',
       'support.intro': 'WeatherAtlas è gratuito e funziona grazie alla tua buona volontà. Se ti ha aiutato, sostieni la prossima previsione.',
@@ -2708,6 +2736,13 @@
       'footer.cities': 'Guías de ciudades',
       'footer.support': 'Apoya a WeatherAtlas',
       'footer.feedback': 'Envía comentarios',
+
+      // --- Free-for-everyone banner -------------------------------------------
+      'banner.eyebrow': '100 % gratis · Sin anuncios · Sin registro',
+      'banner.title': 'Gratis para todos los que salen a ver el mundo.',
+      'banner.body': 'Cada previsión, guía de ciudad y cámara en directo, gratis hoy y gratis mañana. WeatherAtlas vive gracias a los viajeros, no a los muros de pago: si te ayuda en tu viaje, ayúdanos a mantenerlo gratis para el siguiente.',
+      'banner.support': 'Mantén WeatherAtlas gratis',
+      'banner.note': 'El apoyo es opcional. El tiempo sigue siendo gratis de todos modos.',
 
       // --- Support + feedback -------------------------------------------------
       'support.title': 'Apoya a WeatherAtlas',

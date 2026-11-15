@@ -155,8 +155,9 @@
       }
     }
 
-    // ---- Dialog openers wired from the footer -----------------------------
+    // ---- Dialog openers wired from the footer and the free banner ----------
     const supportLink = element('footer-support-link');
+    const bannerSupportBtn = element('banner-support-btn');
     const feedbackLink = element('footer-feedback-link');
     const feedbackThanks = element('feedback-thanks');
 
@@ -164,6 +165,15 @@
       supportLink.addEventListener('click', function (event) {
         event.preventDefault();
         trackEvent('support_open', { source: 'footer' });
+        openDialog('support-dialog');
+      });
+    }
+    // The banner makes the same ask as the footer, so it opens the same dialog
+    // and only changes the `source` of the event. `banner-support-btn` is a real
+    // <button>, so no default action needs preventing.
+    if (bannerSupportBtn) {
+      bannerSupportBtn.addEventListener('click', function () {
+        trackEvent('support_open', { source: 'banner' });
         openDialog('support-dialog');
       });
     }

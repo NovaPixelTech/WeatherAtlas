@@ -478,6 +478,19 @@ Donation clicks are tracked as the `donate_click` Umami event.
 The product stays free for now; donations fund it. Paid tiers (unlimited saved cities, alerts,
 premium) are deliberately deferred.
 
+#### The free-for-everyone banner
+
+The top of the page carries a single `.free-banner` card (`#free-banner`) that states the deal in
+plain language: every forecast, city guide and live camera is free, there are no ads and no account,
+and staying free depends on travellers rather than paywalls. Its one action, **Keep WeatherAtlas
+free**, opens the same support dialog the footer opens, so the donation buttons appear there as soon
+as `support-config.js` gets real URLs. The click is tracked as `support_open` with `source: 'banner'`.
+
+The banner is ordinary page content: it is a `<section>` labelled by its own `<h2>`, its globe art is
+`aria-hidden`, it scrolls away with the forecast instead of covering it, and its animation stops under
+`prefers-reduced-motion`. It stores nothing and has no dismiss button, which keeps the repository's
+promise that no personal data lands in `localStorage`, `sessionStorage` or cookies.
+
 ---
 
 ## 🔔 Weather alerts

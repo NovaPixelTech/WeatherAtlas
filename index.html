@@ -486,6 +486,100 @@
     </div>
     <p class="sr-only" id="favorites-status" role="status" aria-live="polite"></p>
 
+    <!-- Free-for-everyone banner.
+         WeatherAtlas has no paywall, no ads and no account, and the only money it
+         ever takes is voluntary. This says that plainly at the top of the page and
+         hands the visitor to the same support dialog the footer opens. It stores
+         nothing, dismisses nothing and carries no deadline: the promise is the
+         product, so the banner is simply part of the page. -->
+    <section class="free-banner" id="free-banner" aria-labelledby="free-banner-title">
+      <div class="free-banner-art" aria-hidden="true">
+        <svg viewBox="0 0 300 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="fb-aura" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="#38BDF8" stop-opacity="0.30" />
+              <stop offset="1" stop-color="#38BDF8" stop-opacity="0" />
+            </radialGradient>
+            <radialGradient id="fb-globe" cx="34%" cy="26%" r="82%">
+              <stop offset="0" stop-color="#1B4A72" />
+              <stop offset="0.55" stop-color="#102A47" />
+              <stop offset="1" stop-color="#081525" />
+            </radialGradient>
+            <linearGradient id="fb-rim" x1="76" y1="34" x2="226" y2="212" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#B7E7FF" />
+              <stop offset="0.5" stop-color="#38BDF8" />
+              <stop offset="1" stop-color="#0369A1" />
+            </linearGradient>
+            <linearGradient id="fb-gold" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#FEF3C7" />
+              <stop offset="1" stop-color="#F59E0B" />
+            </linearGradient>
+          </defs>
+
+          <ellipse cx="150" cy="120" rx="134" ry="120" fill="url(#fb-aura)" />
+
+          <circle cx="150" cy="120" r="74" fill="url(#fb-globe)" />
+          <circle cx="150" cy="120" r="74" stroke="url(#fb-rim)" stroke-width="1.6" stroke-opacity="0.85" />
+
+          <g stroke="#7DD3FC" stroke-opacity="0.20" stroke-width="1">
+            <ellipse cx="150" cy="120" rx="74" ry="32" />
+            <ellipse cx="150" cy="120" rx="74" ry="59" />
+            <ellipse cx="150" cy="120" rx="49" ry="74" />
+            <ellipse cx="150" cy="120" rx="22" ry="74" />
+            <line x1="76" y1="120" x2="224" y2="120" />
+          </g>
+
+          <g fill="#7DD3FC" fill-opacity="0.34">
+            <circle cx="118" cy="92" r="2.6" />
+            <circle cx="132" cy="86" r="1.9" />
+            <circle cx="141" cy="102" r="2.2" />
+            <circle cx="163" cy="95" r="2.9" />
+            <circle cx="176" cy="110" r="1.8" />
+            <circle cx="121" cy="134" r="2.1" />
+            <circle cx="150" cy="142" r="2.5" />
+            <circle cx="181" cy="130" r="2.2" />
+            <circle cx="139" cy="160" r="1.9" />
+            <circle cx="165" cy="163" r="2.4" />
+          </g>
+
+          <ellipse class="fb-orbit" cx="150" cy="120" rx="128" ry="55"
+                   transform="rotate(-18 150 120)"
+                   stroke="#7DD3FC" stroke-opacity="0.55" stroke-width="1.5" stroke-dasharray="3 8" />
+
+          <g class="fb-pin fb-pin-gold" transform="translate(62 79)">
+            <circle r="9" fill="#F59E0B" fill-opacity="0.16" />
+            <circle r="3.6" fill="url(#fb-gold)" />
+          </g>
+          <g class="fb-pin fb-pin-cyan" transform="translate(238 66)">
+            <circle r="9" fill="#38BDF8" fill-opacity="0.16" />
+            <circle r="3.6" fill="#7DD3FC" />
+          </g>
+          <g class="fb-pin fb-pin-emerald" transform="translate(216 180)">
+            <circle r="9" fill="#34D399" fill-opacity="0.16" />
+            <circle r="3.6" fill="#34D399" />
+          </g>
+
+          <path d="M244 52l10 4-4 10-2.4-5.6L244 52z" fill="#E0F2FE" fill-opacity="0.9" />
+          <path d="M258 96c6 2 10 5 12 9" stroke="#7DD3FC" stroke-opacity="0.35" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <div class="free-banner-copy">
+        <p class="free-banner-eyebrow" data-i18n="banner.eyebrow">100% free &middot; No ads &middot; No sign-up</p>
+        <h2 class="free-banner-title" id="free-banner-title" data-i18n="banner.title">Made free for everyone out to see the world.</h2>
+        <p class="free-banner-body" data-i18n="banner.body">Every forecast, city guide and live camera, free today and free tomorrow. WeatherAtlas is kept alive by travellers, not by paywalls &mdash; if it helps your journey, help keep it free for the next one.</p>
+        <div class="free-banner-actions">
+          <button type="button" class="free-banner-cta" id="banner-support-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z" />
+            </svg>
+            <span data-i18n="banner.support">Keep WeatherAtlas free</span>
+          </button>
+          <span class="free-banner-note" data-i18n="banner.note">Support is optional. The weather stays free either way.</span>
+        </div>
+      </div>
+    </section>
+
     <!-- Main Content Area -->
     <main class="main-content" id="main-content" role="tabpanel" aria-live="polite" aria-busy="false">
       <!-- Loading State Skeleton -->

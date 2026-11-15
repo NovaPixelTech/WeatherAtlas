@@ -243,6 +243,13 @@
     "footer.support": "Soutenir WeatherAtlas",
     "footer.feedback": "Envoyer un retour",
 
+    // --- Free-for-everyone banner -------------------------------------------
+    "banner.eyebrow": "100 % gratuit · Sans publicité · Sans inscription",
+    "banner.title": "Gratuit pour tous ceux qui partent voir le monde.",
+    "banner.body": "Chaque prévision, guide de ville et caméra en direct, gratuit aujourd'hui et gratuit demain. WeatherAtlas vit grâce aux voyageurs, pas grâce aux paywalls : si cela vous aide en voyage, aidez-le à rester gratuit pour le suivant.",
+    "banner.support": "Garder WeatherAtlas gratuit",
+    "banner.note": "Le soutien est facultatif. La météo reste gratuite dans tous les cas.",
+
     // --- Support + feedback -------------------------------------------------
     "support.title": "Soutenir WeatherAtlas",
     "support.intro": "WeatherAtlas est gratuit et fonctionne grâce à votre bonne volonté. Si cela vous a aidé, soutenez la prochaine prévision.",
