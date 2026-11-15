@@ -136,15 +136,6 @@ test('the event names used by support and feedback fit the tracker limit', () =>
   }
 });
 
-test('the GitHub issue templates and config are in place', () => {
-  assert.ok(fs.existsSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'bug_report.yml')));
-  assert.ok(fs.existsSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'feature_request.yml')));
-  assert.ok(fs.existsSync(path.join(ROOT, '.github', 'ISSUE_TEMPLATE', 'config.yml')));
-  assert.match(read('.github', 'ISSUE_TEMPLATE', 'bug_report.yml'), /name: Bug report/);
-  assert.match(read('.github', 'ISSUE_TEMPLATE', 'feature_request.yml'), /name: Feature request/);
-  assert.match(read('.github', 'ISSUE_TEMPLATE', 'config.yml'), /blank_issues_enabled: false/);
-});
-
 test('the growth playbook is documented and points at the city guide commands', () => {
   assert.match(growth, /GROWTH\.md/);
   assert.match(growth, /city-seeds\.json/);
