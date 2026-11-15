@@ -1,6 +1,6 @@
 'use strict';
 /**
- * WeatherScope server - accounts & favorites API tests
+ * WeatherAtlas server - accounts & favorites API tests
  * =========================================================================
  * The server is the only part of the app that keeps other people's data, so it
  * is exercised for real: the actual `server.js` is started on an ephemeral port
@@ -26,17 +26,17 @@ const os = require('node:os');
 const path = require('node:path');
 
 const Root = path.join(__dirname, '..');
-const { createWeatherScopeServer } = require(path.join(Root, 'server.js'));
+const { createWeatherAtlasServer } = require(path.join(Root, 'server.js'));
 const Favorites = require(path.join(Root, 'favorites.js'));
 
 function tempDir() {
-  return fs.mkdtempSync(path.join(os.tmpdir(), 'weatherscope-test-'));
+  return fs.mkdtempSync(path.join(os.tmpdir(), 'WeatherAtlas-test-'));
 }
 
 /** Boots a real server on 127.0.0.1:0 and returns a small HTTP client. */
 async function boot(options) {
   const dataDir = (options && options.dataDir) || tempDir();
-  const server = createWeatherScopeServer({
+  const server = createWeatherAtlasServer({
     staticDir: Root,
     dataDir: dataDir,
     rateLimit: options && options.rateLimit !== undefined ? options.rateLimit : false,
@@ -78,7 +78,7 @@ async function boot(options) {
   return {
     base: base,
     dataDir: dataDir,
-    store: server.weatherscope.store,
+    store: server.WeatherAtlas.store,
     request: request,
     text: text,
     close: () => new Promise((resolve) => server.close(resolve)),
@@ -93,11 +93,11 @@ test('the app is served at the root, and /data is not', async () => {
   try {
     const index = await app.text('GET', '/');
     assert.equal(index.status, 200);
-    assert.match(index.body, /WeatherScope/);
+    assert.match(index.body, /WeatherAtlas/);
 
     const script = await app.text('GET', '/favorites.js');
     assert.equal(script.status, 200, 'the favorites engine must be served');
-    assert.match(script.body, /WeatherScopeFavorites/);
+    assert.match(script.body, /WeatherAtlasFavorites/);
 
     const data = await app.text('GET', '/data/users.json');
     assert.equal(data.status, 404, 'the accounts file must never be downloadable');

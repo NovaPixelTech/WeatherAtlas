@@ -1,411 +1,419 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/privacy.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/privacy.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/index.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/index.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/tokyo.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/blog/index.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/osaka.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/blog/how-to-read-a-climate-chart.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/seoul.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/tokyo.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/busan.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/osaka.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/shanghai.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/seoul.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/beijing.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/busan.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/shenzhen.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/shanghai.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/guangzhou.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/beijing.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/hong-kong.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/shenzhen.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/delhi.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/guangzhou.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/mumbai.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/hong-kong.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/kolkata.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/delhi.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/chennai.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/mumbai.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/bengaluru.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/kolkata.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/hyderabad.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/chennai.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/pune.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/bengaluru.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/singapore.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/hyderabad.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/bangkok.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/pune.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/jakarta.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/singapore.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/hanoi.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/bangkok.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/manila.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/jakarta.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/kuala-lumpur.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/hanoi.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/taipei.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/manila.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/tehran.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/kuala-lumpur.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/riyadh.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/taipei.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/tel-aviv.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/tehran.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/dubai.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/riyadh.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/karachi.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/tel-aviv.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/lahore.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/dubai.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/istanbul.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/karachi.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/ankara.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/lahore.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/moscow.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/istanbul.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/st-petersburg.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/ankara.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/kyiv.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/moscow.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/warsaw.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/st-petersburg.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/bucharest.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/kyiv.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/athens.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/warsaw.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/budapest.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/bucharest.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/lisbon.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/athens.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/madrid.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/budapest.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/barcelona.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/lisbon.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/rome.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/madrid.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/milan.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/barcelona.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/berlin.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/rome.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/hamburg.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/milan.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/munich.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/berlin.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/paris.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/hamburg.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/marseille.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/munich.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/lyon.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/paris.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/london.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/marseille.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/birmingham.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/lyon.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/manchester.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/london.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/edinburgh.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/birmingham.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/dublin.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/manchester.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/reykjavik.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/edinburgh.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/new-york.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/dublin.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/los-angeles.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/reykjavik.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/chicago.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/new-york.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/san-francisco.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/los-angeles.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/seattle.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/chicago.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/miami.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/san-francisco.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/boston.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/seattle.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/las-vegas.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/miami.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/toronto.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/boston.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/vancouver-island.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/las-vegas.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/montreal.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/toronto.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/mexico-city.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/vancouver-island.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/cancun.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/montreal.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/sao-paulo.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/mexico-city.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/rio-de-janeiro.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/cancun.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/buenos-aires.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/sao-paulo.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/santiago.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/rio-de-janeiro.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/addis-ababa.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/buenos-aires.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/bogota.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/santiago.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/lima.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/addis-ababa.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/quito.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/bogota.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/cairo.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/lima.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/lagos.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/quito.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/nairobi.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/cairo.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/johannesburg.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/lagos.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/cape-town.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/nairobi.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/sydney.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/johannesburg.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/melbourne.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/cape-town.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/auckland.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/sydney.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/zurich.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/melbourne.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/vienna.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/auckland.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/philadelphia.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/zurich.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/atlanta.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/vienna.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/denver.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/philadelphia.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/honolulu.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/atlanta.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/montevideo.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/denver.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/caracas.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/honolulu.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/islamabad.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/montevideo.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/almaty.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/caracas.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/baku.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/islamabad.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/tbilisi.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/almaty.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/yerevan.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/baku.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/casablanca.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/tbilisi.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
   <url>
-    <loc>https://novapixeltech.github.io/WeatherScope/cities/accra.html</loc>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/yerevan.html</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/casablanca.html</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://novapixeltech.github.io/WeatherAtlas/cities/accra.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
 </urlset>

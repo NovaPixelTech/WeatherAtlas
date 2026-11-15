@@ -1,6 +1,6 @@
 'use strict';
 /**
- * WeatherScope Weather Alerts - wiring tests
+ * WeatherAtlas Weather Alerts - wiring tests
  * =========================================================================
  * The alerts engine (`alerts.js`) has its own suite, and the server and the
  * favorites client are covered where they live. What this file protects is the
@@ -42,7 +42,7 @@ function loadAsBrowserGlobal() {
   sandbox.globalThis = sandbox;
   vm.createContext(sandbox);
   vm.runInContext(read('alerts.js'), sandbox);
-  return sandbox.WeatherScopeAlerts || sandbox.window.WeatherScopeAlerts;
+  return sandbox.WeatherAtlasAlerts || sandbox.window.WeatherAtlasAlerts;
 }
 
 const Alerts = loadAsBrowserGlobal();
@@ -51,7 +51,7 @@ const Alerts = loadAsBrowserGlobal();
 // 1. Script loading
 // ==========================================================================
 test('alerts.js registers itself as a browser global for the app to use', () => {
-  assert.ok(Alerts, 'WeatherScopeAlerts global is missing');
+  assert.ok(Alerts, 'WeatherAtlasAlerts global is missing');
   assert.equal(typeof Alerts.sanitizeAlerts, 'function');
   assert.equal(typeof Alerts.evaluate, 'function');
   assert.equal(typeof Alerts.windowRange, 'function');

@@ -1,6 +1,6 @@
 'use strict';
 /**
- * WeatherScope Accounts & Favorites - runtime tests (the static-host case)
+ * WeatherAtlas Accounts & Favorites - runtime tests (the static-host case)
  * =========================================================================
  * The engine tests prove the local store and the API client, and the wiring
  * tests prove the markup and the source agree. Neither can catch the failure
@@ -266,7 +266,7 @@ function bootStaticHost() {
     console: { log: (...a) => logged.push(a.join(' ')), warn() {}, error(...a) { logged.push(a.join(' ')); } },
     document,
     navigator: { geolocation: undefined },
-    location: { href: 'https://example.github.io/WeatherScope/', protocol: 'https:' },
+    location: { href: 'https://example.github.io/WeatherAtlas/', protocol: 'https:' },
     localStorage: {
       getItem: (key) => (store.has(key) ? store.get(key) : null),
       setItem: (key, value) => store.set(key, String(value)),
@@ -302,7 +302,7 @@ function bootStaticHost() {
 }
 
 function storedAccounts(store) {
-  const raw = store.get('weatherscope_accounts');
+  const raw = store.get('WeatherAtlas_accounts');
   return raw ? JSON.parse(raw) : null;
 }
 
@@ -334,7 +334,7 @@ test('creating an account on a static host succeeds and persists locally', async
   await app.flush();
 
   // The session is a local one, kept in localStorage...
-  const session = JSON.parse(app.store.get('weatherscope_auth'));
+  const session = JSON.parse(app.store.get('WeatherAtlas_auth'));
   assert.ok(session && session.token.startsWith('local:'), 'the session is not a local one');
   assert.equal(session.username, 'Alice');
 
@@ -342,7 +342,7 @@ test('creating an account on a static host succeeds and persists locally', async
   const accounts = storedAccounts(app.store);
   assert.ok(accounts && accounts.users.alice, 'the account was not stored');
   assert.equal(accounts.users.alice.username, 'Alice');
-  assert.ok(String(app.store.get('weatherscope_accounts')).indexOf('long enough password') === -1,
+  assert.ok(String(app.store.get('WeatherAtlas_accounts')).indexOf('long enough password') === -1,
     'the plaintext password reached storage');
 
   // The panel flips to the signed-in view.
@@ -365,9 +365,9 @@ test('saving a favorite on a static host round-trips through the local store', a
 
   // The hero star saves the city on screen. With no city loaded the test drives
   // the engine through the app's own client instead of faking weather.
-  const favorites = app.sandbox.WeatherScopeFavorites;
+  const favorites = app.sandbox.WeatherAtlasFavorites;
   const client = favorites.createLocalClient({ storage: app.sandbox.localStorage });
-  const token = JSON.parse(app.store.get('weatherscope_auth')).token;
+  const token = JSON.parse(app.store.get('WeatherAtlas_auth')).token;
 
   await client.saveFavorites(token, [{ name: 'Paris', latitude: 48.8566, longitude: 2.3522 }]);
   const saved = await client.getFavorites(token);
@@ -397,7 +397,7 @@ test('the local store survives a fresh boot of the same browser', async () => {
     console: { log() {}, warn() {}, error() {} },
     document,
     navigator: { geolocation: undefined },
-    location: { href: 'https://example.github.io/WeatherScope/', protocol: 'https:' },
+    location: { href: 'https://example.github.io/WeatherAtlas/', protocol: 'https:' },
     localStorage: {
       getItem: (key) => (store.has(key) ? store.get(key) : null),
       setItem: (key, value) => store.set(key, String(value)),
@@ -429,7 +429,7 @@ test('the alert bell is offered once the engine is present, and explains itself 
   await app.flush();
 
   // alerts.js loaded, so the bell is on screen rather than hidden.
-  assert.ok(app.sandbox.WeatherScopeAlerts, 'the alert engine is missing');
+  assert.ok(app.sandbox.WeatherAtlasAlerts, 'the alert engine is missing');
   assert.equal(app.el('alerts-btn').classList.contains('hidden'), false, 'the bell should be offered');
   assert.equal(app.el('alerts-badge').classList.contains('hidden'), true, 'an empty badge must hide');
   assert.match(app.el('alerts-panel-title').textContent, /alert/i);

@@ -1,6 +1,6 @@
 'use strict';
 /**
- * WeatherScope Weather Alerts - engine tests
+ * WeatherAtlas Weather Alerts - engine tests
  * =========================================================================
  * `alerts.js` decides whether a visitor's rule fires, so this suite pins down
  * the two things that could quietly lie to someone:
@@ -33,7 +33,7 @@ function loadAsBrowser() {
   sandbox.window = sandbox;
   vm.createContext(sandbox);
   vm.runInContext(source, sandbox);
-  return sandbox.WeatherScopeAlerts;
+  return sandbox.WeatherAtlasAlerts;
 }
 
 const A = require(path.join(ROOT, 'alerts.js'));

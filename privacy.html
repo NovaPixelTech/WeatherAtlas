@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WeatherScope - Privacy &amp; analytics</title>
-  <meta name="description" content="What WeatherScope measures with Umami Cloud, what it does not collect, and how to opt out of its cookieless visitor analytics." />
+  <title>WeatherAtlas - Privacy &amp; analytics</title>
+  <meta name="description" content="What WeatherAtlas measures with Umami Cloud, what it does not collect, and how to opt out of its cookieless visitor analytics." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -78,7 +78,7 @@
   <div class="shell">
     <div class="brand">
       <img src="favicon.svg" alt="" width="42" height="42" />
-      <a href="./">WeatherScope<span>Climate &amp; city forecasts</span></a>
+      <a href="./">WeatherAtlas<span>Climate &amp; city forecasts</span></a>
     </div>
 
     <main>
@@ -86,14 +86,14 @@
       <p class="updated">Last updated: 14 November 2026</p>
 
       <p>
-        WeatherScope is a static weather app published on GitHub Pages. This page explains the
+        WeatherAtlas is a static weather app published on GitHub Pages. This page explains the
         visitor measurement it performs and the choices you have. It is written to be read, not to
         hide behind legal wording.
       </p>
 
       <div class="callout">
         <p>
-          <strong>Short version:</strong> WeatherScope uses <strong>Umami Cloud</strong>, a
+          <strong>Short version:</strong> WeatherAtlas uses <strong>Umami Cloud</strong>, a
           cookieless analytics service. No cookies are set, no account is linked to a visit, and
           query strings and URL fragments are excluded. You can opt out by sending Do Not Track or
           Global Privacy Control, or by blocking the Umami tracker.
@@ -107,8 +107,8 @@
       </p>
       <ul>
         <li><strong>The page path and title</strong>, without the query string or hash. A shared link such as <code>?city=Tokyo</code> is counted as the page, not as the city you looked at.</li>
-        <li><strong>Which section you are using</strong> — City Search, Compare, Climate Filter or Live Cameras. The app is a single page, so these are sent as virtual paths such as <code>/WeatherScope/compare</code>; switching sections is not a request to another page.</li>
-        <li><strong>Generated city guides</strong> — one pageview per guide, such as <code>/WeatherScope/cities/tokyo</code>, with its own title and climate summary.</li>
+        <li><strong>Which section you are using</strong> — City Search, Compare, Climate Filter or Live Cameras. The app is a single page, so these are sent as virtual paths such as <code>/WeatherAtlas/compare</code>; switching sections is not a request to another page.</li>
+        <li><strong>Generated city guides</strong> — one pageview per guide, such as <code>/WeatherAtlas/cities/tokyo</code>, with its own title and climate summary.</li>
         <li><strong>The referring site</strong> (the page that sent you here) and the site hostname.</li>
         <li><strong>Approximate location</strong> — country, region and city — derived by Umami from the network address. This is not GPS and is often less precise than a city.</li>
         <li><strong>Technical context</strong>: browser, operating system, device type, screen size and browser language.</li>
@@ -138,7 +138,7 @@
       <h2>What is not collected</h2>
       <ul>
         <li>No cookies and no advertising identifiers.</li>
-        <li>No name, email or account is linked to a visit. WeatherScope never calls Umami's <code>identify()</code> function, and accounts and saved cities are not used for analytics.</li>
+        <li>No name, email or account is linked to a visit. WeatherAtlas never calls Umami's <code>identify()</code> function, and accounts and saved cities are not used for analytics.</li>
         <li>No query strings or URL fragments, so a shared city link is not recorded as a search.</li>
         <li>No cross-site tracking: Umami's identifier includes this website's ID, so it cannot join a visit to another site.</li>
         <li>No selling of data, no advertising and no personalisation based on analytics.</li>
@@ -172,21 +172,21 @@
       <h2>Your choices</h2>
       <ul>
         <li><strong>Do Not Track</strong> is honoured: if your browser sends it, the Umami tracker is not loaded.</li>
-        <li><strong>Global Privacy Control</strong> is honoured: WeatherScope checks it before loading the tracker.</li>
+        <li><strong>Global Privacy Control</strong> is honoured: WeatherAtlas checks it before loading the tracker.</li>
         <li><strong>A content blocker</strong> that blocks <code>cloud.umami.is</code> prevents measurement. The app works exactly the same.</li>
         <li><strong>JavaScript disabled</strong> also prevents measurement, because the tracker never runs.</li>
-        <li>You can ask questions or raise a concern through the project's <a href="https://github.com/NovaPixelTech/WeatherScope/issues" target="_blank" rel="noopener noreferrer">issue tracker</a>.</li>
+        <li>You can ask questions or raise a concern through the project's <a href="https://github.com/NovaPixelTech/WeatherAtlas/issues" target="_blank" rel="noopener noreferrer">issue tracker</a>.</li>
       </ul>
 
       <h2>Donations and feedback</h2>
       <p>
         Donations go to the maintainer through an external fundraising page (Ko-fi, PayPal.Me or
-        GitHub Sponsors). Clicking the button only opens that page in a new tab; WeatherScope does
+        GitHub Sponsors). Clicking the button only opens that page in a new tab; WeatherAtlas does
         not send the click anywhere else, and no donation data is shared with the analytics service.
       </p>
       <p>
         Feedback and bug reports are handled through the project's public
-        <a href="https://github.com/NovaPixelTech/WeatherScope/issues" target="_blank" rel="noopener noreferrer">issue tracker</a>.
+        <a href="https://github.com/NovaPixelTech/WeatherAtlas/issues" target="_blank" rel="noopener noreferrer">issue tracker</a>.
         The optional "was this helpful?" vote is sent as a custom analytics event with no personal data
         attached; it never identifies the visitor.
       </p>
@@ -196,13 +196,13 @@
         If what is measured changes, this page and the date above will change before the new
         measurement is enabled. The Umami configuration is public in
         <code>analytics-config.js</code> in the
-        <a href="https://github.com/NovaPixelTech/WeatherScope" target="_blank" rel="noopener noreferrer">WeatherScope repository</a>,
+        <a href="https://github.com/NovaPixelTech/WeatherAtlas" target="_blank" rel="noopener noreferrer">WeatherAtlas repository</a>,
         so the description here can be checked against the code.
       </p>
     </main>
 
     <footer>
-      <a href="./">&larr; Back to WeatherScope</a>
+      <a href="./">&larr; Back to WeatherAtlas</a>
       <a href="https://umami.is/privacy" target="_blank" rel="noopener noreferrer">Umami's privacy policy</a>
     </footer>
   </div>

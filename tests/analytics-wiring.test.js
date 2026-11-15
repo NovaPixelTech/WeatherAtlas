@@ -1,6 +1,6 @@
 'use strict';
 /**
- * WeatherScope visitor analytics - Umami wiring tests
+ * WeatherAtlas visitor analytics - Umami wiring tests
  * =========================================================================
  * The repo no longer runs its own collector. It loads Umami Cloud only when
  * `analytics-config.js` contains a Website ID, and it loads it with the
@@ -120,7 +120,7 @@ test('setMode reports the active mode as a section', () => {
   const start = app.indexOf('function setMode(mode)');
   assert.notEqual(start, -1, 'setMode is missing');
   const body = app.slice(start, start + 800);
-  assert.match(body, /weatherscopeAnalytics[\s\S]*trackSection\(mode\)/);
+  assert.match(body, /WeatherAtlasAnalytics[\s\S]*trackSection\(mode\)/);
 });
 
 // ==========================================================================
@@ -149,14 +149,14 @@ function runLoader(options = {}) {
   const location = {
     protocol: options.protocol || 'https:',
     hostname: options.hostname || 'novapixeltech.github.io',
-    pathname: options.pathname || '/WeatherScope/',
+    pathname: options.pathname || '/WeatherAtlas/',
   };
   const navigator = {
     doNotTrack: options.doNotTrack || null,
     globalPrivacyControl: Boolean(options.globalPrivacyControl),
   };
   const window = {
-    WEATHERSCOPE_ANALYTICS: Object.prototype.hasOwnProperty.call(options, 'config')
+    WeatherAtlas_ANALYTICS: Object.prototype.hasOwnProperty.call(options, 'config')
       ? options.config
       : {
           provider: 'umami',
@@ -169,7 +169,7 @@ function runLoader(options = {}) {
         },
     navigator,
   };
-  if (options.staticPage) window.WEATHERSCOPE_STATIC_PAGE = options.staticPage;
+  if (options.staticPage) window.WEATHERATLAS_STATIC_PAGE = options.staticPage;
   const sandbox = { window, location, navigator, document, console, URL };
   window.document = document;
   window.location = location;
@@ -218,18 +218,18 @@ test('the automatic pageview is off, because sections are sent by hand', () => {
 test('each app mode reports its own virtual page path', () => {
   const result = runLoader();
   const sent = captureUmami(result);
-  result.window.weatherscopeAnalytics.trackSection('city');
-  result.window.weatherscopeAnalytics.trackSection('compare');
-  result.window.weatherscopeAnalytics.trackSection('climate');
-  result.window.weatherscopeAnalytics.trackSection('cameras');
+  result.window.WeatherAtlasAnalytics.trackSection('city');
+  result.window.WeatherAtlasAnalytics.trackSection('compare');
+  result.window.WeatherAtlasAnalytics.trackSection('climate');
+  result.window.WeatherAtlasAnalytics.trackSection('cameras');
 
   assert.deepEqual(
     sent.map((payload) => [payload.url, payload.title]),
     [
-      ['/WeatherScope/city-search', 'WeatherScope - City Search'],
-      ['/WeatherScope/compare', 'WeatherScope - Compare Locations'],
-      ['/WeatherScope/climate-filter', 'WeatherScope - Climate Filter'],
-      ['/WeatherScope/live-cameras', 'WeatherScope - Live Cameras'],
+      ['/WeatherAtlas/city-search', 'WeatherAtlas - City Search'],
+      ['/WeatherAtlas/compare', 'WeatherAtlas - Compare Locations'],
+      ['/WeatherAtlas/climate-filter', 'WeatherAtlas - Climate Filter'],
+      ['/WeatherAtlas/live-cameras', 'WeatherAtlas - Live Cameras'],
     ]
   );
   // Default properties (the website id) survive the URL override.
@@ -239,28 +239,28 @@ test('each app mode reports its own virtual page path', () => {
 test('repeating a section, or naming an unknown one, is not a pageview', () => {
   const result = runLoader();
   const sent = captureUmami(result);
-  result.window.weatherscopeAnalytics.trackSection('city');
-  result.window.weatherscopeAnalytics.trackSection('city');
-  result.window.weatherscopeAnalytics.trackSection('nope');
+  result.window.WeatherAtlasAnalytics.trackSection('city');
+  result.window.WeatherAtlasAnalytics.trackSection('city');
+  result.window.WeatherAtlasAnalytics.trackSection('nope');
   assert.equal(sent.length, 1);
 });
 
 test('a section chosen before the tracker loads is sent when it does', () => {
   const result = runLoader();
-  result.window.weatherscopeAnalytics.trackSection('climate');
+  result.window.WeatherAtlasAnalytics.trackSection('climate');
   assert.equal(result.appended.length, 1);
 
   const sent = captureUmami(result);
   result.appended[0].listeners.load();
   assert.equal(sent.length, 1);
-  assert.equal(sent[0].url, '/WeatherScope/climate-filter');
+  assert.equal(sent[0].url, '/WeatherAtlas/climate-filter');
 });
 
 test('an opted-out or unconfigured page exposes a no-op section API', () => {
   const result = runLoader({ config: { provider: 'umami', websiteId: '' } });
-  assert.equal(typeof result.window.weatherscopeAnalytics.trackSection, 'function');
+  assert.equal(typeof result.window.WeatherAtlasAnalytics.trackSection, 'function');
   const sent = captureUmami(result);
-  result.window.weatherscopeAnalytics.trackSection('compare');
+  result.window.WeatherAtlasAnalytics.trackSection('compare');
   assert.equal(sent.length, 0);
 });
 
@@ -284,7 +284,7 @@ function captureUmamiCalls(result) {
 test('a static city page reports its own path instead of a section', () => {
   const result = runLoader({
     staticPage: {
-      url: '/WeatherScope/cities/tokyo',
+      url: '/WeatherAtlas/cities/tokyo',
       title: 'Weather in Tokyo, Japan - Climate & Monthly Averages',
     },
   });
@@ -292,28 +292,28 @@ test('a static city page reports its own path instead of a section', () => {
   result.appended[0].listeners.load();
 
   assert.equal(sent.length, 1);
-  assert.equal(sent[0].url, '/WeatherScope/cities/tokyo');
+  assert.equal(sent[0].url, '/WeatherAtlas/cities/tokyo');
   assert.equal(sent[0].title, 'Weather in Tokyo, Japan - Climate & Monthly Averages');
 });
 
 test('trackPage normalises an absolute URL and refuses an empty one', () => {
   const result = runLoader();
   const sent = captureUmami(result);
-  result.window.weatherscopeAnalytics.trackPage(
-    'https://novapixeltech.github.io/WeatherScope/cities/paris',
+  result.window.WeatherAtlasAnalytics.trackPage(
+    'https://novapixeltech.github.io/WeatherAtlas/cities/paris',
     'Paris'
   );
-  result.window.weatherscopeAnalytics.trackPage('   ', 'Nowhere');
+  result.window.WeatherAtlasAnalytics.trackPage('   ', 'Nowhere');
   assert.equal(sent.length, 1);
-  assert.equal(sent[0].url, '/WeatherScope/cities/paris');
+  assert.equal(sent[0].url, '/WeatherAtlas/cities/paris');
 });
 
 test('an interaction is sent as a named event with primitive properties', () => {
   const result = runLoader();
   const calls = captureUmamiCalls(result);
-  result.window.weatherscopeAnalytics.trackEvent('donate_click', {
+  result.window.WeatherAtlasAnalytics.trackEvent('donate_click', {
     provider: 'kofi',
-    page: '/WeatherScope/cities/tokyo',
+    page: '/WeatherAtlas/cities/tokyo',
     amount: 3,
     recurring: false,
     ignored: { nested: true },
@@ -323,22 +323,22 @@ test('an interaction is sent as a named event with primitive properties', () => 
   assert.equal(calls[0][0], 'donate_click');
   const clean = calls[0][1];
   assert.equal(clean.provider, 'kofi');
-  assert.equal(clean.page, '/WeatherScope/cities/tokyo');
+  assert.equal(clean.page, '/WeatherAtlas/cities/tokyo');
   assert.equal(clean.amount, 3);
   assert.equal(clean.recurring, false);
 });
 test('event names are capped at Umami\'s 50-character limit', () => {
   const result = runLoader();
   const calls = captureUmamiCalls(result);
-  result.window.weatherscopeAnalytics.trackEvent('x'.repeat(80), { page: 'test' });
+  result.window.WeatherAtlasAnalytics.trackEvent('x'.repeat(80), { page: 'test' });
   assert.equal(calls[0][0].length, 50);
 });
 
 test('an opted-out page silently ignores pageviews and events', () => {
   const result = runLoader({ config: { provider: 'umami', websiteId: '' } });
   const calls = captureUmamiCalls(result);
-  result.window.weatherscopeAnalytics.trackPage('/WeatherScope/cities/paris', 'Paris');
-  result.window.weatherscopeAnalytics.trackEvent('helpful_vote', { value: 'yes' });
+  result.window.WeatherAtlasAnalytics.trackPage('/WeatherAtlas/cities/paris', 'Paris');
+  result.window.WeatherAtlasAnalytics.trackEvent('helpful_vote', { value: 'yes' });
   assert.equal(calls.length, 0);
 });
 
@@ -363,7 +363,7 @@ test('a non-http script URL is refused', () => {
 test('local development and file:// are never measured', () => {
   assert.equal(runLoader({ hostname: 'localhost' }).appended.length, 0);
   assert.equal(runLoader({ hostname: '127.0.0.1' }).appended.length, 0);
-  assert.equal(runLoader({ hostname: 'weatherscope.local' }).appended.length, 0);
+  assert.equal(runLoader({ hostname: 'WeatherAtlas.local' }).appended.length, 0);
   assert.equal(runLoader({ protocol: 'file:' }).appended.length, 0);
 });
 

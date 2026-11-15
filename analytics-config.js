@@ -1,5 +1,5 @@
 /**
- * WeatherScope visitor analytics - Umami Cloud configuration
+ * WeatherAtlas visitor analytics - Umami Cloud configuration
  * =========================================================================
  * Umami is a free, cookieless analytics service with its own dashboard. You
  * create the account, add this site, and paste its Website ID below. Nothing
@@ -26,16 +26,16 @@
  *                      e.g. 'novapixeltech.github.io'. Empty means no filter.
  *   enabled            Set false to disable analytics without removing the ID.
  *
- * Section tracking is always on. WeatherScope is a single-page app, so each
- * mode switch is sent as a virtual pageview (`/WeatherScope/city-search`,
+ * Section tracking is always on. WeatherAtlas is a single-page app, so each
+ * mode switch is sent as a virtual pageview (`/WeatherAtlas/city-search`,
  * `/compare`, `/climate-filter`, `/live-cameras`) and Umami's automatic
  * pageview is disabled, keeping the landing count at one.
  *
  * The loader also refuses to run on localhost, file:// pages, or when Global
- * Privacy Control is enabled. WeatherScope never calls umami.identify(), so a
+ * Privacy Control is enabled. WeatherAtlas never calls umami.identify(), so a
  * visit is never linked to an account or a saved city.
  */
-window.WEATHERSCOPE_ANALYTICS = {
+window.WeatherAtlas_ANALYTICS = {
   provider: 'umami',
   scriptUrl: 'https://cloud.umami.is/script.js',
   websiteId: '08575bb4-58b8-4e70-a596-2c494787c382',

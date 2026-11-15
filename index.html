@@ -1,31 +1,31 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <script>document.documentElement.setAttribute('data-language-pending', 'true');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WeatherScope - Climate & City Forecasts</title>
+  <title>WeatherAtlas - Climate & City Forecasts</title>
   <meta name="description" content="Search real-time weather conditions by city name or discover cities worldwide meeting your preferred climate conditions." data-i18n-content="app.description" />
-  <link rel="canonical" href="https://novapixeltech.github.io/WeatherScope/" />
+  <link rel="canonical" href="https://novapixeltech.github.io/WeatherAtlas/" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="WeatherScope" />
-  <meta property="og:title" content="WeatherScope - Climate & City Forecasts" />
+  <meta property="og:site_name" content="WeatherAtlas" />
+  <meta property="og:title" content="WeatherAtlas - Climate & City Forecasts" />
   <meta property="og:description" content="Search real-time weather conditions by city name or discover cities worldwide meeting your preferred climate conditions." />
-  <meta property="og:url" content="https://novapixeltech.github.io/WeatherScope/" />
-  <meta property="og:image" content="https://novapixeltech.github.io/WeatherScope/og-image.png" />
+  <meta property="og:url" content="https://novapixeltech.github.io/WeatherAtlas/" />
+  <meta property="og:image" content="https://novapixeltech.github.io/WeatherAtlas/og-image.png" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="WeatherScope - Climate & City Forecasts" />
+  <meta name="twitter:title" content="WeatherAtlas - Climate & City Forecasts" />
   <meta name="twitter:description" content="Search real-time weather conditions by city name or discover cities worldwide meeting your preferred climate conditions." />
-  <meta name="twitter:image" content="https://novapixeltech.github.io/WeatherScope/og-image.png" />
-  <meta name="application-name" content="WeatherScope" />
+  <meta name="twitter:image" content="https://novapixeltech.github.io/WeatherAtlas/og-image.png" />
+  <meta name="application-name" content="WeatherAtlas" />
   <meta name="theme-color" content="#0b1324" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "WeatherScope",
-    "url": "https://novapixeltech.github.io/WeatherScope/",
+    "name": "WeatherAtlas",
+    "url": "https://novapixeltech.github.io/WeatherAtlas/",
     "description": "Search real-time weather conditions by city name or discover cities worldwide meeting your preferred climate conditions.",
     "applicationCategory": "WeatherApplication",
     "operatingSystem": "Web",
@@ -40,11 +40,11 @@
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "WeatherScope",
-    "url": "https://novapixeltech.github.io/WeatherScope/",
+    "name": "WeatherAtlas",
+    "url": "https://novapixeltech.github.io/WeatherAtlas/",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://novapixeltech.github.io/WeatherScope/?city={search_term_string}",
+      "target": "https://novapixeltech.github.io/WeatherAtlas/?city={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }
@@ -67,7 +67,7 @@
 
   <noscript>
     <div class="noscript-warning">
-      <span data-i18n="app.noscript">WeatherScope needs JavaScript enabled to fetch and display live meteorological data.</span>
+      <span data-i18n="app.noscript">WeatherAtlas needs JavaScript enabled to fetch and display live meteorological data.</span>
       <span data-i18n="app.noscriptHint">Please enable JavaScript in your browser and reload the page.</span>
     </div>
   </noscript>
@@ -77,7 +77,7 @@
     <header class="app-header">
       <div class="brand">
         <div class="brand-icon">
-          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WeatherScope">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WeatherAtlas">
             <defs>
               <linearGradient id="ws-disc" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#14395F" />
@@ -113,7 +113,7 @@
             <path d="M18.4 18.5C18.4 19.6 19.65 20.9 19.65 21.8A1.25 1.25 0 0 1 17.15 21.8C17.15 20.9 18.4 19.6 18.4 18.5Z" fill="#7DD3FC" />
           </svg>
         </div>
-        <span class="brand-title" data-i18n="app.name">WeatherScope</span>
+        <span class="brand-title" data-i18n="app.name">WeatherAtlas</span>
       </div>
 
       <div class="search-section">
@@ -199,7 +199,7 @@
 
 <div class="header-controls">
         <!-- Account control. Accounts exist so a saved city follows the person
-             rather than the browser: favorites are kept on the WeatherScope
+             rather than the browser: favorites are kept on the WeatherAtlas
              server against the signed-in account. Opening the panel is a
              non-modal popover, so the app stays usable from behind it. -->
         <button
@@ -1164,9 +1164,17 @@
        <p class="footer-privacy"><a href="privacy.html" data-i18n="footer.privacy">Privacy &amp; analytics</a></p>
         <nav class="footer-links" aria-label="Site links">
           <a href="cities/index.html" data-i18n="footer.cities">City Guides</a>
-          <a href="#" id="footer-support-link" data-i18n="footer.support">Support WeatherScope</a>
+          <a href="#" id="footer-support-link" data-i18n="footer.support">Support WeatherAtlas</a>
           <a href="#" id="footer-feedback-link" data-i18n="footer.feedback">Send Feedback</a>
         </nav>
+        <form id="email-capture-form" class="email-capture" action="" method="post" target="_blank" hidden>
+          <label for="email-capture-input" class="email-capture-label">Get weather tips &amp; new city guides by email</label>
+          <div class="email-capture-row">
+            <input id="email-capture-input" type="email" name="EMAIL" placeholder="you@example.com" required />
+            <button type="submit">Subscribe</button>
+          </div>
+          <p class="email-capture-note">Free, no spam. Unsubscribe anytime.</p>
+        </form>
     </footer>
   </div>
 
@@ -1182,8 +1190,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
         </span>
         <div class="dialog-head-copy">
-          <h2 id="support-dialog-title" data-i18n="support.title">Support WeatherScope</h2>
-          <p data-i18n="support.intro">WeatherScope is free and runs on your goodwill. If it helped you, fuel the next forecast.</p>
+          <h2 id="support-dialog-title" data-i18n="support.title">Support WeatherAtlas</h2>
+          <p data-i18n="support.intro">WeatherAtlas is free and runs on your goodwill. If it helped you, fuel the next forecast.</p>
         </div>
       </div>
       <div class="donation-list" id="support-donations">
@@ -1222,7 +1230,7 @@
         <span class="support-empty-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.2l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
         </span>
-        <p data-i18n="support.empty">No donation links are configured yet &mdash; for now, your feedback is the best way to support WeatherScope.</p>
+        <p data-i18n="support.empty">No donation links are configured yet &mdash; for now, your feedback is the best way to support WeatherAtlas.</p>
         <button type="button" id="support-empty-feedback" class="support-empty-action" data-i18n="footer.feedback">Send Feedback</button>
       </div>
       <button type="button" id="support-close" data-dialog="support-dialog" data-i18n="support.close">Close</button>
@@ -1247,7 +1255,7 @@
           <button type="button" id="feedback-helpful-no" data-i18n="feedback.no" data-helpful-vote data-value="no">No</button>
         </div>
       </div>
-      <p id="feedback-thanks" class="feedback-thanks" data-i18n="feedback.thanks" hidden>Thanks for helping WeatherScope get better!</p>
+      <p id="feedback-thanks" class="feedback-thanks" data-i18n="feedback.thanks" hidden>Thanks for helping WeatherAtlas get better!</p>
       <div class="dialog-actions">
         <a id="feedback-form-link" class="feedback-form-btn" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Open the feedback form</a>
       </div>

@@ -1,6 +1,6 @@
 ﻿'use strict';
 /**
- * WeatherScope live city cameras - runtime tests
+ * WeatherAtlas live city cameras - runtime tests
  * =========================================================================
  * The engine tests prove what a camera normalises to, and the wiring tests prove
  * the markup and the source agree. Neither can catch the failure mode that made
@@ -1006,7 +1006,7 @@ test('the master switch turns every mounted panel off, and stays off for the vis
 
   controller.setCamerasEnabled(false);
   assert.equal(controller.camerasEnabled(), false);
-  assert.equal(localStore.get('weatherscope_city_cameras'), 'off');
+  assert.equal(localStore.get('WeatherAtlas_city_cameras'), 'off');
   [first, second].forEach((refs) => {
     assert.equal(refs.camera.hidden, true, 'a panel is still showing with the switch off');
     assert.equal(refs.cameraImage.hasAttribute('src'), false, 'the switch does not release the frame');

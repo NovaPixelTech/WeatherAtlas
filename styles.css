@@ -1,5 +1,5 @@
-/* ==========================================================================
-   WeatherScope - Modern Glassmorphic Stylesheet (High Contrast & Legibility)
+﻿/* ==========================================================================
+   WeatherAtlas - Modern Glassmorphic Stylesheet (High Contrast & Legibility)
    ========================================================================== */
 
 :root {
@@ -3592,7 +3592,7 @@ html[data-language-pending='true'] body {
    One section, three surfaces: the location picker (built from the existing
    chip/button language), the "at a glance" summary, and the comparison tables.
    Everything reuses the existing design tokens, radii and card treatment, so
-   the feature reads as part of WeatherScope rather than a second app.
+   the feature reads as part of WeatherAtlas rather than a second app.
    ========================================================================== */
 .compare-section {
   display: flex;
@@ -4878,6 +4878,62 @@ html[data-language-pending='true'] body {
 .app-footer .footer-links a:focus-visible {
   outline: 2px solid var(--accent-cyan);
   outline-offset: 2px;
+}
+
+/* ---- Email capture (Mailchimp) --------------------------------------- */
+.app-footer .email-capture {
+  margin-top: 18px;
+  width: 100%;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.app-footer .email-capture-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.app-footer .email-capture-row {
+  display: flex;
+  gap: 8px;
+}
+
+.app-footer .email-capture-row input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 9px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  background: rgba(15, 23, 42, 0.6);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+
+.app-footer .email-capture-row input:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+.app-footer .email-capture-row button {
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+  color: #04101f;
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.app-footer .email-capture-note {
+  margin: 6px 0 0;
+  font-size: 0.72rem;
+  color: var(--text-dim);
 }
 
 /* ==========================================================================

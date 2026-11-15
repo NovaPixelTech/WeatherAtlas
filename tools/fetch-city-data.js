@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * WeatherScope - city data fetcher
+ * WeatherAtlas - city data fetcher
  * ==========================================================================
  * Turns `tools/city-seeds.json` into a static dataset in `data/city-climate.json`.
  *

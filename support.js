@@ -1,5 +1,5 @@
 /**
- * WeatherScope support + feedback behaviour
+ * WeatherAtlas support + feedback behaviour
  * ==========================================================================
  * Owns the two dialogs from the footer:
  *
@@ -11,7 +11,7 @@
  * data-i18n attributes; no text lives here.
  *
  * Analytics: donations and feedback votes are sent as Umami custom events via
- * `window.weatherscopeAnalytics.trackEvent`, so they never pollute the pageview
+ * `window.WeatherAtlasAnalytics.trackEvent`, so they never pollute the pageview
  * counts. Events are no-ops when analytics is unconfigured or opted out.
  */
 (function () {
@@ -22,7 +22,7 @@
   }
 
   function analyticsApi() {
-    return window.weatherscopeAnalytics || {};
+    return window.WeatherAtlasAnalytics || {};
   }
 
   function trackEvent(name, data) {
@@ -48,7 +48,7 @@
   }
 
   function init() {
-    const config = window.WEATHERSCOPE_SUPPORT || {};
+    const config = window.WEATHERATLAS_SUPPORT || {};
 
     // ---- Donation surface -------------------------------------------------
     const donations = element('support-donations');
@@ -142,6 +142,19 @@
       }
     }
 
+    // ---- Email capture (Mailchimp) ---------------------------------------
+    // Optional newsletter signup. Hidden until mailchimpActionUrl is configured.
+    const emailForm = element('email-capture-form');
+    if (emailForm) {
+      const actionUrl = typeof config.mailchimpActionUrl === 'string' ? config.mailchimpActionUrl.trim() : '';
+      if (/^https?:\/\//i.test(actionUrl)) {
+        emailForm.hidden = false;
+        emailForm.action = actionUrl;
+      } else {
+        emailForm.hidden = true;
+      }
+    }
+
     // ---- Dialog openers wired from the footer -----------------------------
     const supportLink = element('footer-support-link');
     const feedbackLink = element('footer-feedback-link');
@@ -194,7 +207,7 @@
 
   // Public hook for the generated city pages, which carry the helpful-vote
   // buttons outside the dialog markup.
-  window.WeatherScopeSupport = {
+  window.WeatherAtlasSupport = {
     trackHelpful: function (value) {
       trackEvent('helpful_vote', { value: value, page: String(window.location.pathname || '') });
     },

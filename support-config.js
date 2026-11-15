@@ -1,5 +1,5 @@
 /**
- * WeatherScope support + feedback configuration
+ * WeatherAtlas support + feedback configuration
  * ==========================================================================
  * Everything a visitor can click lives here, so no UI file ever hard-codes a
  * donation or feedback URL:
@@ -20,10 +20,11 @@
  *
  * Empty strings mean "do not show".
  */
-window.WEATHERSCOPE_SUPPORT = {
+window.WEATHERATLAS_SUPPORT = {
   enabled: true,
   koFiUrl: '',
   payPalMeUrl: '',
   githubSponsorUrl: '',
   feedbackFormUrl: 'https://tally.so/r/J1pye4',
+  mailchimpActionUrl: '',
 };

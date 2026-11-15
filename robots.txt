@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://novapixeltech.github.io/WeatherScope/sitemap.xml
+Sitemap: https://novapixeltech.github.io/WeatherAtlas/sitemap.xml

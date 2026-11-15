@@ -1,5 +1,5 @@
 /**
- * WeatherScope visitor analytics - Umami Cloud loader
+ * WeatherAtlas visitor analytics - Umami Cloud loader
  * =========================================================================
  * Umami is loaded only when `analytics-config.js` contains a Website ID. The
  * loader deliberately does very little:
@@ -14,16 +14,16 @@
  * hash from the website ID, IP address, user agent and a monthly rotating
  * salt; the IP is not stored in the analytics record.
  *
- * WeatherScope is a single-page app: City Search, Compare, Climate Filter and
+ * WeatherAtlas is a single-page app: City Search, Compare, Climate Filter and
  * Live Cameras all live at the same URL. Umami's automatic pageview would
  * therefore fold every visit into one row. Instead, automatic pageviews are
  * turned off and each section switch is sent as a *virtual pageview* whose
- * URL is `/WeatherScope/<section>`. Umami treats it like any other page, so
+ * URL is `/WeatherAtlas/<section>`. Umami treats it like any other page, so
  * its Pages report breaks views and visitors down by section and every filter
  * (country, device, referrer) still applies.
  *
  * Static pages (the generated city guides) declare their report label in
- * `window.WEATHERSCOPE_STATIC_PAGE` before this script runs. They send one
+ * `window.WEATHERATLAS_STATIC_PAGE` before this script runs. They send one
  * virtual pageview of their own, so the same Pages report lists the app
  * sections and the city guides together.
  *
@@ -53,13 +53,13 @@
   // The app and the static pages call these helpers. They are defined before
   // the guards so a call site never has to care whether analytics is configured
   // or allowed; an unconfigured or opted-out page simply keeps `tracking` false.
-  window.weatherscopeAnalytics = {
+  window.WeatherAtlasAnalytics = {
     trackSection: trackSection,
     trackPage: trackPage,
     trackEvent: trackEvent,
   };
 
-  var config = window.WEATHERSCOPE_ANALYTICS;
+  var config = window.WeatherAtlas_ANALYTICS;
   if (!config || config.enabled === false) return;
   if (config.provider !== 'umami') return;
 
@@ -77,8 +77,8 @@
   if (privacySignal()) return;
 
   // A second copy of this script must not load the tracker twice.
-  if (window.__weatherscopeUmamiLoaded) return;
-  window.__weatherscopeUmamiLoaded = true;
+  if (window.__WeatherAtlasUmamiLoaded) return;
+  window.__WeatherAtlasUmamiLoaded = true;
   tracking = true;
 
   var script = document.createElement('script');
@@ -110,7 +110,7 @@
 
   // Generated pages (cities/*.html) announce their own report label. They do
   // not use app.js, so without this they would be invisible in the dashboard.
-  var staticPage = window.WEATHERSCOPE_STATIC_PAGE;
+  var staticPage = window.WEATHERATLAS_STATIC_PAGE;
   if (staticPage && typeof staticPage === 'object') {
     trackPage(staticPage.url, staticPage.title);
   }
@@ -125,7 +125,7 @@
     if (!section) return;
     if (id === currentSection) return;
     currentSection = id;
-    trackPage(sectionUrl(section), 'WeatherScope - ' + section.title);
+    trackPage(sectionUrl(section), 'WeatherAtlas - ' + section.title);
   }
 
   /**
@@ -139,7 +139,7 @@
     queue.push({
       kind: 'page',
       url: path,
-      title: cleanText(title) || 'WeatherScope',
+      title: cleanText(title) || 'WeatherAtlas',
     });
     flush();
   }
@@ -182,7 +182,7 @@
   }
 
   // Keep the project path when the site is not served from the domain root,
-  // so the report reads /WeatherScope/compare rather than /compare.
+  // so the report reads /WeatherAtlas/compare rather than /compare.
   function sectionUrl(section) {
     var base = String(location.pathname || '/')
       .replace(/index\.html?$/i, '')

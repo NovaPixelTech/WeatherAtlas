@@ -1,4 +1,4 @@
-# 🌱 WeatherScope — Growth, donations and feedback playbook
+# 🌱 WeatherAtlas — Growth, donations and feedback playbook
 
 This is the working document behind the organic-traffic push. It is deliberately
 written for the owner, not for users: it explains what was built, why, and what
@@ -50,7 +50,7 @@ climate table, FAQ JSON-LD and a deep link into the live app
 
 ### 2.3 Sharing & analytics on the new pages
 
-- Static pages announce themselves via `window.WEATHERSCOPE_STATIC_PAGE`, so the
+- Static pages announce themselves via `window.WEATHERATLAS_STATIC_PAGE`, so the
   Umami **Pages** report shows real rows per city guide.
 - Umami custom events: `donate_click` and `helpful_vote` are sent from the support
   and feedback surfaces (see below).
@@ -106,7 +106,7 @@ climate table, FAQ JSON-LD and a deep link into the live app
 ### Phase 4 — Authority
 
 - Earn long-tail backlinks: local weather blogs, travel writers, personal blogs
-  that mention "WeatherScope weather in <city>".
+  that mention "WeatherAtlas weather in <city>".
 - Consider a guest post / resource page ("Weather comparison data for <country>").
 
 ### Phase 5 — Monetisation beyond donations (later)

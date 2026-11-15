@@ -1,5 +1,5 @@
 /**
- * WeatherScope Favorites - accounts and saved cities
+ * WeatherAtlas Favorites - accounts and saved cities
  * =========================================================================
  * A saved city is only worth anything if it follows the person who saved it,
  * so favorites live behind a real account instead of in one browser's
@@ -30,7 +30,7 @@
  *    rejected rather than coerced into the Gulf of Guinea.
  *
  * Loading contract: plain classic script (no build step). It publishes
- * `window.WeatherScopeFavorites`, and also supports `module.exports` so the
+ * `window.WeatherAtlasFavorites`, and also supports `module.exports` so the
  * server and the tests can use the very same engine.
  */
 
@@ -42,7 +42,7 @@
   if (typeof module === 'object' && module !== null && typeof module.exports === 'object') {
     module.exports = api;
   }
-  if (root) root.WeatherScopeFavorites = api;
+  if (root) root.WeatherAtlasFavorites = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 
@@ -432,7 +432,7 @@
     if (status === 401) return code || 'invalid-credentials';
     if (status === 403) return 'unauthorized';
     // 404/405/501 for a route this client always calls means the request never
-    // reached the WeatherScope API - a plain static host (or an SPA fallback)
+    // reached the WeatherAtlas API - a plain static host (or an SPA fallback)
     // answered instead. That is "no server here", not "the server broke".
     if (status === 404 || status === 405 || status === 501) return 'unavailable';
     if (status === 409) return 'username-taken';
@@ -636,7 +636,7 @@
   // read `localStorage`. It exists so favorites still work offline of any server.
 
   /** The `localStorage` key the browser-only account store lives under. */
-  const LOCAL_ACCOUNTS_KEY = 'weatherscope_accounts';
+  const LOCAL_ACCOUNTS_KEY = 'WeatherAtlas_accounts';
 
   /** Local sessions are told apart from server tokens by this prefix. */
   const LOCAL_SESSION_PREFIX = 'local:';

@@ -1,5 +1,5 @@
 /**
- * WeatherScope - Free Live City Cameras
+ * WeatherAtlas - Free Live City Cameras
  * =========================================================================
  * The "is it raining there *right now*" layer that a forecast cannot give you.
  * For every city the app displays, this engine answers one question: is there a
@@ -17,7 +17,7 @@
  *    a placeholder frame.
  *
  * Loading contract: plain classic script (no build step). It publishes
- * `window.WeatherScopeCameras`, and also supports `module.exports` for the tests.
+ * `window.WeatherAtlasCameras`, and also supports `module.exports` for the tests.
  */
 
 (function (root, factory) {
@@ -28,7 +28,7 @@
   if (typeof module === 'object' && module !== null && typeof module.exports === 'object') {
     module.exports = api;
   }
-  if (root) root.WeatherScopeCameras = api;
+  if (root) root.WeatherAtlasCameras = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 
@@ -460,7 +460,7 @@
   // ==========================================================================
   /** Session-scoped cache key. Cameras change every minute, so nothing persists. */
   function cacheKey(cityId) {
-    return 'weatherscope_city_camera_' + String(cityId || '');
+    return 'WeatherAtlas_city_camera_' + String(cityId || '');
   }
 
   // ==========================================================================

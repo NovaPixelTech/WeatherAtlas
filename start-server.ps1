@@ -1,4 +1,4 @@
-# WeatherScope launcher
+# WeatherAtlas launcher
 #
 # Prefers the zero-dependency Node server (server.js), which serves the static
 # app AND the accounts/favorites API in one process. When Node is not installed
@@ -26,7 +26,7 @@ $node = Get-Command node -ErrorAction SilentlyContinue
 
 if ($node -and -not $Static) {
     Write-Host "==========================================" -ForegroundColor Cyan
-    Write-Host " WeatherScope server (node server.js)" -ForegroundColor Green
+    Write-Host " WeatherAtlas server (node server.js)" -ForegroundColor Green
     Write-Host " URL: $Url" -ForegroundColor Yellow
     Write-Host " Accounts & favorites: enabled" -ForegroundColor Green
     Write-Host " Press Ctrl+C in this terminal to stop." -ForegroundColor Gray
@@ -87,7 +87,7 @@ try {
 }
 
 Write-Host "==========================================" -ForegroundColor Cyan
-Write-Host " WeatherScope App Server Running!" -ForegroundColor Green
+Write-Host " WeatherAtlas App Server Running!" -ForegroundColor Green
 Write-Host " URL: $Url" -ForegroundColor Yellow
 Write-Host " Press Ctrl+C in this terminal to stop." -ForegroundColor Gray
 Write-Host "==========================================" -ForegroundColor Cyan

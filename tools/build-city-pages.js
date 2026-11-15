@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * WeatherScope - city page builder
+ * WeatherAtlas - city page builder
  * ==========================================================================
  * Turns `data/city-climate.json` (produced by `tools/fetch-city-data.js`) into
  * static, indexable pages under `cities/`, plus the city index and the sitemap.
@@ -16,7 +16,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SITE_URL = 'https://novapixeltech.github.io/WeatherScope';
+const SITE_URL = 'https://novapixeltech.github.io/WeatherAtlas';
 const CITIES_DIR = path.join(__dirname, '..', 'cities');
 const DATA_FILE = path.join(__dirname, '..', 'data', 'city-climate.json');
 const SITEMAP_FILE = path.join(__dirname, '..', 'sitemap.xml');
@@ -53,7 +53,7 @@ function slugify(value) {
 }
 
 function cityTitle(city) {
-  return `Weather in ${city.name}, ${city.country} - Climate & Averages | WeatherScope`;
+  return `Weather in ${city.name}, ${city.country} - Climate & Averages | WeatherAtlas`;
 }
 
 function cityDescription(city) {
@@ -169,6 +169,22 @@ ${faqItems}
         <div class="city-stat"><div class="value">${monthName(city.climate.driestMonth)}</div><div class="label">Driest month</div></div>
         <div class="city-stat"><div class="value">${monthName(city.climate.hottestMonth)}</div><div class="label">Hottest month</div></div>
         <div class="city-stat"><div class="value">${monthName(city.climate.coldestMonth)}</div><div class="label">Coldest month</div></div>`;
+  const monthly = city.climate.monthly || [];
+  const comfyMonths = monthly.filter((m) => m.avgHighC >= 18 && m.avgHighC <= 28);
+  const candidatePool = comfyMonths.length ? comfyMonths : monthly;
+  const bestVisitMonth = candidatePool.reduce((a, b) => (b.precipMm < a.precipMm ? b : a), candidatePool[0] || monthly[0]);
+  const bestTimeHtml = `<section class="city-section">
+      <h2>Best time to visit ${esc(city.name)}</h2>
+      <p>Based on long-term averages, <strong>${monthName(bestVisitMonth.month)}</strong> is usually the most comfortable month, with an average high of ${num(bestVisitMonth.avgHighC)}\u00b0C and about ${num(bestVisitMonth.precipMm)} mm of precipitation. The hottest month is ${monthName(city.climate.hottestMonth)} and the coolest is ${monthName(city.climate.coldestMonth)}; the driest month is ${monthName(city.climate.driestMonth)} and the wettest is ${monthName(city.climate.wettestMonth)}.</p>
+    </section>`;
+  const tempDiff = city.climate.annualMeanC - 14;
+  const precipDiff = city.climate.annualPrecipMm - 1000;
+  const tempWord = tempDiff >= 0 ? 'warmer' : 'cooler';
+  const precipWord = precipDiff >= 0 ? 'wetter' : 'drier';
+  const comparisonHtml = `<section class="city-section">
+      <h2>How ${esc(city.name)} compares</h2>
+      <p>${esc(city.name)}'s annual mean temperature of ${num(city.climate.annualMeanC)}\u00b0C is about ${Math.abs(tempDiff).toFixed(1)}\u00b0C ${tempWord} than the global land average, and its ${precip} mm of annual precipitation makes it ${Math.abs(precipDiff)} mm ${precipWord} per year.</p>
+    </section>`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -178,7 +194,7 @@ ${faqItems}
   <meta name="description" content="${esc(description)}" />
   <link rel="canonical" href="${esc(canonical)}" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="WeatherScope" />
+  <meta property="og:site_name" content="WeatherAtlas" />
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(description)}" />
   <meta property="og:url" content="${esc(canonical)}" />
@@ -197,7 +213,7 @@ ${faqItems}
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
   <link rel="stylesheet" href="city-page.css" />
   <script>
-    window.WEATHERSCOPE_STATIC_PAGE = { url: "/WeatherScope/cities/${esc(city.slug)}", title: ${JSON.stringify(title)} };
+    window.WEATHERATLAS_STATIC_PAGE = { url: "/WeatherAtlas/cities/${esc(city.slug)}", title: ${JSON.stringify(title)} };
   </script>
   <script src="../analytics-config.js"></script>
   <script src="../analytics.js" defer></script>
@@ -218,7 +234,7 @@ ${faqItems}
       <h1>Weather in ${esc(city.name)}, ${esc(city.country)}</h1>
       <div class="country-line">Climate averages and long-term statistics</div>
       <p class="lede">${esc(
-        `Over the last ten years ${city.name} averaged a high of ${high}\u00b0C and a low of ${low}\u00b0C, with about ${precip} mm of precipitation per year. Get the live forecast for ${city.name} inside WeatherScope, or browse the averages below.`
+        `Over the last ten years ${city.name} averaged a high of ${high}\u00b0C and a low of ${low}\u00b0C, with about ${precip} mm of precipitation per year. Get the live forecast for ${city.name} inside WeatherAtlas, or browse the averages below.`
       )}</p>
       <a class="city-cta" href="../index.html?city=${encodeURIComponent(city.name)}&region=${encodeURIComponent(city.admin1 || city.country)}&country=${encodeURIComponent(city.countryCode)}&lat=${city.latitude}&lon=${city.longitude}&tz=${encodeURIComponent(city.timezone)}">Get the live forecast for ${esc(city.name)}</a>
     </section>
@@ -240,12 +256,16 @@ ${climateRows(city)}
       </table>
     </section>
 
+${bestTimeHtml}
+
+${comparisonHtml}
+
 ${faqHtml}
 
 ${relatedHtml}
     <footer class="city-footer">
       <p>Data provided by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo API</a>.</p>
-      <p><a href="../index.html">Open WeatherScope</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
+      <p><a href="../index.html">Open WeatherAtlas</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
     </footer>
   </main>
 
@@ -280,13 +300,13 @@ ${cards}
       </div>
     </section>`;
   }).join('\n');
-  const title = 'City Weather Guides - Climate Averages & Live Forecasts | WeatherScope';
-  const description = 'Browse WeatherScope city weather guides with real climate averages, monthly statistics and a direct link to the live forecast for the city.';
+  const title = 'City Weather Guides - Climate Averages & Live Forecasts | WeatherAtlas';
+  const description = 'Browse WeatherAtlas city weather guides with real climate averages, monthly statistics and a direct link to the live forecast for the city.';
   const canonical = `${SITE_URL}/cities/index.html`;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'WeatherScope City Weather Guides',
+    name: 'WeatherAtlas City Weather Guides',
     url: canonical,
     description,
   };
@@ -299,7 +319,7 @@ ${cards}
   <meta name="description" content="${esc(description)}" />
   <link rel="canonical" href="${esc(canonical)}" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="WeatherScope" />
+  <meta property="og:site_name" content="WeatherAtlas" />
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(description)}" />
   <meta property="og:url" content="${esc(canonical)}" />
@@ -312,7 +332,7 @@ ${cards}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${esc(title)}" />
   <meta name="twitter:description" content="${esc(description)}" />
-  <meta name="twitter:image" content="${esc(`${SITE_URL}/WeatherScope/og-image.png`)}" />
+  <meta name="twitter:image" content="${esc(`${SITE_URL}/WeatherAtlas/og-image.png`)}" />
   <meta name="theme-color" content="#0b1324" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
@@ -330,7 +350,7 @@ ${cards}
     <section class="city-hero">
       <h1>Weather guides by city</h1>
       <div class="country-line">Real climate averages for the world's major cities</div>
-      <p class="lede">Every guide combines long-term climate averages with a direct link into the live WeatherScope forecast for that city.</p>
+      <p class="lede">Every guide combines long-term climate averages with a direct link into the live WeatherAtlas forecast for that city.</p>
       <div class="city-search">
         <input type="search" id="city-search" placeholder="Search a city or country\u2026" autocomplete="off" />
         <span class="city-search-count" id="city-search-count"></span>
@@ -338,7 +358,7 @@ ${cards}
     </section>
 ${sections}
     <footer class="city-footer">
-      <p><a href="../index.html">Open WeatherScope</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
+      <p><a href="../index.html">Open WeatherAtlas</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
     </footer>
   </main>
   <script>
@@ -375,6 +395,8 @@ function buildSitemap(cities) {
     `${SITE_URL}/`,
     `${SITE_URL}/privacy.html`,
     `${SITE_URL}/cities/index.html`,
+    `${SITE_URL}/blog/index.html`,
+    `${SITE_URL}/blog/how-to-read-a-climate-chart.html`,
     ...cities.map((city) => `${SITE_URL}/cities/${city.slug}.html`),
   ];
   const lastmod = new Date().toISOString().slice(0, 10);
@@ -382,7 +404,7 @@ function buildSitemap(cities) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
 }
 
-function main() {
+async function main() {
   const cities = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
   const withClimate = cities.filter((city) => city && city.climate && city.slug);
   fs.mkdirSync(CITIES_DIR, { recursive: true });
@@ -400,6 +422,26 @@ function main() {
 
   fs.writeFileSync(SITEMAP_FILE, buildSitemap(withClimate));
   console.log(`wrote sitemap.xml with ${withClimate.length + 2} entries`);
+
+  // Best-effort IndexNow ping (Bing/Yandex instant indexing). Never fails the build.
+  if (process.env.INDEXNOW !== '0') {
+    try {
+      const key = '9168f9f1b623e8f128bcd82260ffc41c';
+      const host = 'novapixeltech.github.io';
+      const urlList = [
+        'https://novapixeltech.github.io/WeatherAtlas/',
+        ...withClimate.map((c) => `https://novapixeltech.github.io/WeatherAtlas/cities/${c.slug}.html`),
+      ];
+      const res = await fetch('https://api.indexnow.org/indexnow', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ host, key, keyLocation: `https://${host}/WeatherAtlas/${key}.txt`, urlList }),
+      });
+      console.log(`indexnow ping: HTTP ${res.status} for ${urlList.length} urls`);
+    } catch (err) {
+      console.log(`indexnow ping skipped: ${err.message}`);
+    }
+  }
 }
 
-main();
+main().catch((err) => { console.error(err); process.exit(1); });
