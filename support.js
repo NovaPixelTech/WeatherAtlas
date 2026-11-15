@@ -4,7 +4,7 @@
  * Owns the two dialogs from the footer:
  *
  *   #support-dialog    - the donation/support surface (Ko-fi, PayPal.Me, sponsor)
- *   #feedback-dialog   - the visitor feedback surface (helpful vote + GitHub issues)
+ *   #feedback-dialog   - the visitor feedback surface (helpful vote + hosted form)
  *
  * Both are plain <dialog> elements from the shared markup, so this file only
  * wires behaviour. All strings come from the i18n dictionaries through the
