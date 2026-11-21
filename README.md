@@ -425,13 +425,21 @@ like "weather in Tokyo" had nothing unique on the domain to rank.
 - `tools/build-city-pages.js` — generates `cities/<slug>.html`, the `cities/index.html` guide index and `sitemap.xml`.
 - `tools/city-page.css` — standalone styles for the guides.
 
-Every guide has a unique title, description, H1, climate stats, monthly climate table and FAQ JSON-LD,
-and deep-links into the live app with the shared forecast format.
+Every guide has a unique SERP-length title, description, H1, annual climate averages, a monthly climate
+table, a season summary, visible breadcrumbs, blog cross-links and `WebPage` / `BreadcrumbList` /
+`FAQPage` / `City` JSON-LD. It deep-links into the live app with the shared forecast format.
+
+Precipitation is derived as a ten-year monthly average (mm/year), not a raw ten-year total, so the
+visible copy, meta descriptions and structured data all report plausible annual rainfall.
 
 ```powershell
 node tools/fetch-city-data.js
 node tools/build-city-pages.js
 ```
+
+The build also regenerates `sitemap.xml` with distinct freshness hints for static and city pages. Because
+GitHub Pages serves `robots.txt` under `/WeatherOrbit/` rather than at the host root, submit the sitemap
+manually in Google Search Console and Bing Webmaster Tools.
 
 To scale later, extend `tools/city-seeds.json` (300+ cities, or curated country/region guides) and re-run
 the two commands.

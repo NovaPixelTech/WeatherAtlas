@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /WeatherOrbit/tools/
+Disallow: /WeatherOrbit/data/
+Disallow: /WeatherOrbit/tests/
+Disallow: /WeatherOrbit/server.js
 
 Sitemap: https://novapixeltech.github.io/WeatherOrbit/sitemap.xml

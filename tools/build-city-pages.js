@@ -17,6 +17,7 @@ const fs = require('fs');
 const path = require('path');
 
 const SITE_URL = 'https://novapixeltech.github.io/WeatherOrbit';
+const OG_IMAGE = `${SITE_URL}/og-image-v2.png`;
 const CITIES_DIR = path.join(__dirname, '..', 'cities');
 const DATA_FILE = path.join(__dirname, '..', 'data', 'city-climate.json');
 const SITEMAP_FILE = path.join(__dirname, '..', 'sitemap.xml');
@@ -52,28 +53,53 @@ function slugify(value) {
   return ascii.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
+function placeLabel(city) {
+  const country = String(city.country || city.countryCode || '').trim();
+  if (!country || country.toLowerCase() === String(city.name).toLowerCase()) return city.name;
+  return `${city.name}, ${country}`;
+}
+
+function titlePlace(city) {
+  const full = `${city.name}, ${city.country || city.countryCode || ''}`.replace(/,\s*$/, '').trim();
+  if (full.length <= 13) return full;
+  return city.name;
+}
+
 function cityTitle(city) {
-  return `Weather in ${city.name}, ${city.country} - Climate & Averages | WeatherOrbit`;
+  const place = titlePlace(city);
+  const prefix = place.length > 12 ? `${place} Weather: ` : `Weather in ${place}: `;
+  return `${prefix}Climate & Best Time | WeatherOrbit`;
 }
 
 function cityDescription(city) {
   const high = num(city.climate ? city.climate.avgHighC : 0);
   const low = num(city.climate ? city.climate.avgLowC : 0);
   const precip = num(city.climate ? city.climate.annualPrecipMm : 0);
-  const description = `Weather in ${city.name}: average high ${high}\u00b0C, low ${low}\u00b0C, ${precip} mm of precipitation per year. Read the climate averages and get the live forecast.`;
-  return description;
+  return `Weather in ${placeLabel(city)}: ${high}\u00b0C average high, ${low}\u00b0C average low and ${precip} mm of rain per year. Explore 10-year monthly climate averages, the best time to visit and the live forecast.`;
 }
 
 function buildStats(city) {
   const climate = city.climate || {};
-  const coldestLow = climate.monthly && climate.monthly[Number(climate.coldestMonth) - 1]
-    ? climate.monthly[Number(climate.coldestMonth) - 1].avgLowC
-    : climate.avgLowC;
-  return { climate, coldestLow };
+  const coldest = climate.monthly && climate.monthly[Number(climate.coldestMonth) - 1];
+  const hottest = climate.monthly && climate.monthly[Number(climate.hottestMonth) - 1];
+  return {
+    climate,
+    coldestLow: coldest ? coldest.avgLowC : climate.avgLowC,
+    coldestHigh: coldest ? coldest.avgHighC : climate.avgHighC,
+    hottestHigh: hottest ? hottest.avgHighC : climate.avgHighC,
+  };
+}
+
+function breadcrumbItems(city) {
+  return [
+    { name: 'Home', url: `${SITE_URL}/` },
+    { name: 'City guides', url: `${SITE_URL}/cities/index.html` },
+    { name: placeLabel(city), url: `${SITE_URL}/cities/${city.slug}.html` },
+  ];
 }
 
 function buildFaq(city) {
-  const { climate, coldestLow } = buildStats(city);
+  const { climate, coldestLow, coldestHigh, hottestHigh } = buildStats(city);
   const high = num(climate.avgHighC);
   const low = num(climate.avgLowC);
   const precip = num(climate.annualPrecipMm);
@@ -89,15 +115,87 @@ function buildFaq(city) {
     },
     {
       question: `When is the best time of year to visit ${city.name}?`,
-      answer: `The driest month is ${dryName} and the wettest is ${wetName}. The hottest average high is ${hotName} at ${high}\u00b0C, and the coldest is ${coldName} at ${low}\u00b0C, which makes the milder months the most comfortable for outdoor plans.`,
+      answer: `The driest month is ${dryName} and the wettest is ${wetName}. The hottest average high is ${hotName} at ${num(hottestHigh)}\u00b0C, and the coolest is ${coldName} at ${num(coldestHigh)}\u00b0C, so the milder months are usually the most comfortable for outdoor plans.`,
     },
     {
       question: `Does it snow in ${city.name}?`,
       answer: snowPossible
-        ? `Snowfall is part of ${city.name}'s climate: the coldest average nights drop to around ${low}\u00b0C, which is at or below freezing. In the coldest months of the year the city regularly sees snow.`
-        : `Snow is rare in ${city.name}: the coldest average nights only drop to about ${low}\u00b0C, which is above freezing.`,
+        ? `Snow is possible in ${city.name}: the coldest average nights drop to around ${num(coldestLow)}\u00b0C, which is at or below freezing. Frost and occasional snow can occur in the coldest months.`
+        : `Snow is rare in ${city.name}: even the coldest average nights stay around ${num(coldestLow)}\u00b0C, above freezing.`,
     },
   ];
+}
+
+function buildCityJsonLd(city, faq) {
+  const canonical = `${SITE_URL}/cities/${city.slug}.html`;
+  const graph = [
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: cityTitle(city),
+      description: cityDescription(city),
+      inLanguage: 'en',
+      isPartOf: { '@type': 'WebSite', name: 'WeatherOrbit', url: SITE_URL },
+      breadcrumb: { '@id': `${canonical}#breadcrumb` },
+      mainEntity: { '@id': `${canonical}#faq` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonical}#breadcrumb`,
+      itemListElement: breadcrumbItems(city).map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        item: item.url,
+      })),
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      mainEntity: faq.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+  ];
+  const latitude = Number(city.latitude);
+  const longitude = Number(city.longitude);
+  const geo = Number.isFinite(latitude) && Number.isFinite(longitude)
+    ? { '@type': 'GeoCoordinates', latitude, longitude }
+    : undefined;
+  graph.push({
+    '@type': 'City',
+    '@id': `${canonical}#city`,
+    name: city.name,
+    url: canonical,
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: city.countryCode || city.country || undefined,
+      addressRegion: city.admin1 || undefined,
+    },
+    ...(geo ? { geo } : {}),
+  });
+  return { '@context': 'https://schema.org', '@graph': graph };
+}
+
+function buildSeasonHtml(city) {
+  const monthly = (city.climate && city.climate.monthly) || [];
+  if (!monthly.length) return '';
+  const warmest = monthly.reduce((a, b) => (Number(b.avgHighC) > Number(a.avgHighC) ? b : a));
+  const coolest = monthly.reduce((a, b) => (Number(b.avgHighC) < Number(a.avgHighC) ? b : a));
+  const wettest = monthly.reduce((a, b) => (Number(b.precipMm) > Number(a.precipMm) ? b : a));
+  const driest = monthly.reduce((a, b) => (Number(b.precipMm) < Number(a.precipMm) ? b : a));
+  const comfortable = monthly.filter((m) => Number(m.avgHighC) >= 18 && Number(m.avgHighC) <= 28 && Number(m.precipMm) <= 150);
+  const comfortText = comfortable.length
+    ? `${comfortable.map((m) => monthName(m.month)).join(', ')} offer the closest match to the typical 18\u201328\u00b0C comfort range with moderate rain.`
+    : 'No month perfectly matches the typical 18\u201328\u00b0C comfort range with moderate rain, so the driest month is the safest default for outdoor plans.';
+  return `<section class="city-section">
+      <h2>Seasons in ${esc(city.name)}</h2>
+      <p>${esc(city.name)} is warmest in ${monthName(warmest.month)}, when average highs reach ${num(warmest.avgHighC)}\u00b0C, and coolest in ${monthName(coolest.month)} at ${num(coolest.avgHighC)}\u00b0C. Rainfall peaks in ${monthName(wettest.month)} (${num(wettest.precipMm)} mm) and is lowest in ${monthName(driest.month)} (${num(driest.precipMm)} mm).</p>
+      <p>${comfortText} These figures are ten-year monthly averages from Open-Meteo, so individual years can differ.</p>
+    </section>`;
 }
 
 function climateRows(city) {
@@ -119,28 +217,21 @@ function climateRows(city) {
   return rows.join('\n');
 }
 
-function buildCityHtml(city, faq, related) {
+function buildCityHtml(city, faq, related, relatedHeading) {
   const high = num(city.climate.avgHighC);
   const low = num(city.climate.avgLowC);
   const precip = num(city.climate.annualPrecipMm);
   const title = cityTitle(city);
   const description = cityDescription(city);
   const canonical = `${SITE_URL}/cities/${city.slug}.html`;
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faq.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.answer },
-    })),
-  };
+  const jsonLd = buildCityJsonLd(city, faq);
+  const countryLabel = city.country || city.countryCode || 'this region';
   const dash = String.fromCharCode(0x2014);
   const relatedItems = related.map((r) => `        <li><a href="${esc(r.slug)}.html">${esc(r.name)}</a> ${dash} climate averages</li>`).join('\n');
   const relatedHtml = related.length
     ? `<section class="city-section city-related">
-      <h2>Related cities</h2>
-      <h3>Cities in ${esc(city.country)}</h3>
+      <h2>${esc(relatedHeading || 'Related city guides')}</h2>
+      <h3>Similar climate profile</h3>
       <ul>
 ${relatedItems}
       </ul>
@@ -177,13 +268,12 @@ ${faqItems}
       <h2>Best time to visit ${esc(city.name)}</h2>
       <p>Based on long-term averages, <strong>${monthName(bestVisitMonth.month)}</strong> is usually the most comfortable month, with an average high of ${num(bestVisitMonth.avgHighC)}\u00b0C and about ${num(bestVisitMonth.precipMm)} mm of precipitation. The hottest month is ${monthName(city.climate.hottestMonth)} and the coolest is ${monthName(city.climate.coldestMonth)}; the driest month is ${monthName(city.climate.driestMonth)} and the wettest is ${monthName(city.climate.wettestMonth)}.</p>
     </section>`;
-  const tempDiff = city.climate.annualMeanC - 14;
-  const precipDiff = city.climate.annualPrecipMm - 1000;
-  const tempWord = tempDiff >= 0 ? 'warmer' : 'cooler';
-  const precipWord = precipDiff >= 0 ? 'wetter' : 'drier';
+  const mean = num(city.climate.annualMeanC);
+  const tempProfile = mean >= 24 ? 'consistently warm' : mean >= 18 ? 'generally mild to warm' : mean >= 12 ? 'moderate' : 'noticeably cool';
+  const rainProfile = precip >= 1800 ? 'a very wet' : precip >= 1000 ? 'a fairly wet' : precip >= 500 ? 'a moderately rainy' : 'a dry';
   const comparisonHtml = `<section class="city-section">
       <h2>How ${esc(city.name)} compares</h2>
-      <p>${esc(city.name)}'s annual mean temperature of ${num(city.climate.annualMeanC)}\u00b0C is about ${Math.abs(tempDiff).toFixed(1)}\u00b0C ${tempWord} than the global land average, and its ${precip} mm of annual precipitation makes it ${Math.abs(precipDiff)} mm ${precipWord} per year.</p>
+      <p>With an annual mean of ${mean}\u00b0C and about ${precip} mm of rain, ${esc(city.name)} has ${tempProfile} climate and ${rainProfile} yearly rainfall profile. Travellers who prefer warm, dry weather should focus on ${monthName(bestVisitMonth.month)}, while those who do not mind rain can visit in ${monthName(city.climate.wettestMonth)}.</p>
     </section>`;
   return `<!DOCTYPE html>
 <html lang="en">
@@ -198,40 +288,47 @@ ${faqItems}
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(description)}" />
   <meta property="og:url" content="${esc(canonical)}" />
+  <meta property="og:image" content="${esc(OG_IMAGE)}" />
+  <meta property="og:image:alt" content="WeatherOrbit climate guide" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:locale:alternate" content="el_GR" />
-  <meta property="og:locale:alternate" content="de_DE" />
-  <meta property="og:locale:alternate" content="it_IT" />
-  <meta property="og:locale:alternate" content="es_ES" />
-  <meta property="og:locale:alternate" content="fr_FR" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${esc(title)}" />
   <meta name="twitter:description" content="${esc(description)}" />
-  <meta name="twitter:image" content="${esc(`${SITE_URL}/og-image.png`)}" />
+  <meta name="twitter:image" content="${esc(OG_IMAGE)}" />
   <meta name="theme-color" content="#0b1324" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="city-page.css" />
   <script>
     window.WEATHERORBIT_STATIC_PAGE = { url: "/WeatherOrbit/cities/${esc(city.slug)}", title: ${JSON.stringify(title)} };
   </script>
   <script src="../analytics-config.js"></script>
   <script src="../analytics.js" defer></script>
-  <script src="../support-config.js"></script>
-  <script src="../support.js"></script>
   <script type="application/ld+json">
-  ${JSON.stringify(faqJsonLd)}
+  ${JSON.stringify(jsonLd)}
   </script>
 </head>
 <body>
   <main class="city-shell">
     <div class="city-topbar">
-      <a class="city-brand" href="../index.html">Weather<span>Scope</span></a>
+      <a class="city-brand" href="../index.html">Weather<span>Orbit</span></a>
       <a class="city-home" href="index.html">All cities</a>
     </div>
+    <nav class="city-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html">City guides</a></li>
+        <li aria-current="page">${esc(placeLabel(city))}</li>
+      </ol>
+    </nav>
 
     <section class="city-hero">
-      <h1>Weather in ${esc(city.name)}, ${esc(city.country)}</h1>
+      <h1>Weather in ${esc(placeLabel(city))}</h1>
       <div class="country-line">Climate averages and long-term statistics</div>
       <p class="lede">${esc(
         `Over the last ten years ${city.name} averaged a high of ${high}\u00b0C and a low of ${low}\u00b0C, with about ${precip} mm of precipitation per year. Get the live forecast for ${city.name} inside WeatherOrbit, or browse the averages below.`
@@ -256,6 +353,8 @@ ${climateRows(city)}
       </table>
     </section>
 
+${buildSeasonHtml(city)}
+
 ${bestTimeHtml}
 
 ${comparisonHtml}
@@ -265,7 +364,7 @@ ${faqHtml}
 ${relatedHtml}
     <footer class="city-footer">
       <p>Data provided by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo API</a>.</p>
-      <p><a href="../index.html">Open WeatherOrbit</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
+      <p><a href="index.html">All city guides</a> \u00b7 <a href="../blog/how-to-read-a-climate-chart.html">How to read a climate chart</a> \u00b7 <a href="../index.html">Open WeatherOrbit</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
     </footer>
   </main>
 
@@ -301,15 +400,35 @@ ${cards}
       </div>
     </section>`;
   }).join('\n');
-  const title = 'City Weather Guides - Climate Averages & Live Forecasts | WeatherOrbit';
-  const description = 'Browse WeatherOrbit city weather guides with real climate averages, monthly statistics and a direct link to the live forecast for the city.';
+  const title = `${cities.length} City Weather Guides - Climate Averages | WeatherOrbit`;
+  const description = `Browse ${cities.length} WeatherOrbit city weather guides with ten-year monthly climate averages, the best time to visit and a direct link to each city's live forecast.`;
   const canonical = `${SITE_URL}/cities/index.html`;
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: 'WeatherOrbit City Weather Guides',
-    url: canonical,
-    description,
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `${canonical}#page`,
+        url: canonical,
+        name: title,
+        description,
+        inLanguage: 'en',
+        isPartOf: { '@type': 'WebSite', name: 'WeatherOrbit', url: SITE_URL },
+        mainEntity: { '@id': `${canonical}#cities` },
+      },
+      {
+        '@type': 'ItemList',
+        '@id': `${canonical}#cities`,
+        name: 'WeatherOrbit city guides',
+        numberOfItems: cities.length,
+        itemListElement: cities.map((city, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: placeLabel(city),
+          url: `${SITE_URL}/cities/${city.slug}.html`,
+        })),
+      },
+    ],
   };
   return `<!DOCTYPE html>
 <html lang="en">
@@ -324,19 +443,21 @@ ${cards}
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(description)}" />
   <meta property="og:url" content="${esc(canonical)}" />
+  <meta property="og:image" content="${esc(OG_IMAGE)}" />
+  <meta property="og:image:alt" content="WeatherOrbit city climate guides" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:locale:alternate" content="el_GR" />
-  <meta property="og:locale:alternate" content="de_DE" />
-  <meta property="og:locale:alternate" content="it_IT" />
-  <meta property="og:locale:alternate" content="es_ES" />
-  <meta property="og:locale:alternate" content="fr_FR" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${esc(title)}" />
   <meta name="twitter:description" content="${esc(description)}" />
-  <meta name="twitter:image" content="${esc(`${SITE_URL}/WeatherOrbit/og-image.png`)}" />
+  <meta name="twitter:image" content="${esc(OG_IMAGE)}" />
   <meta name="theme-color" content="#0b1324" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="city-page.css" />
   <script type="application/ld+json">
   ${JSON.stringify(jsonLd)}
@@ -345,7 +466,7 @@ ${cards}
 <body>
   <main class="city-shell">
     <div class="city-topbar">
-      <a class="city-brand" href="../index.html">Weather<span>Scope</span></a>
+      <a class="city-brand" href="../index.html">Weather<span>Orbit</span></a>
       <a class="city-home" href="../index.html">Open the app</a>
     </div>
     <section class="city-hero">
@@ -359,7 +480,7 @@ ${cards}
     </section>
 ${sections}
     <footer class="city-footer">
-      <p><a href="../index.html">Open WeatherOrbit</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
+      <p><a href="../index.html">Open WeatherOrbit</a> \u00b7 <a href="../blog/index.html">WeatherOrbit Blog</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
     </footer>
   </main>
   <script>
@@ -393,16 +514,31 @@ ${sections}
 }
 
 function buildSitemap(cities) {
+  const today = new Date().toISOString().slice(0, 10);
+  const dataModified = fs.existsSync(DATA_FILE)
+    ? fs.statSync(DATA_FILE).mtime.toISOString().slice(0, 10)
+    : today;
   const locations = [
-    `${SITE_URL}/`,
-    `${SITE_URL}/privacy.html`,
-    `${SITE_URL}/cities/index.html`,
-    `${SITE_URL}/blog/index.html`,
-    `${SITE_URL}/blog/how-to-read-a-climate-chart.html`,
-    ...cities.map((city) => `${SITE_URL}/cities/${city.slug}.html`),
+    { loc: `${SITE_URL}/`, lastmod: today, changefreq: 'weekly', priority: '1.0' },
+    { loc: `${SITE_URL}/privacy.html`, lastmod: today, changefreq: 'yearly', priority: '0.3' },
+    { loc: `${SITE_URL}/cities/index.html`, lastmod: dataModified, changefreq: 'monthly', priority: '0.9' },
+    { loc: `${SITE_URL}/blog/index.html`, lastmod: today, changefreq: 'monthly', priority: '0.7' },
+    { loc: `${SITE_URL}/blog/how-to-read-a-climate-chart.html`, lastmod: today, changefreq: 'yearly', priority: '0.6' },
+    ...cities.map((city) => ({
+      loc: `${SITE_URL}/cities/${city.slug}.html`,
+      lastmod: dataModified,
+      changefreq: 'monthly',
+      priority: '0.8',
+    })),
   ];
-  const lastmod = new Date().toISOString().slice(0, 10);
-  const body = locations.map((loc) => `  <url>\n    <loc>${esc(loc)}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`).join('\n');
+  const body = locations.map((entry) => [
+    '  <url>',
+    `    <loc>${esc(entry.loc)}</loc>`,
+    `    <lastmod>${entry.lastmod}</lastmod>`,
+    `    <changefreq>${entry.changefreq}</changefreq>`,
+    `    <priority>${entry.priority}</priority>`,
+    '  </url>',
+  ].join('\n')).join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
 }
 
@@ -414,16 +550,28 @@ async function main() {
   fs.writeFileSync(path.join(CITIES_DIR, 'index.html'), buildCityIndexHtml(withClimate));
   console.log(`wrote cities/index.html with ${withClimate.length} guides`);
 
+  function climateDistance(a, b) {
+    const tempGap = Math.abs(Number(a.climate.annualMeanC) - Number(b.climate.annualMeanC));
+    const rainGap = Math.abs(Number(a.climate.annualPrecipMm) - Number(b.climate.annualPrecipMm)) / 100;
+    return tempGap + rainGap;
+  }
+
   withClimate.forEach((city) => {
     const faq = buildFaq(city);
     const sameCountry = withClimate.filter((other) => other.country === city.country && other.slug !== city.slug);
-    const related = sameCountry.slice(0, 5);
-    fs.writeFileSync(path.join(CITIES_DIR, `${city.slug}.html`), buildCityHtml(city, faq, related));
+    const pool = sameCountry.length
+      ? sameCountry
+      : withClimate.filter((other) => other.slug !== city.slug);
+    const related = pool.slice().sort((a, b) => climateDistance(city, a) - climateDistance(city, b)).slice(0, 5);
+    const relatedHeading = sameCountry.length
+      ? `More guides in ${city.country || city.countryCode}`
+      : 'Cities with a similar climate';
+    fs.writeFileSync(path.join(CITIES_DIR, `${city.slug}.html`), buildCityHtml(city, faq, related, relatedHeading));
   });
   console.log(`wrote ${withClimate.length} city pages`);
 
   fs.writeFileSync(SITEMAP_FILE, buildSitemap(withClimate));
-  console.log(`wrote sitemap.xml with ${withClimate.length + 2} entries`);
+  console.log(`wrote sitemap.xml with ${withClimate.length + 5} entries`);
 
   // Best-effort IndexNow ping (Bing/Yandex instant indexing). Never fails the build.
   if (process.env.INDEXNOW !== '0') {
@@ -431,8 +579,12 @@ async function main() {
       const key = '9168f9f1b623e8f128bcd82260ffc41c';
       const host = 'novapixeltech.github.io';
       const urlList = [
-        'https://novapixeltech.github.io/WeatherOrbit/',
-        ...withClimate.map((c) => `https://novapixeltech.github.io/WeatherOrbit/cities/${c.slug}.html`),
+        `${SITE_URL}/`,
+        `${SITE_URL}/privacy.html`,
+        `${SITE_URL}/cities/index.html`,
+        `${SITE_URL}/blog/index.html`,
+        `${SITE_URL}/blog/how-to-read-a-climate-chart.html`,
+        ...withClimate.map((c) => `${SITE_URL}/cities/${c.slug}.html`),
       ];
       const res = await fetch('https://api.indexnow.org/indexnow', {
         method: 'POST',

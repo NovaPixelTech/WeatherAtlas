@@ -28,11 +28,16 @@ a viral spike.
 
 ### 2.1 SEO foundation (`index.html`, `robots.txt`, `sitemap.xml`, `manifest.webmanifest`)
 
-- Canonical URL, Open Graph + Twitter card tags, `WebApplication` JSON-LD,
-  `theme-color`, manifest link, font preconnects.
-- `robots.txt` with a sitemap reference.
-- `sitemap.xml` listing the landing page, the privacy page, the city index and all
-  generated city guides.
+- Canonical URL, Open Graph + Twitter card tags (with image alt/size),
+  `WebApplication` + `WebSite` JSON-LD, `theme-color`, manifest link, font
+  preconnects, and deferred local scripts for faster parsing.
+- `robots.txt` with a sitemap reference and crawl-waste rules for source folders.
+  On GitHub **project** Pages this file is served at `/WeatherOrbit/robots.txt`,
+  not the host root, so Search Console submission is still required.
+- `sitemap.xml` listing the landing page, privacy, the city index, the blog and
+  all generated city guides with distinct `lastmod`, `changefreq` and `priority`.
+- Breadcrumb, `City`, `FAQPage` and `CollectionPage` JSON-LD on generated guides;
+  complete `Blog` / `Article` / `WebPage` metadata on static pages.
 - Web app manifest for installability / PWA-shaped behaviour.
 
 ### 2.2 Programmatic city guides (100 cities)
@@ -44,9 +49,14 @@ a viral spike.
   and `sitemap.xml`.
 - `tools/city-page.css` — standalone stylesheet for the guides.
 
-Each guide has a unique title, description, H1, climate statistics, a 12-month
-climate table, FAQ JSON-LD and a deep link into the live app
+Each guide has a unique SERP-length title, description, H1, climate statistics, a
+12-month climate table, a season summary, visible breadcrumbs, climate-similarity
+related links, blog cross-links, FAQ JSON-LD and a deep link into the live app
 (`../index.html?city=…&region=…&country=…&lat=…&lon=…&tz=…`).
+
+Precipitation is derived as a **ten-year monthly average** (mm/year), not a raw
+ten-year total. This keeps the visible text, meta descriptions and structured
+data factually consistent.
 
 ### 2.3 Sharing & analytics on the new pages
 
@@ -83,12 +93,18 @@ climate table, FAQ JSON-LD and a deep link into the live app
 
 - [x] SEO tags + sitemap + robots + manifest.
 - [x] 100 city guides generated from real climate data.
+- [x] Full metadata, internal links and structured data on every public page.
+- [x] Correct annual precipitation averages and factual FAQ answers.
 - [x] Per-section analytics + city page analytics + events.
 - [x] Donations scaffold + feedback scaffold + issue templates.
 
 ### Phase 2 — First indexing & quick wins (next 2 weeks)
 
-- Submit the sitemap in Google Search Console and Bing Webmaster Tools.
+- Submit `https://novapixeltech.github.io/WeatherOrbit/sitemap.xml` in Google
+  Search Console and Bing Webmaster Tools. This is **required** because a GitHub
+  Pages project cannot place `robots.txt` at the host root.
+- Verify the canonical GitHub Pages URL in Search Console and check the Pages /
+  Sitemaps reports after each deploy.
 - Add the site to Google News / Discover ambitions later; keep it clean.
 - Share the app on relevant communities where allowed (no spam).
 - Ask the handful of early users to file one real bug + one real feature (they will

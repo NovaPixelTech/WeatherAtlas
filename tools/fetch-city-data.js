@@ -131,6 +131,7 @@ function computeClimate(times, maxes, mins, rains) {
     const highs = days.map((i) => maxes[i]).filter((v) => Number.isFinite(v));
     const lows = days.map((i) => mins[i]).filter((v) => Number.isFinite(v));
     const rainSum = days.reduce((sum, i) => sum + (Number.isFinite(rains[i]) ? rains[i] : 0), 0);
+    const years = new Set(days.map((i) => times[i].slice(0, 4))).size || 1;
     const high = highs.reduce((a, b) => a + b, 0) / highs.length;
     const low = lows.reduce((a, b) => a + b, 0) / lows.length;
     monthly.push({
@@ -138,14 +139,14 @@ function computeClimate(times, maxes, mins, rains) {
       avgHighC: round1(high),
       avgLowC: round1(low),
       avgTempC: round1((high + low) / 2),
-      precipMm: round1(rainSum),
+      precipMm: round1(rainSum / years),
       days: days.length,
     });
   }
   const annualMeanHighC = round1(maxes.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0) / maxes.length);
   const annualMeanLowC = round1(mins.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0) / mins.length);
   const annualMeanC = round1((annualMeanHighC + annualMeanLowC) / 2);
-  const annualPrecipMm = round1(rains.reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0));
+  const annualPrecipMm = round1(monthly.reduce((sum, entry) => sum + entry.precipMm, 0));
   let hottestMonth = 1;
   let coldestMonth = 1;
   monthly.forEach((entry) => {

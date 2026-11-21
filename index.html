@@ -13,6 +13,9 @@
   <meta property="og:description" content="Search real-time weather conditions by city name or discover cities worldwide meeting your preferred climate conditions." />
   <meta property="og:url" content="https://novapixeltech.github.io/WeatherOrbit/" />
   <meta property="og:image" content="https://novapixeltech.github.io/WeatherOrbit/og-image-v2.png" />
+  <meta property="og:image:alt" content="WeatherOrbit climate and city forecasts" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="WeatherOrbit - Climate & City Forecasts" />
@@ -20,6 +23,7 @@
   <meta name="twitter:image" content="https://novapixeltech.github.io/WeatherOrbit/og-image-v2.png" />
   <meta name="application-name" content="WeatherOrbit" />
   <meta name="theme-color" content="#0b1324" />
+  <link rel="sitemap" type="application/xml" href="sitemap.xml" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -27,7 +31,7 @@
     "name": "WeatherOrbit",
     "url": "https://novapixeltech.github.io/WeatherOrbit/",
     "description": "Search real-time weather conditions by city name or discover cities worldwide meeting your preferred climate conditions.",
-    "applicationCategory": "WeatherApplication",
+    "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Web",
     "offers": {
       "@type": "Offer",
@@ -1258,6 +1262,7 @@
        <p class="footer-privacy"><a href="privacy.html" data-i18n="footer.privacy">Privacy &amp; analytics</a></p>
         <nav class="footer-links" aria-label="Site links">
           <a href="cities/index.html" data-i18n="footer.cities">City Guides</a>
+          <a href="blog/index.html">WeatherOrbit Blog</a>
           <a href="#" id="footer-support-link" data-i18n="footer.support">Support WeatherOrbit</a>
           <a href="#" id="footer-feedback-link" data-i18n="footer.feedback">Send Feedback</a>
         </nav>
@@ -1356,28 +1361,28 @@
       <button type="button" id="feedback-close" data-dialog="feedback-dialog" data-i18n="feedback.close">Close</button>
     </div>
   </dialog>
-  <script src="i18n.js"></script>
-  <script src="fr.js"></script>
-  <script src="advice.js"></script>
+  <script src="i18n.js" defer></script>
+  <script src="fr.js" defer></script>
+  <script src="advice.js" defer></script>
   <!-- Pure comparison logic (location list, metrics, insights), no DOM access -->
-  <script src="compare.js"></script>
+  <script src="compare.js" defer></script>
   <!-- Pure "Today at a glance" logic (metrics + verdict), no DOM access -->
-  <script src="glance.js"></script>
+  <script src="glance.js" defer></script>
   <!-- Pure share-link logic (city + cards deep links), no DOM access -->
-  <script src="share.js"></script>
+  <script src="share.js" defer></script>
   <!-- Pure camera discovery logic (bbox query, ranking, cadence), no DOM access -->
-  <script src="cameras.js"></script>
-  <script src="favorites.js"></script>
+  <script src="cameras.js" defer></script>
+  <script src="favorites.js" defer></script>
   <!-- Pure weather-alert logic (thresholds, windows, verdicts), no DOM access -->
-  <script src="alerts.js"></script>
+  <script src="alerts.js" defer></script>
   <!-- Support + feedback dialog wiring. Donation / issue URLs live in
        support-config.js; the actions stay hidden until one is set there. -->
-  <script src="support-config.js"></script>
-  <script src="support.js"></script>
-  <script src="app.js"></script>
+  <script src="support-config.js" defer></script>
+  <script src="support.js" defer></script>
+  <script src="app.js" defer></script>
   <!-- Free, cookieless analytics via Umami Cloud. The Website ID lives in
        analytics-config.js; an empty Website ID loads no tracker at all. -->
-  <script src="analytics-config.js"></script>
+  <script src="analytics-config.js" defer></script>
   <script src="analytics.js" defer></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="e7e8c629-41e0-4a24-b143-cca79313c5cf"></script>
 </body>
