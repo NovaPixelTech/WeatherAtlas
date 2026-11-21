@@ -365,7 +365,11 @@ test('both picker buttons and the table stay usable on a narrow screen', () => {
 
 test('the comparison ships no new dependency or build step', () => {
   assert.equal(fs.existsSync(path.join(ROOT, 'package.json')), false);
-  assert.doesNotMatch(html, /<script[^>]+src="https?:\/\//);
+  // The only external script is the Umami snippet shipped on every page.
+  const externalScripts = html.match(/<script[^>]*\bsrc="https?:\/\/[^"]+"[^>]*><\/script>/g) || [];
+  assert.deepEqual(externalScripts, [
+    '<script defer src="https://cloud.umami.is/script.js" data-website-id="e7e8c629-41e0-4a24-b143-cca79313c5cf"></script>',
+  ]);
 });
 
 // ==========================================================================

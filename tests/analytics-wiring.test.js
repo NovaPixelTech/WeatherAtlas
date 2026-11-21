@@ -2,19 +2,19 @@
 /**
  * WeatherOrbit visitor analytics - Umami wiring tests
  * =========================================================================
- * The repo no longer runs its own collector. It loads Umami Cloud only when
- * `analytics-config.js` contains a Website ID, and it loads it with the
- * privacy switches that keep query strings, hashes and DNT visitors out of
- * the report.
+ * Every HTML page ships Umami's standard deferred snippet with the public
+ * Website ID. `analytics.js` reuses that tag - it never injects a second copy -
+ * and adds the section/event analytics on top.
  *
- * These tests cover the glue that decides whether the tracker runs at all:
+ * These tests cover that contract:
  *
- *   * index.html loads the config before the deferred loader;
- *   * an empty Website ID means no script and no request;
- *   * localhost, file://, DNT and GPC are not measured;
- *   * the injected tag carries the Website ID and the privacy attributes;
- *   * the loader sets no cookie and never calls umami.identify();
- *   * the privacy notice and README describe Umami accurately.
+ *   * every HTML page contains the exact snippet, with the configured ID;
+ *   * index.html loads the config and loader before the snippet so the tag can
+ *     be decorated before it executes;
+ *   * an existing tag is reused, decorated, and never duplicated;
+ *   * a page with no snippet still gets the fallback injected tracker;
+ *   * the bridge sets no cookie and never calls umami.identify();
+ *   * the privacy notice and README describe the plain-tag behaviour.
  *
  *     node --test tests/analytics-wiring.test.js
  */
@@ -35,40 +35,62 @@ const privacyHtml = read('privacy.html');
 const readme = read('README.md');
 const app = read('app.js');
 
+function allHtmlFiles(dir = ROOT) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    if (entry.name === '.git' || entry.name === 'node_modules') return [];
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) return allHtmlFiles(full);
+    return entry.isFile() && entry.name.toLowerCase().endsWith('.html') ? [full] : [];
+  });
+}
+
 // Privacy claims are allowed to be stated in comments; this is the code that
 // actually runs, with comments stripped.
 const clientCode = client
   .replace(/\/\*[\s\S]*?\*\//g, '')
   .replace(/^\s*\/\/.*$/gm, '');
 
-const WEBSITE_ID = '94db1cb1-74f4-4a40-ad6c-962362670409';
+const WEBSITE_ID = 'e7e8c629-41e0-4a24-b143-cca79313c5cf';
+const UMAMI_SNIPPET = `<script defer src="https://cloud.umami.is/script.js" data-website-id="${WEBSITE_ID}"></script>`;
 
 // ==========================================================================
 // Static wiring
 // ==========================================================================
 
-test('index.html loads the public config before the deferred loader', () => {
+test('index.html loads the config and loader before the deferred snippet', () => {
   const configAt = html.indexOf('src="analytics-config.js"');
   const clientAt = html.indexOf('src="analytics.js"');
+  const snippetAt = html.indexOf(UMAMI_SNIPPET);
   assert.notEqual(configAt, -1, 'analytics-config.js is not loaded');
   assert.notEqual(clientAt, -1, 'analytics.js is not loaded');
+  assert.notEqual(snippetAt, -1, 'the Umami snippet is missing');
   assert.ok(configAt < clientAt, 'the config must run before the loader');
+  assert.ok(clientAt < snippetAt, 'the loader must decorate the snippet before it executes');
   assert.match(html.slice(clientAt - 80, clientAt + 40), /defer/);
 });
 
-test('the shipped config names a real Umami site and keeps the privacy defaults', () => {
+test('every HTML page ships the exact Umami snippet once', () => {
+  const files = allHtmlFiles();
+  assert.ok(files.length >= 100, `expected the generated site, found ${files.length} HTML files`);
+  files.forEach((file) => {
+    const text = fs.readFileSync(file, 'utf8');
+    const occurrences = text.split(UMAMI_SNIPPET).length - 1;
+    assert.equal(occurrences, 1, `${path.relative(ROOT, file)} must contain the snippet exactly once`);
+  });
+
+  // Regenerating the city guides must not drop it from either template.
+  const generator = read('tools/build-city-pages.js');
+  assert.equal(generator.split(UMAMI_SNIPPET).length - 1, 2);
+});
+
+test('the shipped config uses the Website ID from the snippet', () => {
   assert.match(config, /provider:\s*'umami'/);
-  // A Website ID is a public UUID; anything malformed would silently collect
-  // nothing, so the shape is pinned here.
-  assert.match(
-    config,
-    /websiteId:\s*'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'/i
-  );
+  assert.match(config, new RegExp(`websiteId:\\s*'${WEBSITE_ID}'`));
   assert.match(config, /excludeSearch:\s*true/);
   assert.match(config, /excludeHash:\s*true/);
   assert.match(config, /respectDoNotTrack:\s*true/);
-  // The empty-string escape hatch stays documented for forks that clone this repo.
-  assert.match(config, /Leave `websiteId` empty/);
+  // A fork must be told that emptying the ID does not stop the plain snippet.
+  assert.match(config, /snippet\s+still\s+sends\s+its\s+basic\s+pageview/);
   assert.doesNotMatch(config, /ADMIN_TOKEN|Bearer|VISITOR_SALT/i);
 });
 
@@ -127,12 +149,35 @@ test('setMode reports the active mode as a section', () => {
 // Loader behaviour, against a small hand-written browser
 // ==========================================================================
 
+// Stand-in for the standard deferred tag already present in the HTML.
+function makeShippedTag() {
+  return {
+    attrs: {
+      src: 'https://cloud.umami.is/script.js',
+      'data-website-id': WEBSITE_ID,
+    },
+    listeners: {},
+    getAttribute(name) {
+      return Object.prototype.hasOwnProperty.call(this.attrs, name) ? this.attrs[name] : null;
+    },
+    setAttribute(name, value) {
+      this.attrs[name] = value;
+    },
+    addEventListener(name, handler) {
+      this.listeners[name] = handler;
+    },
+  };
+}
+
 function runLoader(options = {}) {
   const appended = [];
   const document = {
     head: { appendChild: (node) => appended.push(node) },
     body: { appendChild: (node) => appended.push(node) },
     documentElement: { appendChild: (node) => appended.push(node) },
+    getElementsByTagName() {
+      return options.existingScript ? [options.existingScript] : [];
+    },
     createElement() {
       return {
         attrs: {},
@@ -180,7 +225,7 @@ function runLoader(options = {}) {
   return { appended, sandbox, window };
 }
 
-test('a configured site injects the Umami tracker with the privacy switches', () => {
+test('a page with no snippet still gets the fallback injected tracker', () => {
   const { appended } = runLoader();
   assert.equal(appended.length, 1);
 
@@ -209,6 +254,25 @@ function captureUmami(result) {
   };
   return sent;
 }
+
+test('an existing snippet is reused, decorated, and never injected twice', () => {
+  const shipped = makeShippedTag();
+  const result = runLoader({ existingScript: shipped });
+
+  assert.equal(result.appended.length, 0, 'no second tracker may be injected');
+  assert.equal(shipped.attrs['data-website-id'], WEBSITE_ID);
+  assert.equal(shipped.attrs['data-exclude-search'], 'true');
+  assert.equal(shipped.attrs['data-exclude-hash'], 'true');
+  assert.equal(shipped.attrs['data-auto-pageview'], 'false');
+  assert.equal(shipped.attrs['data-do-not-track'], undefined, 'the plain snippet must stay plain');
+  assert.ok(shipped.listeners.load, 'the loader listens for the shipped tag');
+
+  const sent = captureUmami(result);
+  result.window.WeatherOrbitAnalytics.trackSection('compare');
+  shipped.listeners.load();
+  assert.equal(sent.length, 1);
+  assert.equal(sent[0].url, '/WeatherOrbit/compare');
+});
 
 test('the automatic pageview is off, because sections are sent by hand', () => {
   const { appended } = runLoader();

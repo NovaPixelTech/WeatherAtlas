@@ -271,6 +271,7 @@ ${relatedHtml}
 
   <script src="../support-config.js"></script>
   <script src="../support.js"></script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="e7e8c629-41e0-4a24-b143-cca79313c5cf"></script>
 </body>
 </html>`;
 }
@@ -386,6 +387,7 @@ ${sections}
       if (input) { input.addEventListener('input', update); update(); }
     })();
   </script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="e7e8c629-41e0-4a24-b143-cca79313c5cf"></script>
 </body>
 </html>`;
 }

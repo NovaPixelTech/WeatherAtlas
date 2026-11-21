@@ -94,9 +94,11 @@
       <div class="callout">
         <p>
           <strong>Short version:</strong> WeatherOrbit uses <strong>Umami Cloud</strong>, a
-          cookieless analytics service. No cookies are set, no account is linked to a visit, and
-          query strings and URL fragments are excluded. You can opt out by sending Do Not Track or
-          Global Privacy Control, or by blocking the Umami tracker.
+          cookieless analytics service. Every page loads Umami's standard tracker snippet; the app
+          reuses it for section and event analytics without loading a second copy. No cookies are
+          set and no account is linked to a visit. To opt out, block <code>cloud.umami.is</code> or
+          disable JavaScript; the plain snippet does not honour Do Not Track or Global Privacy
+          Control.
         </p>
       </div>
 
@@ -106,7 +108,7 @@
         another; a generated city guide sends one pageview of its own. It records:
       </p>
       <ul>
-        <li><strong>The page path and title</strong>, without the query string or hash. A shared link such as <code>?city=Tokyo</code> is counted as the page, not as the city you looked at.</li>
+        <li><strong>The page path and title.</strong> On the app and city guides the query string and hash are excluded, so a shared link such as <code>?city=Tokyo</code> is counted as the page, not as the city you looked at. The plain static pages record the URL as loaded.</li>
         <li><strong>Which section you are using</strong> — City Search, Compare, Climate Filter or Live Cameras. The app is a single page, so these are sent as virtual paths such as <code>/WeatherOrbit/compare</code>; switching sections is not a request to another page.</li>
         <li><strong>Generated city guides</strong> — one pageview per guide, such as <code>/WeatherOrbit/cities/tokyo</code>, with its own title and climate summary.</li>
         <li><strong>The referring site</strong> (the page that sent you here) and the site hostname.</li>
@@ -139,7 +141,7 @@
       <ul>
         <li>No cookies and no advertising identifiers.</li>
         <li>No name, email or account is linked to a visit. WeatherOrbit never calls Umami's <code>identify()</code> function, and accounts and saved cities are not used for analytics.</li>
-        <li>No query strings or URL fragments, so a shared city link is not recorded as a search.</li>
+        <li>No query strings or URL fragments on the app and city guides; the remaining plain pages record the URL as loaded.</li>
         <li>No cross-site tracking: Umami's identifier includes this website's ID, so it cannot join a visit to another site.</li>
         <li>No selling of data, no advertising and no personalisation based on analytics.</li>
       </ul>
@@ -149,8 +151,9 @@
         Donations and feedback are sent as <strong>custom events</strong> (for example
         <code>donate_click</code> when a visitor opens the Ko-fi or PayPal donation page, or
         <code>helpful_vote</code> when they answer "was this helpful?"), not as pageviews. Events
-        carry no personal information, and they are only sent after consent is given or declined by
-        the usual Do Not Track / Global Privacy Control switches.
+        carry no personal information. They are sent by the app's section tracker, which skips its
+        own calls when the browser sends Do Not Track or Global Privacy Control; the plain snippet's
+        basic pageview is unaffected by those signals.
       </p>
 
       <h2>Why the data is kept, and for how long</h2>
@@ -171,8 +174,8 @@
 
       <h2>Your choices</h2>
       <ul>
-        <li><strong>Do Not Track</strong> is honoured: if your browser sends it, the Umami tracker is not loaded.</li>
-        <li><strong>Global Privacy Control</strong> is honoured: WeatherOrbit checks it before loading the tracker.</li>
+        <li><strong>Do Not Track</strong> is checked by the section/event bridge, which then sends no extra calls. The plain Umami snippet does not check it, so a basic pageview is still sent.</li>
+        <li><strong>Global Privacy Control</strong> has the same effect: the section/event bridge stays silent, but the plain snippet still sends a basic pageview.</li>
         <li><strong>A content blocker</strong> that blocks <code>cloud.umami.is</code> prevents measurement. The app works exactly the same.</li>
         <li><strong>JavaScript disabled</strong> also prevents measurement, because the tracker never runs.</li>
         <li>You can ask questions or raise a concern through the project's <a href="https://github.com/NovaPixelTech/WeatherOrbit/issues" target="_blank" rel="noopener noreferrer">issue tracker</a>.</li>
@@ -206,5 +209,6 @@
       <a href="https://umami.is/privacy" target="_blank" rel="noopener noreferrer">Umami's privacy policy</a>
     </footer>
   </div>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="e7e8c629-41e0-4a24-b143-cca79313c5cf"></script>
 </body>
 </html>

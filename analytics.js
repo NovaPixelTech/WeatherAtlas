@@ -1,34 +1,39 @@
 /**
- * WeatherOrbit visitor analytics - Umami Cloud loader
+ * WeatherOrbit visitor analytics - Umami Cloud bridge
  * =========================================================================
- * Umami is loaded only when `analytics-config.js` contains a Website ID. The
- * loader deliberately does very little:
+ * Every HTML page loads Umami with the standard deferred snippet:
  *
- *   * no Website ID          -> no script, no request;
- *   * localhost / file://    -> not measured;
- *   * Do Not Track / GPC     -> not measured;
- *   * query strings and hash -> stripped by the tracker itself;
- *   * no `umami.identify()`  -> a visit is never linked to an account.
+ *   <script defer src="https://cloud.umami.is/script.js" data-website-id="..."></script>
+ *
+ * This file never injects a second tracker when that tag is present. It finds
+ * the tag, adds its report attributes before the deferred script executes, and
+ * exposes the section/event helpers used by app.js and the static pages.
+ *
+ *   * plain snippet everywhere -> one tracker, one basic pageview per page;
+ *   * no Website ID in config   -> the section/event bridge stays silent;
+ *   * localhost / file:// / DNT / GPC -> section events are skipped, but the
+ *     plain snippet still sends its basic pageview;
+ *   * no `umami.identify()`     -> a visit is never linked to an account.
  *
  * The tracker sets no cookies. Umami's server derives an anonymous session
  * hash from the website ID, IP address, user agent and a monthly rotating
  * salt; the IP is not stored in the analytics record.
  *
  * WeatherOrbit is a single-page app: City Search, Compare, Climate Filter and
- * Live Cameras all live at the same URL. Umami's automatic pageview would
- * therefore fold every visit into one row. Instead, automatic pageviews are
- * turned off and each section switch is sent as a *virtual pageview* whose
- * URL is `/WeatherOrbit/<section>`. Umami treats it like any other page, so
- * its Pages report breaks views and visitors down by section and every filter
- * (country, device, referrer) still applies.
+ * Live Cameras all live at the same URL. On those pages (and the generated
+ * city guides) this script sets `data-auto-pageview="false"` on the shipped
+ * tag before it runs, then sends each section switch as a *virtual pageview*
+ * whose URL is `/WeatherOrbit/<section>`. Umami treats it like any other page,
+ * so its Pages report breaks views and visitors down by section and every
+ * filter (country, device, referrer) still applies.
  *
- * Static pages (the generated city guides) declare their report label in
- * `window.WEATHERORBIT_STATIC_PAGE` before this script runs. They send one
- * virtual pageview of their own, so the same Pages report lists the app
- * sections and the city guides together.
+ * Static city guides declare their report label in
+ * `window.WEATHERORBIT_STATIC_PAGE` before this script runs, so the same Pages
+ * report lists the app sections and the guides together. The remaining plain
+ * HTML pages (privacy, blog, city index) rely on the snippet's own pageview.
  *
- * Loading the real script (instead of hard-coding a snippet) keeps the
- * Website ID in one file and lets a fork disable analytics completely.
+ * A page with no snippet - a fork, or a unit test - still gets the original
+ * injected tracker as a fallback.
  */
 (function () {
   'use strict';
@@ -81,16 +86,23 @@
   window.__WeatherOrbitUmamiLoaded = true;
   tracking = true;
 
-  var script = document.createElement('script');
-  script.async = true;
-  script.src = scriptUrl;
-  script.setAttribute('data-website-id', websiteId);
+  // The exact snippet is already in the HTML. Reuse it: this script runs
+  // before the deferred tag executes, so these attributes still take effect.
+  var script = findExistingTracker(websiteId, scriptUrl);
+  var ownsScript = !script;
 
-  // These are Umami's own privacy switches. Query strings can carry a shared
+  if (!script) {
+    // Fallback for a fork or test page with no snippet.
+    script = document.createElement('script');
+    script.async = true;
+    script.src = scriptUrl;
+    script.setAttribute('data-website-id', websiteId);
+  }
+
+  // These are Umami's own report switches. Query strings can carry a shared
   // city and hashes can carry app state, so neither belongs in the report.
   if (config.excludeSearch !== false) script.setAttribute('data-exclude-search', 'true');
   if (config.excludeHash !== false) script.setAttribute('data-exclude-hash', 'true');
-  if (config.respectDoNotTrack !== false) script.setAttribute('data-do-not-track', 'true');
 
   // The app sends one virtual pageview per section, and a static page sends
   // one for itself. Turning off the automatic pageview avoids a duplicate.
@@ -99,6 +111,10 @@
   var domains = typeof config.domains === 'string' ? config.domains.trim() : '';
   if (domains) script.setAttribute('data-domains', domains);
 
+  // Only the fallback tag gets the DNT switch; the shipped snippet stays the
+  // plain tag supplied in the HTML, as documented in analytics-config.js.
+  if (ownsScript && config.respectDoNotTrack !== false) script.setAttribute('data-do-not-track', 'true');
+
   script.addEventListener('load', flush);
   script.addEventListener('error', function () {
     // The tracker never arrived (blocked, offline). Drop anything queued so a
@@ -106,7 +122,12 @@
     queue.length = 0;
   });
 
-  (document.head || document.body || document.documentElement).appendChild(script);
+  if (ownsScript) {
+    (document.head || document.body || document.documentElement).appendChild(script);
+  } else if (window.umami && typeof window.umami.track === 'function') {
+    // Defensive: also works if a page puts the snippet before this loader.
+    flush();
+  }
 
   // Generated pages (cities/*.html) announce their own report label. They do
   // not use app.js, so without this they would be invisible in the dashboard.
@@ -232,6 +253,20 @@
       }
     }
     return fields ? clean : undefined;
+  }
+
+  // Locate the standard Umami tag already present in the page. Matching is
+  // deliberately narrow: the ID must agree with analytics-config.js and the
+  // src must be the configured tracker (or Umami Cloud's public endpoint).
+  function findExistingTracker(id, url) {
+    var scripts = document.getElementsByTagName ? document.getElementsByTagName('script') : [];
+    for (var i = 0; i < scripts.length; i += 1) {
+      var candidate = scripts[i];
+      if (candidate.getAttribute('data-website-id') !== id) continue;
+      var src = candidate.getAttribute('src') || candidate.src || '';
+      if (src === url || /cloud\.umami\.is\/script\.js/i.test(src)) return candidate;
+    }
+    return null;
   }
 
   function isLocalHost(hostname) {

@@ -329,7 +329,7 @@ node --test tests/favorites.test.js tests/server.test.js tests/favorites-wiring.
 
 ## 📈 Visitor analytics
 
-WeatherOrbit uses **[Umami Cloud](https://cloud.umami.is)** for visitor analytics: a free, cookieless, open-source analytics service with its own dashboard. There is no backend in this repository and no build step — the site loads Umami's tracker only when a Website ID is configured.
+WeatherOrbit uses **[Umami Cloud](https://cloud.umami.is)** for visitor analytics: a free, cookieless, open-source analytics service with its own dashboard. There is no backend in this repository and no build step. Every HTML page ships Umami's standard deferred snippet with the Website ID; `analytics.js` reuses that tag to add section and event analytics without loading a second copy.
 
 | The Umami dashboard shows | Notes |
 | --- | --- |
@@ -342,9 +342,9 @@ WeatherOrbit uses **[Umami Cloud](https://cloud.umami.is)** for visitor analytic
 
 ### Per-section statistics
 
-WeatherOrbit is a single-page app: City Search, Compare, Climate Filter and Live Cameras share one URL, so a plain page counter would fold every visit into one row. The loader fixes that:
+WeatherOrbit is a single-page app: City Search, Compare, Climate Filter and Live Cameras share one URL, so a plain page counter would fold every visit into one row. On the app and generated city guides, the loader fixes that:
 
-- Umami's automatic pageview is disabled (`data-auto-pageview="false"`), so the landing is counted once.
+- It sets `data-auto-pageview="false"` on the shipped snippet before the deferred tag runs, so the landing is counted once.
 - `setMode()` in `app.js` reports the active section as a **virtual pageview** with its own path and title.
 - Repeating the active section — re-clicking its tab or changing language — is de-duplicated.
 
@@ -355,7 +355,7 @@ WeatherOrbit is a single-page app: City Search, Compare, Climate Filter and Live
 | Climate Filter | `/WeatherOrbit/climate-filter` |
 | Live Cameras | `/WeatherOrbit/live-cameras` |
 
-Open **Pages** (or **Breakdown → Path**) in the Umami dashboard to see views and visitors per section. The filter panel combines a section with country, device, browser or referrer, so questions like "which countries use Compare?" are answerable. The virtual paths are report labels, not real files: clicking one in the dashboard may show a 404, which is harmless.
+Open **Pages** (or **Breakdown → Path**) in the Umami dashboard to see views and visitors per section. The filter panel combines a section with country, device, browser or referrer, so questions like "which countries use Compare?" are answerable. The virtual paths are report labels, not real files: clicking one in the dashboard may show a 404, which is harmless. The privacy page, blog pages and city index use the snippet's own automatic pageview instead of a virtual path.
 
 ### Free-plan limits (Umami Cloud Hobby)
 
@@ -366,38 +366,31 @@ Open **Pages** (or **Breakdown → Path**) in the Umami dashboard to see views a
 
 Check the current [Umami pricing](https://umami.is/pricing) before a high-traffic launch — free tiers change.
 
-### Setup (one value to paste)
+### Setup (the Website ID lives in two places)
 
 1. Create a free account at **https://cloud.umami.is** (choose the US or EU region).
 2. Add a website. Use `novapixeltech.github.io` as the domain (the project path is not part of a hostname).
-3. Copy the **Website ID** (a UUID such as `94db1cb1-74f4-4a40-ad6c-962362670409`).
-4. Paste it into [`analytics-config.js`](analytics-config.js):
+3. Copy the **Website ID** (a public UUID such as `e7e8c629-41e0-4a24-b143-cca79313c5cf`).
+4. Keep the ID in sync in [`analytics-config.js`](analytics-config.js) **and** in the standard snippet that every HTML page ships:
 
-   ```js
-   window.WeatherOrbit_ANALYTICS = {
-     provider: 'umami',
-     scriptUrl: 'https://cloud.umami.is/script.js',
-     websiteId: 'paste-the-uuid-here',
-     excludeSearch: true,
-     excludeHash: true,
-     respectDoNotTrack: true,
-     domains: '',
-     enabled: true,
-   };
+   ```html
+   <script defer src="https://cloud.umami.is/script.js" data-website-id="e7e8c629-41e0-4a24-b143-cca79313c5cf"></script>
    ```
+
+   The config value lets `analytics.js` recognise the tag and add section/event analytics. `tools/build-city-pages.js` carries the same snippet in both city-page templates, so regenerating the guides keeps it.
 
 5. Commit and push. Open the Umami dashboard; a pageview appears within a minute of the next visit.
 
-Leaving `websiteId` empty disables collection completely: the loader adds no script and sends no request, so a fork cannot report into your Umami site. The Website ID is public by design; there is no admin token to protect.
+Leaving `websiteId` empty only disables the section/event tracker: the plain snippet still sends its basic pageview. To disable collection completely, remove the snippet from the HTML pages (or block `cloud.umami.is`). The Website ID is public by design; there is no admin token to protect.
 
 ### Privacy defaults
 
 - **No cookies.** Umami derives an anonymous session hash on its server from the website ID, IP address, user agent and a salt that rotates monthly. The IP is processed for that hash and for approximate location, but is not stored as an analytics field.
-- **No query strings or hashes.** `excludeSearch` and `excludeHash` keep a shared `?city=Tokyo` link from being recorded as a search.
+- **No query strings or hashes on the app and city guides.** `excludeSearch` and `excludeHash` are applied to the shipped tag there, so a shared `?city=Tokyo` link is not recorded as a search. The remaining plain static pages record the URL as loaded.
 - **No account linkage.** WeatherOrbit never calls `umami.identify()`, so a visit is not tied to a saved city or a local account.
 - **Sections, not a click trail.** Only the section on screen is named (`/city-search`, `/compare`, …); the app does not record a history of which cards, cities or panels you opened.
-- **DNT and GPC.** The loader refuses to load the tracker when either signal is present.
-- **No localhost noise.** Local development and `file://` pages are never measured.
+- **DNT and GPC.** The plain snippet does not check these signals, so those visitors still send a basic pageview. WeatherOrbit's extra section/event tracker skips its own calls when either signal is present.
+- **Localhost.** Local development and `file://` pages still send the snippet's basic pageview; the section/event bridge stays silent.
 - **Public notice.** [`privacy.html`](privacy.html) is linked from the footer and explains exactly what Umami records. Keep it in sync if you change the provider or retention.
 
 ### Honest limits
@@ -414,7 +407,7 @@ Leaving `websiteId` empty disables collection completely: the loader adds no scr
 node --test tests/analytics-wiring.test.js
 ```
 
-`analytics-wiring.test.js` proves the loader is silent with an empty Website ID, on localhost, `file://`, DNT and GPC; that it injects the tracker with `data-exclude-search`, `data-exclude-hash` and `data-do-not-track`; that each section becomes one de-duplicated virtual pageview; that static pages report their own path; that interactions are sent as named events; that it never sets a cookie or calls `umami.identify()`; and that the README and privacy page keep the documented contract. The full suite is `node --test`.
+`analytics-wiring.test.js` proves every HTML page ships the exact snippet with the configured Website ID; that an existing tag is reused and decorated instead of injected twice; that each section becomes one de-duplicated virtual pageview; that static pages report their own path; that interactions are sent as named events; that the fallback injector still has the privacy switches; that no cookie is set and `umami.identify()` is never called; and that the README and privacy page keep the documented contract. The full suite is `node --test`.
 
 ---
 
