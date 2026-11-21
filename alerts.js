@@ -1,5 +1,5 @@
 /**
- * WeatherAtlas Weather Alerts - rule engine
+ * WeatherOrbit Weather Alerts - rule engine
  * =========================================================================
  * Turns the hourly Open-Meteo forecast into answers to a visitor's own
  * questions: "will it rain in the next two hours?", "does it freeze tonight?",
@@ -23,7 +23,7 @@
  *    ever fail closed.
  *
  * Loading contract: plain classic script (no build step). It publishes
- * `window.WeatherAtlasAlerts`, and also supports `module.exports` for the
+ * `window.WeatherOrbitAlerts`, and also supports `module.exports` for the
  * server and the tests.
  */
 
@@ -35,7 +35,7 @@
   if (typeof module === 'object' && module !== null && typeof module.exports === 'object') {
     module.exports = api;
   }
-  if (root) root.WeatherAtlasAlerts = api;
+  if (root) root.WeatherOrbitAlerts = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 

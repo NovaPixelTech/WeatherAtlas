@@ -1,5 +1,5 @@
 /**
- * WeatherAtlas server - static app + accounts and favorite cities
+ * WeatherOrbit server - static app + accounts and favorite cities
  * =========================================================================
  * The app itself is a plain static site and still runs by double-clicking
  * `index.html`. But a *saved city* is only worth anything if it follows the
@@ -46,7 +46,7 @@
  * server signs everyone out - but no account or favorite is ever lost, because
  * those live in `data/users.json`, written atomically.
  *
- * Running it:  `node server.js`   (env: PORT, HOST, WeatherAtlas_DATA)
+ * Running it:  `node server.js`   (env: PORT, HOST, WeatherOrbit_DATA)
  */
 
 'use strict';
@@ -478,7 +478,7 @@ function createApiHandler(config) {
     if (urlPath === '/api/health' && method === 'GET') {
       sendJson(res, 200, {
         ok: true,
-        service: 'WeatherAtlas',
+        service: 'WeatherOrbit',
         favorites: Favorites.MAX_FAVORITES,
         alerts: Alerts.MAX_ALERTS,
         contacts: Favorites.MAX_CONTACTS,
@@ -700,10 +700,10 @@ function createApiHandler(config) {
 // The server
 // ==========================================================================
 
-function createWeatherAtlasServer(options) {
+function createWeatherOrbitServer(options) {
   const opts = options || {};
   const staticDir = path.resolve(opts.staticDir || __dirname);
-  const dataDir = path.resolve(opts.dataDir || process.env.WeatherAtlas_DATA || path.join(staticDir, 'data'));
+  const dataDir = path.resolve(opts.dataDir || process.env.WeatherOrbit_DATA || path.join(staticDir, 'data'));
   const log = typeof opts.log === 'function' ? opts.log : () => {};
 
   const store = createStore(dataDir, log);
@@ -749,7 +749,7 @@ function createWeatherAtlasServer(options) {
   });
 
   // Exposed for tests and for a caller that wants to inspect the store.
-  server.WeatherAtlas = { staticDir: staticDir, dataDir: dataDir, store: store };
+  server.WeatherOrbit = { staticDir: staticDir, dataDir: dataDir, store: store };
   return server;
 }
 
@@ -759,12 +759,12 @@ function startServer(options) {
   const host = opts.host || process.env.HOST || DEFAULT_HOST;
   const log = typeof opts.log === 'function' ? opts.log : console.log;
 
-  const server = createWeatherAtlasServer(Object.assign({}, opts, { log: log }));
+  const server = createWeatherOrbitServer(Object.assign({}, opts, { log: log }));
   server.listen(port, host, () => {
     const address = server.address();
     const actual = address && typeof address === 'object' ? address.port : port;
     log('==========================================');
-    log(' WeatherAtlas server running');
+    log(' WeatherOrbit server running');
     log(` http://${host}:${actual}/`);
     log(' Accounts & favorites: enabled');
     log(' Press Ctrl+C to stop.');
@@ -774,7 +774,7 @@ function startServer(options) {
 }
 
 module.exports = {
-  createWeatherAtlasServer: createWeatherAtlasServer,
+  createWeatherOrbitServer: createWeatherOrbitServer,
   startServer: startServer,
   hashPassword: hashPassword,
   verifyPassword: verifyPassword,

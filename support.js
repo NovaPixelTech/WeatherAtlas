@@ -1,5 +1,5 @@
 /**
- * WeatherAtlas support + feedback behaviour
+ * WeatherOrbit support + feedback behaviour
  * ==========================================================================
  * Owns the two dialogs from the footer:
  *
@@ -11,7 +11,7 @@
  * data-i18n attributes; no text lives here.
  *
  * Analytics: donations and feedback votes are sent as Umami custom events via
- * `window.WeatherAtlasAnalytics.trackEvent`, so they never pollute the pageview
+ * `window.WeatherOrbitAnalytics.trackEvent`, so they never pollute the pageview
  * counts. Events are no-ops when analytics is unconfigured or opted out.
  */
 (function () {
@@ -22,7 +22,7 @@
   }
 
   function analyticsApi() {
-    return window.WeatherAtlasAnalytics || {};
+    return window.WeatherOrbitAnalytics || {};
   }
 
   function trackEvent(name, data) {
@@ -48,7 +48,7 @@
   }
 
   function init() {
-    const config = window.WEATHERATLAS_SUPPORT || {};
+    const config = window.WEATHERORBIT_SUPPORT || {};
 
     // ---- Donation surface -------------------------------------------------
     const donations = element('support-donations');
@@ -217,7 +217,7 @@
 
   // Public hook for the generated city pages, which carry the helpful-vote
   // buttons outside the dialog markup.
-  window.WeatherAtlasSupport = {
+  window.WeatherOrbitSupport = {
     trackHelpful: function (value) {
       trackEvent('helpful_vote', { value: value, page: String(window.location.pathname || '') });
     },

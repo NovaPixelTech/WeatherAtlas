@@ -1,16 +1,16 @@
-﻿# WeatherAtlas 🌦️
+﻿# WeatherOrbit 🌦️
 
 A modern, fast, and responsive weather web application that allows you to search real-time weather conditions by **City Name** or discover worldwide cities that meet your **Preferred Climate & Weather Conditions** (e.g., Sunny, Warm, Rain, Snow, Hot > 28°C, Cold < 12°C).
 
-Powered by the [Open-Meteo API](https://open-meteo.com/), WeatherAtlas operates with zero API key configuration or setup friction.
+Powered by the [Open-Meteo API](https://open-meteo.com/), WeatherOrbit operates with zero API key configuration or setup friction.
 
 ---
 
 ## 🎯 The mark
 
-The app is named **WeatherAtlas**, and its icon is a **radar scope showing the weather** — a name and a picture that mean the same thing.
+The app is named **WeatherOrbit**, and its icon is a **radar scope showing the weather** — a name and a picture that mean the same thing.
 
-![The WeatherAtlas mark](favicon.svg)
+![The WeatherOrbit mark](favicon.svg)
 
 | Layer | What it is | Why |
 | --- | --- | --- |
@@ -260,7 +260,7 @@ Sign in and the cities you care about follow you: one click saves the city you a
 ### What it does
 
 - **Save from anywhere a city is shown.** The star next to the city name on the dashboard toggles the current city; toggling it while signed out opens the account panel instead of failing silently.
-- **Favorites follow the account, not the browser.** Saved cities live on the WeatherAtlas server against your username, so signing in on another device shows the same list.
+- **Favorites follow the account, not the browser.** Saved cities live on the WeatherOrbit server against your username, so signing in on another device shows the same list.
 - **Up to 24 cities.** The bar is hidden until you save one, and it does not appear in Climate Filter, whose own chip bar replaces it.
 - **Every control is a real control.** The star exposes `aria-pressed`, the chip name and the remove button carry `aria-label`s, and every outcome is announced through a polite live region.
 
@@ -270,10 +270,10 @@ The app can keep your account in one of two places, and it picks automatically:
 
 | Host | Backend | Favorites follow you… |
 | --- | --- | --- |
-| `node server.js` (or `start-server.ps1`) | The WeatherAtlas **server** | …to any device you sign in on. |
+| `node server.js` (or `start-server.ps1`) | The WeatherOrbit **server** | …to any device you sign in on. |
 | GitHub Pages, `file://`, a static-only server | The **browser** (`localStorage`) | …only on this device and browser. |
 
-On a static host a `POST` to `/api/*` is simply a 404 — GitHub Pages cannot run `server.js` — so the app falls back to a **browser-only account**, stored under `WeatherAtlas_accounts` in `localStorage`. Creating an account and signing in work immediately; the account panel says plainly that the list stays on this device, and its promise changes from "reach them on any device" to "keep them in this browser".
+On a static host a `POST` to `/api/*` is simply a 404 — GitHub Pages cannot run `server.js` — so the app falls back to a **browser-only account**, stored under `WeatherOrbit_accounts` in `localStorage`. Creating an account and signing in work immediately; the account panel says plainly that the list stays on this device, and its promise changes from "reach them on any device" to "keep them in this browser".
 
 ### How the server accounts work
 
@@ -294,7 +294,7 @@ Validation is the **same `favorites.js` engine whether the account is on the ser
 Accounts that follow you across devices need the small zero-dependency Node server, which serves the static app **and** the API:
 
 ```bash
-node server.js        # http://127.0.0.1:3000/  (env: PORT, HOST, WeatherAtlas_DATA)
+node server.js        # http://127.0.0.1:3000/  (env: PORT, HOST, WeatherOrbit_DATA)
 ```
 
 `start-server.ps1` prefers it automatically when Node is installed:
@@ -329,7 +329,7 @@ node --test tests/favorites.test.js tests/server.test.js tests/favorites-wiring.
 
 ## 📈 Visitor analytics
 
-WeatherAtlas uses **[Umami Cloud](https://cloud.umami.is)** for visitor analytics: a free, cookieless, open-source analytics service with its own dashboard. There is no backend in this repository and no build step — the site loads Umami's tracker only when a Website ID is configured.
+WeatherOrbit uses **[Umami Cloud](https://cloud.umami.is)** for visitor analytics: a free, cookieless, open-source analytics service with its own dashboard. There is no backend in this repository and no build step — the site loads Umami's tracker only when a Website ID is configured.
 
 | The Umami dashboard shows | Notes |
 | --- | --- |
@@ -342,7 +342,7 @@ WeatherAtlas uses **[Umami Cloud](https://cloud.umami.is)** for visitor analytic
 
 ### Per-section statistics
 
-WeatherAtlas is a single-page app: City Search, Compare, Climate Filter and Live Cameras share one URL, so a plain page counter would fold every visit into one row. The loader fixes that:
+WeatherOrbit is a single-page app: City Search, Compare, Climate Filter and Live Cameras share one URL, so a plain page counter would fold every visit into one row. The loader fixes that:
 
 - Umami's automatic pageview is disabled (`data-auto-pageview="false"`), so the landing is counted once.
 - `setMode()` in `app.js` reports the active section as a **virtual pageview** with its own path and title.
@@ -350,10 +350,10 @@ WeatherAtlas is a single-page app: City Search, Compare, Climate Filter and Live
 
 | Section | Reported path |
 | --- | --- |
-| City Search | `/WeatherAtlas/city-search` |
-| Compare Locations | `/WeatherAtlas/compare` |
-| Climate Filter | `/WeatherAtlas/climate-filter` |
-| Live Cameras | `/WeatherAtlas/live-cameras` |
+| City Search | `/WeatherOrbit/city-search` |
+| Compare Locations | `/WeatherOrbit/compare` |
+| Climate Filter | `/WeatherOrbit/climate-filter` |
+| Live Cameras | `/WeatherOrbit/live-cameras` |
 
 Open **Pages** (or **Breakdown → Path**) in the Umami dashboard to see views and visitors per section. The filter panel combines a section with country, device, browser or referrer, so questions like "which countries use Compare?" are answerable. The virtual paths are report labels, not real files: clicking one in the dashboard may show a 404, which is harmless.
 
@@ -374,7 +374,7 @@ Check the current [Umami pricing](https://umami.is/pricing) before a high-traffi
 4. Paste it into [`analytics-config.js`](analytics-config.js):
 
    ```js
-   window.WeatherAtlas_ANALYTICS = {
+   window.WeatherOrbit_ANALYTICS = {
      provider: 'umami',
      scriptUrl: 'https://cloud.umami.is/script.js',
      websiteId: 'paste-the-uuid-here',
@@ -394,7 +394,7 @@ Leaving `websiteId` empty disables collection completely: the loader adds no scr
 
 - **No cookies.** Umami derives an anonymous session hash on its server from the website ID, IP address, user agent and a salt that rotates monthly. The IP is processed for that hash and for approximate location, but is not stored as an analytics field.
 - **No query strings or hashes.** `excludeSearch` and `excludeHash` keep a shared `?city=Tokyo` link from being recorded as a search.
-- **No account linkage.** WeatherAtlas never calls `umami.identify()`, so a visit is not tied to a saved city or a local account.
+- **No account linkage.** WeatherOrbit never calls `umami.identify()`, so a visit is not tied to a saved city or a local account.
 - **Sections, not a click trail.** Only the section on screen is named (`/city-search`, `/compare`, …); the app does not record a history of which cards, cities or panels you opened.
 - **DNT and GPC.** The loader refuses to load the tracker when either signal is present.
 - **No localhost noise.** Local development and `file://` pages are never measured.
@@ -420,7 +420,7 @@ node --test tests/analytics-wiring.test.js
 
 ## 🚀 Organic growth, donations and feedback
 
-WeatherAtlas is being built for **organic, long-tail traffic** first, with donations as the revenue path.
+WeatherOrbit is being built for **organic, long-tail traffic** first, with donations as the revenue path.
 
 ### City weather guides (SEO)
 
@@ -452,7 +452,7 @@ The support dialog (`support.js` + `support-config.js`) renders donation actions
 `support-config.js`; with no URL the dialog says so instead of showing dead buttons:
 
 ```js
-window.WEATHERATLAS_SUPPORT = {
+window.WEATHERORBIT_SUPPORT = {
   enabled: true,
   koFiUrl: '',
   payPalMeUrl: '',
@@ -482,7 +482,7 @@ premium) are deliberately deferred.
 
 The top of the page carries a single `.free-banner` card (`#free-banner`) that states the deal in
 plain language: every forecast, city guide and live camera is free, there are no ads and no account,
-and staying free depends on travellers rather than paywalls. Its one action, **Keep WeatherAtlas
+and staying free depends on travellers rather than paywalls. Its one action, **Keep WeatherOrbit
 free**, opens the same support dialog the footer opens, so the donation buttons appear there as soon
 as `support-config.js` gets real URLs. The click is tracked as `support_open` with `source: 'banner'`.
 
@@ -495,7 +495,7 @@ promise that no personal data lands in `localStorage`, `sessionStorage` or cooki
 
 ## 🔔 Weather alerts
 
-Save a city and you can also decide **when WeatherAtlas should speak up about it**. An alert is a small rule — a city, a condition, a threshold and a look-ahead window — and the bell beside the account button turns amber with a count the moment one of them matches.
+Save a city and you can also decide **when WeatherOrbit should speak up about it**. An alert is a small rule — a city, a condition, a threshold and a look-ahead window — and the bell beside the account button turns amber with a count the moment one of them matches.
 
 ### What you can watch
 
@@ -601,7 +601,7 @@ A city outside these gets one short line of text. Probing the directory for any 
 
 The **Live Cameras** mode turns the directory's coverage index into a browsable city catalogue. It lists every camera-covered city by publishing registry, then opens that city's current climate and a wall of source frames. Coverage comes from the same `/api/registries` response the app already fetches for source refresh cadences, so discovering the 27 directory-covered cities adds no per-city lookup requests. Each city camera list costs one request. The directory sources currently publish **JPEG snapshots, not continuous video**; three frames are shown at a time and fetched as CORS-enabled blobs with the browser cache bypassed, then refreshed just after each source's published cadence. Previous/next controls reach the remaining cameras. The catalogue does not invent per-city counts from registry-wide totals.
 
-For places where the directory has no camera snapshots, the catalogue also includes selected **continuous European livestreams** from SkylineWebcams: 20 feeds across 15 Greek cities, plus Milan and Paris. SkylineWebcams permits sharing links but its terms restrict embedding live video to camera hosts and its pages send `X-Frame-Options: SAMEORIGIN`; those links therefore open its official player in a new tab beside WeatherAtlas's city climate rather than extracting its temporary stream URL or framing a blocked page.
+For places where the directory has no camera snapshots, the catalogue also includes selected **continuous European livestreams** from SkylineWebcams: 20 feeds across 15 Greek cities, plus Milan and Paris. SkylineWebcams permits sharing links but its terms restrict embedding live video to camera hosts and its pages send `X-Frame-Options: SAMEORIGIN`; those links therefore open its official player in a new tab beside WeatherOrbit's city climate rather than extracting its temporary stream URL or framing a blocked page.
 
 ### How it stays cheap and polite
 
@@ -793,7 +793,7 @@ This starts a local server at `http://127.0.0.1:3000/` and automatically launche
 
 ### Method 3: Node server directly (accounts & favorites)
 ```bash
-node server.js        # http://127.0.0.1:3000/  (env: PORT, HOST, WeatherAtlas_DATA)
+node server.js        # http://127.0.0.1:3000/  (env: PORT, HOST, WeatherOrbit_DATA)
 ```
 The zero-dependency Node server serves the app **and** the accounts/favorites API. See [Accounts & favorite cities](#-accounts--favorite-cities).
 
@@ -802,7 +802,7 @@ The zero-dependency Node server serves the app **and** the accounts/favorites AP
 ## 📁 File Structure
 
 ```text
-WeatherAtlas/
+WeatherOrbit/
 ├── index.html        # Semantic HTML5 app markup, ARIA wiring, City / Compare / Climate mode switchers
 ├── styles.css        # Glassmorphic CSS styling, dynamic themes, climate results grid, comparison tables, reduced-motion support
 ├── favicon.svg       # The radar-scope mark, and the scalable master of the logo
@@ -843,13 +843,13 @@ The app used to be called **SkyCast**. The rename touched three separate layers,
 
 | Layer | Before | After |
 | --- | --- | --- |
-| **What you see** | Page title, `<noscript>` notice, header wordmark, README, server banner | `WeatherAtlas` |
-| **What the code exposes** | `window.SkyCastAdvice` / `SkyCastGlance` / `SkyCastCompare` / `SkyCastShare` | `window.WeatherAtlasAdvice` / `WeatherAtlasGlance` / `WeatherAtlasCompare` / `WeatherAtlasShare` |
-| **What it remembers** | `skycast_unit`, `skycast_last_city`, `skycast_global_cache` | `WeatherAtlas_*` |
+| **What you see** | Page title, `<noscript>` notice, header wordmark, README, server banner | `WeatherOrbit` |
+| **What the code exposes** | `window.SkyCastAdvice` / `SkyCastGlance` / `SkyCastCompare` / `SkyCastShare` | `window.WeatherOrbitAdvice` / `WeatherOrbitGlance` / `WeatherOrbitCompare` / `WeatherOrbitShare` |
+| **What it remembers** | `skycast_unit`, `skycast_last_city`, `skycast_global_cache` | `WeatherOrbit_*` |
 
 The storage keys are the only part that could actually hurt someone, so they are migrated rather than renamed in place. `readStored()` / `writeStored()` at the top of `app.js` adopt a pre-rename value the first time the new key is read, write everything new under the new name, and delete the old key on the way through. A value already stored under the new name always wins, so a half-migrated profile can never regress. `tests/storage-keys.test.js` holds all of that in place — it boots the real `app.js` against a seeded storage map.
 
-Nothing about you is stored beyond the unit toggle and the last city you looked at, and the selected rain window remains session-only. If you sign in, your username, a salted password hash, your saved cities and your weather-alert rules live on the WeatherAtlas server rather than in the browser — see [Accounts & favorite cities](#-accounts--favorite-cities) and [Weather alerts](#-weather-alerts).
+Nothing about you is stored beyond the unit toggle and the last city you looked at, and the selected rain window remains session-only. If you sign in, your username, a salted password hash, your saved cities and your weather-alert rules live on the WeatherOrbit server rather than in the browser — see [Accounts & favorite cities](#-accounts--favorite-cities) and [Weather alerts](#-weather-alerts).
 
 ### Running the tests
 

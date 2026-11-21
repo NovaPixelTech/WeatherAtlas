@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * WeatherAtlas - city page builder
+ * WeatherOrbit - city page builder
  * ==========================================================================
  * Turns `data/city-climate.json` (produced by `tools/fetch-city-data.js`) into
  * static, indexable pages under `cities/`, plus the city index and the sitemap.
@@ -16,7 +16,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SITE_URL = 'https://novapixeltech.github.io/WeatherAtlas';
+const SITE_URL = 'https://novapixeltech.github.io/WeatherOrbit';
 const CITIES_DIR = path.join(__dirname, '..', 'cities');
 const DATA_FILE = path.join(__dirname, '..', 'data', 'city-climate.json');
 const SITEMAP_FILE = path.join(__dirname, '..', 'sitemap.xml');
@@ -53,7 +53,7 @@ function slugify(value) {
 }
 
 function cityTitle(city) {
-  return `Weather in ${city.name}, ${city.country} - Climate & Averages | WeatherAtlas`;
+  return `Weather in ${city.name}, ${city.country} - Climate & Averages | WeatherOrbit`;
 }
 
 function cityDescription(city) {
@@ -194,7 +194,7 @@ ${faqItems}
   <meta name="description" content="${esc(description)}" />
   <link rel="canonical" href="${esc(canonical)}" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="WeatherAtlas" />
+  <meta property="og:site_name" content="WeatherOrbit" />
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(description)}" />
   <meta property="og:url" content="${esc(canonical)}" />
@@ -213,7 +213,7 @@ ${faqItems}
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
   <link rel="stylesheet" href="city-page.css" />
   <script>
-    window.WEATHERATLAS_STATIC_PAGE = { url: "/WeatherAtlas/cities/${esc(city.slug)}", title: ${JSON.stringify(title)} };
+    window.WEATHERORBIT_STATIC_PAGE = { url: "/WeatherOrbit/cities/${esc(city.slug)}", title: ${JSON.stringify(title)} };
   </script>
   <script src="../analytics-config.js"></script>
   <script src="../analytics.js" defer></script>
@@ -234,7 +234,7 @@ ${faqItems}
       <h1>Weather in ${esc(city.name)}, ${esc(city.country)}</h1>
       <div class="country-line">Climate averages and long-term statistics</div>
       <p class="lede">${esc(
-        `Over the last ten years ${city.name} averaged a high of ${high}\u00b0C and a low of ${low}\u00b0C, with about ${precip} mm of precipitation per year. Get the live forecast for ${city.name} inside WeatherAtlas, or browse the averages below.`
+        `Over the last ten years ${city.name} averaged a high of ${high}\u00b0C and a low of ${low}\u00b0C, with about ${precip} mm of precipitation per year. Get the live forecast for ${city.name} inside WeatherOrbit, or browse the averages below.`
       )}</p>
       <a class="city-cta" href="../index.html?city=${encodeURIComponent(city.name)}&region=${encodeURIComponent(city.admin1 || city.country)}&country=${encodeURIComponent(city.countryCode)}&lat=${city.latitude}&lon=${city.longitude}&tz=${encodeURIComponent(city.timezone)}">Get the live forecast for ${esc(city.name)}</a>
     </section>
@@ -265,7 +265,7 @@ ${faqHtml}
 ${relatedHtml}
     <footer class="city-footer">
       <p>Data provided by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo API</a>.</p>
-      <p><a href="../index.html">Open WeatherAtlas</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
+      <p><a href="../index.html">Open WeatherOrbit</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
     </footer>
   </main>
 
@@ -300,13 +300,13 @@ ${cards}
       </div>
     </section>`;
   }).join('\n');
-  const title = 'City Weather Guides - Climate Averages & Live Forecasts | WeatherAtlas';
-  const description = 'Browse WeatherAtlas city weather guides with real climate averages, monthly statistics and a direct link to the live forecast for the city.';
+  const title = 'City Weather Guides - Climate Averages & Live Forecasts | WeatherOrbit';
+  const description = 'Browse WeatherOrbit city weather guides with real climate averages, monthly statistics and a direct link to the live forecast for the city.';
   const canonical = `${SITE_URL}/cities/index.html`;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'WeatherAtlas City Weather Guides',
+    name: 'WeatherOrbit City Weather Guides',
     url: canonical,
     description,
   };
@@ -319,7 +319,7 @@ ${cards}
   <meta name="description" content="${esc(description)}" />
   <link rel="canonical" href="${esc(canonical)}" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="WeatherAtlas" />
+  <meta property="og:site_name" content="WeatherOrbit" />
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(description)}" />
   <meta property="og:url" content="${esc(canonical)}" />
@@ -332,7 +332,7 @@ ${cards}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${esc(title)}" />
   <meta name="twitter:description" content="${esc(description)}" />
-  <meta name="twitter:image" content="${esc(`${SITE_URL}/WeatherAtlas/og-image.png`)}" />
+  <meta name="twitter:image" content="${esc(`${SITE_URL}/WeatherOrbit/og-image.png`)}" />
   <meta name="theme-color" content="#0b1324" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
@@ -350,7 +350,7 @@ ${cards}
     <section class="city-hero">
       <h1>Weather guides by city</h1>
       <div class="country-line">Real climate averages for the world's major cities</div>
-      <p class="lede">Every guide combines long-term climate averages with a direct link into the live WeatherAtlas forecast for that city.</p>
+      <p class="lede">Every guide combines long-term climate averages with a direct link into the live WeatherOrbit forecast for that city.</p>
       <div class="city-search">
         <input type="search" id="city-search" placeholder="Search a city or country\u2026" autocomplete="off" />
         <span class="city-search-count" id="city-search-count"></span>
@@ -358,7 +358,7 @@ ${cards}
     </section>
 ${sections}
     <footer class="city-footer">
-      <p><a href="../index.html">Open WeatherAtlas</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
+      <p><a href="../index.html">Open WeatherOrbit</a> \u00b7 <a id="feedback-form-link" data-i18n="feedback.form" href="" target="_blank" rel="noopener noreferrer" hidden>Send feedback</a></p>
     </footer>
   </main>
   <script>
@@ -429,13 +429,13 @@ async function main() {
       const key = '9168f9f1b623e8f128bcd82260ffc41c';
       const host = 'novapixeltech.github.io';
       const urlList = [
-        'https://novapixeltech.github.io/WeatherAtlas/',
-        ...withClimate.map((c) => `https://novapixeltech.github.io/WeatherAtlas/cities/${c.slug}.html`),
+        'https://novapixeltech.github.io/WeatherOrbit/',
+        ...withClimate.map((c) => `https://novapixeltech.github.io/WeatherOrbit/cities/${c.slug}.html`),
       ];
       const res = await fetch('https://api.indexnow.org/indexnow', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ host, key, keyLocation: `https://${host}/WeatherAtlas/${key}.txt`, urlList }),
+        body: JSON.stringify({ host, key, keyLocation: `https://${host}/WeatherOrbit/${key}.txt`, urlList }),
       });
       console.log(`indexnow ping: HTTP ${res.status} for ${urlList.length} urls`);
     } catch (err) {

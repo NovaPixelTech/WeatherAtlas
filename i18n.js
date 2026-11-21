@@ -1,5 +1,5 @@
 /**
- * WeatherAtlas - Internationalisation
+ * WeatherOrbit - Internationalisation
  * =========================================================================
  * One dictionary, six languages (English, Greek, German, Italian, Spanish, French), and no build step.
  *
@@ -19,7 +19,7 @@
  * How the language is chosen
  * --------------------------
  *    1. `?lang=` in the URL            - explicit, shareable, wins over storage
- *    2. `WeatherAtlas_lang` in storage - the visitor's saved dropdown choice
+ *    2. `WeatherOrbit_lang` in storage - the visitor's saved dropdown choice
  *    3. the visitor's IP country        - selects its embedded language, or
  *                                          English if the country is unmapped
  *    4. English                         - fallback when IP detection fails
@@ -54,7 +54,7 @@
 
   const HTML_LANGS = { en: 'en', el: 'el', de: 'de', it: 'it', es: 'es', fr: 'fr' };
 
-  const STORAGE_KEY = 'WeatherAtlas_lang';
+  const STORAGE_KEY = 'WeatherOrbit_lang';
 
   /**
    * Country (ISO 3166-1 alpha-2) -> supported language.
@@ -171,10 +171,10 @@
   const translations = {
     en: {
       // --- Document ---------------------------------------------------------
-      'app.name': 'WeatherAtlas',
-      'app.title': 'WeatherAtlas - Climate & City Forecasts',
+      'app.name': 'WeatherOrbit',
+      'app.title': 'WeatherOrbit - Climate & City Forecasts',
       'app.description': 'Search real-time weather conditions by city name or discover cities worldwide meeting your preferred climate conditions.',
-      'app.noscript': 'WeatherAtlas needs JavaScript enabled to fetch and display live meteorological data.',
+      'app.noscript': 'WeatherOrbit needs JavaScript enabled to fetch and display live meteorological data.',
       'app.noscriptHint': 'Please enable JavaScript in your browser and reload the page.',
 
       // --- Header -----------------------------------------------------------
@@ -434,23 +434,23 @@
       'footer.privacy': 'Privacy & analytics',
       'footer.timezoneNote': "Local times use each city's IANA timezone and tick in real time · Your reference time is detected from your device timezone ({zone})",
       'footer.cities': 'City Guides',
-      'footer.support': 'Support WeatherAtlas',
+      'footer.support': 'Support WeatherOrbit',
       'footer.feedback': 'Send Feedback',
 
       // --- Free-for-everyone banner -------------------------------------------
       'banner.eyebrow': '100% free · No ads · No sign-up',
       'banner.title': 'Made free for everyone out to see the world.',
-      'banner.body': 'Every forecast, city guide and live camera, free today and free tomorrow. WeatherAtlas is kept alive by travellers, not by paywalls — if it helps your journey, help keep it free for the next one.',
-      'banner.support': 'Keep WeatherAtlas free',
+      'banner.body': 'Every forecast, city guide and live camera, free today and free tomorrow. WeatherOrbit is kept alive by travellers, not by paywalls — if it helps your journey, help keep it free for the next one.',
+      'banner.support': 'Keep WeatherOrbit free',
       'banner.note': 'Support is optional. The weather stays free either way.',
 
       // --- Support + feedback -------------------------------------------------
-      'support.title': 'Support WeatherAtlas',
-      'support.intro': "WeatherAtlas is free and runs on your goodwill. If it helped you, fuel the next forecast.",
+      'support.title': 'Support WeatherOrbit',
+      'support.intro': "WeatherOrbit is free and runs on your goodwill. If it helped you, fuel the next forecast.",
       'support.donate': 'Buy me a coffee',
       'support.paypal': 'Donate via PayPal',
       'support.sponsor': 'GitHub Sponsors',
-      'support.empty': 'No donation links are configured yet — for now, your feedback is the best way to support WeatherAtlas.',
+      'support.empty': 'No donation links are configured yet — for now, your feedback is the best way to support WeatherOrbit.',
       'support.donateCaption': 'A small one-off tip, no account needed',
       'support.paypalCaption': 'A one-off donation via PayPal.Me',
       'support.sponsorCaption': 'A monthly sponsorship on GitHub',
@@ -464,7 +464,7 @@
       'feedback.helpful': 'Was this helpful?',
       'feedback.yes': 'Yes',
       'feedback.no': 'No',
-      'feedback.thanks': 'Thanks for helping WeatherAtlas get better!',
+      'feedback.thanks': 'Thanks for helping WeatherOrbit get better!',
       'feedback.bug': 'Report a bug',
       'feedback.feature': 'Request a feature',
       'feedback.close': 'Close',
@@ -524,7 +524,7 @@
       'account.favoritesMany': '{count} saved cities',
       'account.welcome': 'Signed in as {username}.',
       'account.signedOut': 'Signed out.',
-      'account.serverRequired': 'Accounts and favorites need the WeatherAtlas server. Start it with "node server.js" and open the app through it.',
+      'account.serverRequired': 'Accounts and favorites need the WeatherOrbit server. Start it with "node server.js" and open the app through it.',
       'account.errUsernameRequired': 'Choose a username.',
       'account.errUsernameLength': 'Usernames are 3 to 32 characters.',
       'account.errUsernameCharset': 'Use letters, numbers, and . _ - only.',
@@ -535,8 +535,8 @@
       'account.errUsernameTaken': 'That username is already taken.',
       'account.errUnauthorized': 'Your session has expired. Please sign in again.',
       'account.errRateLimited': 'Too many attempts. Please wait a moment and try again.',
-      'account.errNetwork': 'Could not reach the WeatherAtlas server.',
-      'account.errUnavailable': 'Accounts need the WeatherAtlas server (run "node server.js").',
+      'account.errNetwork': 'Could not reach the WeatherOrbit server.',
+      'account.errUnavailable': 'Accounts need the WeatherOrbit server (run "node server.js").',
       'account.errInvalid': 'That request was not valid. Please try again.',
       'account.errServer': 'Something went wrong on the server. Please try again.',
 
@@ -811,10 +811,10 @@
 
     el: {
       // --- Document ---------------------------------------------------------
-      'app.name': 'WeatherAtlas',
-      'app.title': 'WeatherAtlas - Προγνώσεις Κλίματος & Πόλεων',
+      'app.name': 'WeatherOrbit',
+      'app.title': 'WeatherOrbit - Προγνώσεις Κλίματος & Πόλεων',
       'app.description': 'Αναζητήστε τις καιρικές συνθήκες σε πραγματικό χρόνο με βάση το όνομα της πόλης ή ανακαλύψτε πόλεις σε όλο τον κόσμο που πληρούν τις προτιμώμενες κλιματικές συνθήκες.',
-      'app.noscript': 'Το WeatherAtlas απαιτεί ενεργοποιημένη JavaScript για την ανάκτηση και την εμφάνιση ζωντανών μετεωρολογικών δεδομένων.',
+      'app.noscript': 'Το WeatherOrbit απαιτεί ενεργοποιημένη JavaScript για την ανάκτηση και την εμφάνιση ζωντανών μετεωρολογικών δεδομένων.',
       'app.noscriptHint': 'Ενεργοποιήστε τη JavaScript στο πρόγραμμα περιήγησής σας και φορτώστε ξανά τη σελίδα.',
 
       // --- Header -----------------------------------------------------------
@@ -1074,23 +1074,23 @@
       'footer.privacy': 'Απόρρητο & στατιστικά',
       'footer.timezoneNote': 'Οι τοπικές ώρες χρησιμοποιούν τη ζώνη ώρας IANA κάθε πόλης και ενημερώνονται σε πραγματικό χρόνο · Η ώρα αναφοράς σας ανιχνεύεται από τη ζώνη ώρας της συσκευής σας ({zone})',
       'footer.cities': 'Οδηγίες Πόλεων',
-      'footer.support': 'Υποστηρίξτε το WeatherAtlas',
+      'footer.support': 'Υποστηρίξτε το WeatherOrbit',
       'footer.feedback': 'Στείλτε σχόλιο',
 
       // --- Free-for-everyone banner -------------------------------------------
       'banner.eyebrow': '100% δωρεάν · Χωρίς διαφημίσεις · Χωρίς εγγραφή',
       'banner.title': 'Δωρεάν για όλους όσους βγαίνουν να δουν τον κόσμο.',
-      'banner.body': 'Κάθε πρόγνωση, οδηγός πόλης και ζωντανή κάμερα, δωρεάν σήμερα και δωρεάν αύριο. Το WeatherAtlas ζει χάρη στους ταξιδιώτες, όχι χάρη σε paywalls — αν σε βοηθά στο ταξίδι σου, βοήθήσέ το να μείνει δωρεάν για τον επόμενο.',
-      'banner.support': 'Κράτησέ το WeatherAtlas δωρεάν',
+      'banner.body': 'Κάθε πρόγνωση, οδηγός πόλης και ζωντανή κάμερα, δωρεάν σήμερα και δωρεάν αύριο. Το WeatherOrbit ζει χάρη στους ταξιδιώτες, όχι χάρη σε paywalls — αν σε βοηθά στο ταξίδι σου, βοήθήσέ το να μείνει δωρεάν για τον επόμενο.',
+      'banner.support': 'Κράτησέ το WeatherOrbit δωρεάν',
       'banner.note': 'Η υποστήριξη είναι προαιρετική. Ο καιρός μένει δωρεάν έτσι κι αλλιώς.',
 
       // --- Support + feedback -------------------------------------------------
-      'support.title': 'Υποστηρίξτε το WeatherAtlas',
-      'support.intro': 'Το WeatherAtlas είναι δωρεά και λειτουργεί χάρη στη καλή σας θέληση. Αν σας βοήθησε, τροφοδοτήστε την επόμενη πρόγνωση.',
+      'support.title': 'Υποστηρίξτε το WeatherOrbit',
+      'support.intro': 'Το WeatherOrbit είναι δωρεά και λειτουργεί χάρη στη καλή σας θέληση. Αν σας βοήθησε, τροφοδοτήστε την επόμενη πρόγνωση.',
       'support.donate': 'Φάτε ένα καφέ / Δωρεά',
       'support.paypal': 'Δωρεά μέσω PayPal',
       'support.sponsor': 'GitHub Sponsors',
-      'support.empty': 'Δεν έχουν ρυθμιστεί ακόμη σύνδεσμοι δωρεάς — προς το παρόν, τα σχόλιά σας είναι ο καλύτερος τρόπος να υποστηρίξετε το WeatherAtlas.',
+      'support.empty': 'Δεν έχουν ρυθμιστεί ακόμη σύνδεσμοι δωρεάς — προς το παρόν, τα σχόλιά σας είναι ο καλύτερος τρόπος να υποστηρίξετε το WeatherOrbit.',
       'support.donateCaption': 'Μικρή δωρεά μιας φοράς · χωρίς λογαριασμό',
       'support.paypalCaption': 'Δωρεά μιας φοράς μέσω PayPal.Me',
       'support.sponsorCaption': 'Μηνιαία χορηγία στο GitHub',
@@ -1104,7 +1104,7 @@
       'feedback.helpful': 'Ήταν χρήσιμο;',
       'feedback.yes': 'Ναι',
       'feedback.no': 'Όχι',
-      'feedback.thanks': 'Ευχαριστούμε για τη βοήθεια στην εξέλιξη του WeatherAtlas!',
+      'feedback.thanks': 'Ευχαριστούμε για τη βοήθεια στην εξέλιξη του WeatherOrbit!',
       'feedback.bug': 'Αναφορά σφάλματος',
       'feedback.feature': 'Αίτημα χαρακτηρισμού',
       'feedback.close': 'Κλείσιμο',
@@ -1164,7 +1164,7 @@
       'account.favoritesMany': '{count} αποθηκευμένες πόλεις',
       'account.welcome': 'Συνδεθήκατε ως {username}.',
       'account.signedOut': 'Αποσυνδεθήκατε.',
-      'account.serverRequired': 'Οι λογαριασμοί και τα αγαπημένα απαιτούν τον διακομιστή WeatherAtlas. Ξεκινήστε τον με "node server.js" και ανοίξτε την εφαρμογή μέσω αυτού.',
+      'account.serverRequired': 'Οι λογαριασμοί και τα αγαπημένα απαιτούν τον διακομιστή WeatherOrbit. Ξεκινήστε τον με "node server.js" και ανοίξτε την εφαρμογή μέσω αυτού.',
       'account.errUsernameRequired': 'Επιλέξτε ένα όνομα χρήστη.',
       'account.errUsernameLength': 'Τα ονόματα χρήστη έχουν 3 έως 32 χαρακτήρες.',
       'account.errUsernameCharset': 'Χρησιμοποιήστε μόνο γράμματα, αριθμούς και . _ -',
@@ -1175,8 +1175,8 @@
       'account.errUsernameTaken': 'Αυτό το όνομα χρήστη χρησιμοποιείται ήδη.',
       'account.errUnauthorized': 'Η συνεδρία σας έληξε. Συνδεθείτε ξανά.',
       'account.errRateLimited': 'Πολλές προσπάθειες. Περιμένετε λίγο και δοκιμάστε ξανά.',
-      'account.errNetwork': 'Δεν ήταν δυνατή η σύνδεση με τον διακομιστή WeatherAtlas.',
-      'account.errUnavailable': 'Οι λογαριασμοί χρειάζονται τον διακομιστή WeatherAtlas (εκτελέστε "node server.js").',
+      'account.errNetwork': 'Δεν ήταν δυνατή η σύνδεση με τον διακομιστή WeatherOrbit.',
+      'account.errUnavailable': 'Οι λογαριασμοί χρειάζονται τον διακομιστή WeatherOrbit (εκτελέστε "node server.js").',
       'account.errInvalid': 'Αυτό το αίτημα δεν ήταν έγκυρο. Δοκιμάστε ξανά.',
       'account.errServer': 'Κάτι πήγε λάθος στον διακομιστή. Δοκιμάστε ξανά.',
 
@@ -1451,10 +1451,10 @@
 
     de: {
       // --- Document ---------------------------------------------------------
-      'app.name': 'WeatherAtlas',
-      'app.title': 'WeatherAtlas - Klima- & Stadtvorhersagen',
+      'app.name': 'WeatherOrbit',
+      'app.title': 'WeatherOrbit - Klima- & Stadtvorhersagen',
       'app.description': 'Suchen Sie Echtzeit-Wetter nach Stadtnamen oder entdecken Sie weltweit Städte, die Ihren bevorzugten Klimabedingungen entsprechen.',
-      'app.noscript': 'WeatherAtlas benötigt aktiviertes JavaScript, um Live-Wetterdaten abzurufen und anzuzeigen.',
+      'app.noscript': 'WeatherOrbit benötigt aktiviertes JavaScript, um Live-Wetterdaten abzurufen und anzuzeigen.',
       'app.noscriptHint': 'Bitte aktivieren Sie JavaScript in Ihrem Browser und laden Sie die Seite neu.',
 
       // --- Header -----------------------------------------------------------
@@ -1714,23 +1714,23 @@
       'footer.privacy': 'Datenschutz & Statistik',
       'footer.timezoneNote': 'Ortszeiten verwenden die IANA-Zeitzone jeder Stadt und aktualisieren sich in Echtzeit · Ihre Referenzzeit wird aus der Zeitzone Ihres Geräts erkannt ({zone})',
       'footer.cities': 'Stadt-Guides',
-      'footer.support': 'WeatherAtlas unterstützen',
+      'footer.support': 'WeatherOrbit unterstützen',
       'footer.feedback': 'Feedback senden',
 
       // --- Free-for-everyone banner -------------------------------------------
       'banner.eyebrow': '100 % kostenlos · Keine Werbung · Keine Anmeldung',
       'banner.title': 'Kostenlos für alle, die hinaus in die Welt wollen.',
-      'banner.body': 'Jede Vorhersage, jeder Stadtführer und jede Live-Kamera – heute kostenlos und morgen auch. WeatherAtlas lebt von Reisenden, nicht von Paywalls. Wenn es dir unterwegs hilft, hilf mit, es für die nächste Reise kostenlos zu halten.',
-      'banner.support': 'WeatherAtlas kostenlos halten',
+      'banner.body': 'Jede Vorhersage, jeder Stadtführer und jede Live-Kamera – heute kostenlos und morgen auch. WeatherOrbit lebt von Reisenden, nicht von Paywalls. Wenn es dir unterwegs hilft, hilf mit, es für die nächste Reise kostenlos zu halten.',
+      'banner.support': 'WeatherOrbit kostenlos halten',
       'banner.note': 'Unterstützung ist freiwillig. Das Wetter bleibt so oder so kostenlos.',
 
       // --- Support + feedback -------------------------------------------------
-      'support.title': 'Unterstütze WeatherAtlas',
-      'support.intro': 'WeatherAtlas ist kostenlos und läuft auf deiner Goodwill. Wenn es dir geholfen hat, unterstütze die nächste Prognose.',
+      'support.title': 'Unterstütze WeatherOrbit',
+      'support.intro': 'WeatherOrbit ist kostenlos und läuft auf deiner Goodwill. Wenn es dir geholfen hat, unterstütze die nächste Prognose.',
       'support.donate': 'Kaffee spenden',
       'support.paypal': 'Über PayPal spenden',
       'support.sponsor': 'GitHub Sponsors',
-      'support.empty': 'Spendenlinks sind noch nicht eingerichtet — vorerst ist dein Feedback der beste Weg, WeatherAtlas zu unterstützen.',
+      'support.empty': 'Spendenlinks sind noch nicht eingerichtet — vorerst ist dein Feedback der beste Weg, WeatherOrbit zu unterstützen.',
       'support.donateCaption': 'Kleine Einmal-Zahlung · ohne Konto',
       'support.paypalCaption': 'Einmalige Spende über PayPal.Me',
       'support.sponsorCaption': 'Monatliche Unterstützung auf GitHub',
@@ -1744,7 +1744,7 @@
       'feedback.helpful': 'War das hilfreich?',
       'feedback.yes': 'Ja',
       'feedback.no': 'Nein',
-      'feedback.thanks': 'Danke für deine Hilfe, damit WeatherAtlas besser wird!',
+      'feedback.thanks': 'Danke für deine Hilfe, damit WeatherOrbit besser wird!',
       'feedback.bug': 'Fehler melden',
       'feedback.feature': 'Funktion vorschlagen',
       'feedback.close': 'Schließen',
@@ -1804,7 +1804,7 @@
       'account.favoritesMany': '{count} gespeicherte Städte',
       'account.welcome': 'Angemeldet als {username}.',
       'account.signedOut': 'Abgemeldet.',
-      'account.serverRequired': 'Konten und Favoriten benötigen den WeatherAtlas-Server. Starten Sie ihn mit „node server.js“ und öffnen Sie die App darüber.',
+      'account.serverRequired': 'Konten und Favoriten benötigen den WeatherOrbit-Server. Starten Sie ihn mit „node server.js“ und öffnen Sie die App darüber.',
       'account.errUsernameRequired': 'Wählen Sie einen Benutzernamen.',
       'account.errUsernameLength': 'Benutzernamen haben 3 bis 32 Zeichen.',
       'account.errUsernameCharset': 'Verwenden Sie nur Buchstaben, Ziffern und . _ -',
@@ -1815,8 +1815,8 @@
       'account.errUsernameTaken': 'Dieser Benutzername ist bereits vergeben.',
       'account.errUnauthorized': 'Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.',
       'account.errRateLimited': 'Zu viele Versuche. Bitte warten Sie einen Moment und versuchen Sie es erneut.',
-      'account.errNetwork': 'Der WeatherAtlas-Server war nicht erreichbar.',
-      'account.errUnavailable': 'Konten benötigen den WeatherAtlas-Server (führen Sie "node server.js" aus).',
+      'account.errNetwork': 'Der WeatherOrbit-Server war nicht erreichbar.',
+      'account.errUnavailable': 'Konten benötigen den WeatherOrbit-Server (führen Sie "node server.js" aus).',
       'account.errInvalid': 'Diese Anfrage war ungültig. Bitte versuchen Sie es erneut.',
       'account.errServer': 'Auf dem Server ist etwas schiefgelaufen. Bitte versuchen Sie es erneut.',
 
@@ -2090,10 +2090,10 @@
     },
 
     it: {
-      'app.name': 'WeatherAtlas',
-      'app.title': 'WeatherAtlas - Clima e previsioni delle città',
+      'app.name': 'WeatherOrbit',
+      'app.title': 'WeatherOrbit - Clima e previsioni delle città',
       'app.description': 'Cerca le condizioni meteo in tempo reale per città o scopri località in tutto il mondo con il clima che preferisci.',
-      'app.noscript': 'WeatherAtlas richiede JavaScript per recuperare e mostrare i dati meteorologici in tempo reale.',
+      'app.noscript': 'WeatherOrbit richiede JavaScript per recuperare e mostrare i dati meteorologici in tempo reale.',
       'app.noscriptHint': 'Attiva JavaScript nel browser e ricarica la pagina.',
       'search.searchingFor': 'Ricerca di "{city}"...',
       'search.matchingLocations': '{count} località corrispondenti: selezionane una',
@@ -2268,23 +2268,23 @@
       'footer.privacy': 'Privacy e statistiche',
       'footer.timezoneNote': 'Gli orari locali usano il fuso IANA di ogni città e si aggiornano in tempo reale · Il tuo fuso orario di riferimento è {zone}',
       'footer.cities': 'Guide delle città',
-      'footer.support': 'Supporta WeatherAtlas',
+      'footer.support': 'Supporta WeatherOrbit',
       'footer.feedback': 'Invia feedback',
 
       // --- Free-for-everyone banner -------------------------------------------
       'banner.eyebrow': '100 % gratis · Nessuna pubblicità · Nessuna registrazione',
       'banner.title': 'Gratis per tutti quelli che vogliono vedere il mondo.',
-      'banner.body': 'Ogni previsione, guida cittadina e webcam live, gratis oggi e gratis domani. WeatherAtlas vive grazie ai viaggiatori, non ai paywall: se ti è utile in viaggio, aiutalo a restare gratuito per il prossimo.',
-      'banner.support': 'Mantieni WeatherAtlas gratuito',
+      'banner.body': 'Ogni previsione, guida cittadina e webcam live, gratis oggi e gratis domani. WeatherOrbit vive grazie ai viaggiatori, non ai paywall: se ti è utile in viaggio, aiutalo a restare gratuito per il prossimo.',
+      'banner.support': 'Mantieni WeatherOrbit gratuito',
       'banner.note': 'Il supporto è facoltativo. Il meteo resta gratuito in ogni caso.',
 
       // --- Support + feedback -------------------------------------------------
-      'support.title': 'Supporta WeatherAtlas',
-      'support.intro': 'WeatherAtlas è gratuito e funziona grazie alla tua buona volontà. Se ti ha aiutato, sostieni la prossima previsione.',
+      'support.title': 'Supporta WeatherOrbit',
+      'support.intro': 'WeatherOrbit è gratuito e funziona grazie alla tua buona volontà. Se ti ha aiutato, sostieni la prossima previsione.',
       'support.donate': 'Offrimi un caffè',
       'support.paypal': 'Dona con PayPal',
       'support.sponsor': 'GitHub Sponsors',
-      'support.empty': 'I link per le donazioni non sono ancora configurati — per ora il tuo feedback è il modo migliore per sostenere WeatherAtlas.',
+      'support.empty': 'I link per le donazioni non sono ancora configurati — per ora il tuo feedback è il modo migliore per sostenere WeatherOrbit.',
       'support.donateCaption': 'Una piccola mancia una tantum · senza account',
       'support.paypalCaption': 'Donazione una tantum tramite PayPal.Me',
       'support.sponsorCaption': 'Sostenitore mensile su GitHub',
@@ -2298,7 +2298,7 @@
       'feedback.helpful': 'È stato utile?',
       'feedback.yes': 'Sì',
       'feedback.no': 'No',
-      'feedback.thanks': 'Grazie per aver aiutato WeatherAtlas a migliorare!',
+      'feedback.thanks': 'Grazie per aver aiutato WeatherOrbit a migliorare!',
       'feedback.bug': 'Segnala un bug',
       'feedback.feature': 'Richiedi una funzione',
       'feedback.close': 'Chiudi',
@@ -2338,7 +2338,7 @@
       'account.favoritesMany': '{count} città salvate',
       'account.welcome': 'Hai effettuato l\'accesso come {username}.',
       'account.signedOut': 'Disconnesso.',
-      'account.serverRequired': 'Gli account e i preferiti richiedono il server WeatherAtlas. Avvialo con "node server.js" e apri l\'app tramite esso.',
+      'account.serverRequired': 'Gli account e i preferiti richiedono il server WeatherOrbit. Avvialo con "node server.js" e apri l\'app tramite esso.',
       'account.errUsernameRequired': 'Scegli un nome utente.',
       'account.errUsernameLength': 'I nomi utente hanno da 3 a 32 caratteri.',
       'account.errUsernameCharset': 'Usa solo lettere, numeri e . _ -',
@@ -2349,8 +2349,8 @@
       'account.errUsernameTaken': 'Questo nome utente è già in uso.',
       'account.errUnauthorized': 'La tua sessione è scaduta. Accedi di nuovo.',
       'account.errRateLimited': 'Troppi tentativi. Attendi un momento e riprova.',
-      'account.errNetwork': 'Impossibile raggiungere il server WeatherAtlas.',
-      'account.errUnavailable': 'Gli account richiedono il server WeatherAtlas (esegui "node server.js").',
+      'account.errNetwork': 'Impossibile raggiungere il server WeatherOrbit.',
+      'account.errUnavailable': 'Gli account richiedono il server WeatherOrbit (esegui "node server.js").',
       'account.errInvalid': 'Questa richiesta non era valida. Riprova.',
       'account.errServer': 'Qualcosa è andato storto sul server. Riprova.',
       'favorites.title': 'Le tue città',
@@ -2559,10 +2559,10 @@
     },
 
     es: {
-      'app.name': 'WeatherAtlas',
-      'app.title': 'WeatherAtlas - Clima y previsiones por ciudad',
+      'app.name': 'WeatherOrbit',
+      'app.title': 'WeatherOrbit - Clima y previsiones por ciudad',
       'app.description': 'Busca el tiempo en tiempo real por ciudad o descubre lugares de todo el mundo con el clima que prefieres.',
-      'app.noscript': 'WeatherAtlas necesita JavaScript para consultar y mostrar datos meteorológicos en directo.',
+      'app.noscript': 'WeatherOrbit necesita JavaScript para consultar y mostrar datos meteorológicos en directo.',
       'app.noscriptHint': 'Activa JavaScript en el navegador y vuelve a cargar la página.',
       'search.searchingFor': 'Buscando "{city}"...',
       'search.matchingLocations': '{count} ubicaciones coincidentes: selecciona una',
@@ -2737,23 +2737,23 @@
       'footer.privacy': 'Privacidad y estadísticas',
       'footer.timezoneNote': 'Las horas locales usan la zona IANA de cada ciudad y se actualizan en tiempo real · Tu zona de referencia es {zone}',
       'footer.cities': 'Guías de ciudades',
-      'footer.support': 'Apoya a WeatherAtlas',
+      'footer.support': 'Apoya a WeatherOrbit',
       'footer.feedback': 'Envía comentarios',
 
       // --- Free-for-everyone banner -------------------------------------------
       'banner.eyebrow': '100 % gratis · Sin anuncios · Sin registro',
       'banner.title': 'Gratis para todos los que salen a ver el mundo.',
-      'banner.body': 'Cada previsión, guía de ciudad y cámara en directo, gratis hoy y gratis mañana. WeatherAtlas vive gracias a los viajeros, no a los muros de pago: si te ayuda en tu viaje, ayúdanos a mantenerlo gratis para el siguiente.',
-      'banner.support': 'Mantén WeatherAtlas gratis',
+      'banner.body': 'Cada previsión, guía de ciudad y cámara en directo, gratis hoy y gratis mañana. WeatherOrbit vive gracias a los viajeros, no a los muros de pago: si te ayuda en tu viaje, ayúdanos a mantenerlo gratis para el siguiente.',
+      'banner.support': 'Mantén WeatherOrbit gratis',
       'banner.note': 'El apoyo es opcional. El tiempo sigue siendo gratis de todos modos.',
 
       // --- Support + feedback -------------------------------------------------
-      'support.title': 'Apoya a WeatherAtlas',
-      'support.intro': 'WeatherAtlas es gratis y funciona gracias a tu buena voluntad. Si te ayudó, apoya la próxima predicción.',
+      'support.title': 'Apoya a WeatherOrbit',
+      'support.intro': 'WeatherOrbit es gratis y funciona gracias a tu buena voluntad. Si te ayudó, apoya la próxima predicción.',
       'support.donate': 'Cómprame un café',
       'support.paypal': 'Donar con PayPal',
       'support.sponsor': 'GitHub Sponsors',
-      'support.empty': 'Los enlaces de donación aún no están configurados; por ahora, tus comentarios son la mejor forma de apoyar WeatherAtlas.',
+      'support.empty': 'Los enlaces de donación aún no están configurados; por ahora, tus comentarios son la mejor forma de apoyar WeatherOrbit.',
       'support.donateCaption': 'Un pequeño aguinaldo único · sin cuenta',
       'support.paypalCaption': 'Donación única a través de PayPal.Me',
       'support.sponsorCaption': 'Patrocinio mensual en GitHub',
@@ -2767,7 +2767,7 @@
       'feedback.helpful': '¿Fue útil?',
       'feedback.yes': 'Sí',
       'feedback.no': 'No',
-      'feedback.thanks': '¡Gracias por ayudar a mejorar WeatherAtlas!',
+      'feedback.thanks': '¡Gracias por ayudar a mejorar WeatherOrbit!',
       'feedback.bug': 'Reportar un error',
       'feedback.feature': 'Solicitar una función',
       'feedback.close': 'Cerrar',
@@ -2807,7 +2807,7 @@
       'account.favoritesMany': '{count} ciudades guardadas',
       'account.welcome': 'Sesión iniciada como {username}.',
       'account.signedOut': 'Sesión cerrada.',
-      'account.serverRequired': 'Las cuentas y los favoritos necesitan el servidor de WeatherAtlas. Inícialo con "node server.js" y abre la aplicación a través de él.',
+      'account.serverRequired': 'Las cuentas y los favoritos necesitan el servidor de WeatherOrbit. Inícialo con "node server.js" y abre la aplicación a través de él.',
       'account.errUsernameRequired': 'Elige un nombre de usuario.',
       'account.errUsernameLength': 'Los nombres de usuario tienen entre 3 y 32 caracteres.',
       'account.errUsernameCharset': 'Usa solo letras, números y . _ -',
@@ -2818,8 +2818,8 @@
       'account.errUsernameTaken': 'Ese nombre de usuario ya está en uso.',
       'account.errUnauthorized': 'Tu sesión ha caducado. Inicia sesión de nuevo.',
       'account.errRateLimited': 'Demasiados intentos. Espera un momento y vuelve a intentarlo.',
-      'account.errNetwork': 'No se pudo contactar con el servidor de WeatherAtlas.',
-      'account.errUnavailable': 'Las cuentas necesitan el servidor de WeatherAtlas (ejecuta "node server.js").',
+      'account.errNetwork': 'No se pudo contactar con el servidor de WeatherOrbit.',
+      'account.errUnavailable': 'Las cuentas necesitan el servidor de WeatherOrbit (ejecuta "node server.js").',
       'account.errInvalid': 'Esa solicitud no era válida. Vuelve a intentarlo.',
       'account.errServer': 'Algo salió mal en el servidor. Vuelve a intentarlo.',
       'favorites.title': 'Tus ciudades',

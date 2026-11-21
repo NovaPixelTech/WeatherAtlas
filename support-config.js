@@ -1,5 +1,5 @@
 /**
- * WeatherAtlas support + feedback configuration
+ * WeatherOrbit support + feedback configuration
  * ==========================================================================
  * Everything a visitor can click lives here, so no UI file ever hard-codes a
  * donation or feedback URL:
@@ -20,7 +20,7 @@
  *
  * Empty strings mean "do not show".
  */
-window.WEATHERATLAS_SUPPORT = {
+window.WEATHERORBIT_SUPPORT = {
   enabled: true,
   koFiUrl: '',
   payPalMeUrl: '',

@@ -1,6 +1,6 @@
 'use strict';
 /**
- * WeatherAtlas Weather Assistant - dashboard wiring tests
+ * WeatherOrbit Weather Assistant - dashboard wiring tests
  * =========================================================================
  * The engine is pure, so what can still break is the glue: the browser global,
  * the script order, the element ids the app binds, the placement of the card,
@@ -32,7 +32,7 @@ function loadAsBrowserGlobal() {
   sandbox.globalThis = sandbox;
   vm.createContext(sandbox);
   vm.runInContext(read('advice.js'), sandbox);
-  return sandbox.WeatherAtlasAdvice || sandbox.window.WeatherAtlasAdvice;
+  return sandbox.WeatherOrbitAdvice || sandbox.window.WeatherOrbitAdvice;
 }
 
 const Advice = loadAsBrowserGlobal();
@@ -41,7 +41,7 @@ const Advice = loadAsBrowserGlobal();
 // 1. Script loading
 // ==========================================================================
 test('advice.js registers itself as a browser global', () => {
-  assert.ok(Advice, 'WeatherAtlasAdvice global is missing');
+  assert.ok(Advice, 'WeatherOrbitAdvice global is missing');
   assert.equal(typeof Advice.getAdviceBundle, 'function');
   assert.equal(typeof Advice.getRecommendations, 'function');
   assert.equal(typeof Advice.analyze, 'function');

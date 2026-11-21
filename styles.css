@@ -1,5 +1,5 @@
 ﻿/* ==========================================================================
-   WeatherAtlas - Modern Glassmorphic Stylesheet (High Contrast & Legibility)
+   WeatherOrbit - Modern Glassmorphic Stylesheet (High Contrast & Legibility)
    ========================================================================== */
 
 :root {
@@ -3592,7 +3592,7 @@ html[data-language-pending='true'] body {
    One section, three surfaces: the location picker (built from the existing
    chip/button language), the "at a glance" summary, and the comparison tables.
    Everything reuses the existing design tokens, radii and card treatment, so
-   the feature reads as part of WeatherAtlas rather than a second app.
+   the feature reads as part of WeatherOrbit rather than a second app.
    ========================================================================== */
 .compare-section {
   display: flex;

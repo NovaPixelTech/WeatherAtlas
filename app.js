@@ -1,5 +1,5 @@
 ﻿/**
- * WeatherAtlas
+ * WeatherOrbit
  * Real-time meteorological dashboard & Global Climate Discovery Engine
  * Powered by Open-Meteo API
  */
@@ -177,14 +177,14 @@
   // Persisted keys
   // --------------------------------------------------------------------------
   // The app used to be called SkyCast, and its keys carried that name. They are
-  // now prefixed `WeatherAtlas_`, but a visitor who already had a preferred unit
+  // now prefixed `WeatherOrbit_`, but a visitor who already had a preferred unit
   // or a last city must not silently lose it to a rename - so the old keys are
   // moved across once, on first read, and only when the new key is still absent.
   // ==========================================================================
   const STORAGE_KEYS = {
-    unit: 'WeatherAtlas_unit',
-    lastCity: 'WeatherAtlas_last_city',
-    globalCache: 'WeatherAtlas_global_cache',
+    unit: 'WeatherOrbit_unit',
+    lastCity: 'WeatherOrbit_last_city',
+    globalCache: 'WeatherOrbit_global_cache',
   };
 
   const LEGACY_STORAGE_KEYS = {
@@ -1889,11 +1889,11 @@
 
   function renderGlance(data) {
     const card = elements.glanceCard;
-    if (!card || !window.WeatherAtlasGlance) return;
+    if (!card || !window.WeatherOrbitGlance) return;
 
     let glance = null;
     try {
-      glance = window.WeatherAtlasGlance.build({
+      glance = window.WeatherOrbitGlance.build({
         current: data.current,
         hourly: data.hourly,
         daily: data.daily,
@@ -1905,7 +1905,7 @@
     } catch (err) {
       // The engine is defensive by design, but a bug here must never take the
       // forecast down with it: the card simply stays hidden.
-      console.warn('WeatherAtlas: the glance summary could not be built', err);
+      console.warn('WeatherOrbit: the glance summary could not be built', err);
       return;
     }
 
@@ -1968,7 +1968,7 @@
    */
   function renderGlanceWear(data) {
     const strip = elements.glanceWear;
-    if (!strip || !window.WeatherAtlasAdvice) return;
+    if (!strip || !window.WeatherOrbitAdvice) return;
 
     const profile = getAdviceProfile(data);
     const recommendations = getAdviceRecommendations(profile, state.adviceWindowKey);
@@ -2304,7 +2304,7 @@
    * formatters passed in decide what the visitor actually sees.
    */
   function getAdviceProfile(data) {
-    if (!window.WeatherAtlasAdvice) return null;
+    if (!window.WeatherOrbitAdvice) return null;
 
     const hourly = data.hourly;
     const current = data.current;
@@ -2318,7 +2318,7 @@
 
     let profile = null;
     try {
-      profile = window.WeatherAtlasAdvice.analyze({
+      profile = window.WeatherOrbitAdvice.analyze({
         hourly,
         currentTime: current ? current.time : null,
         format: adviceFormat(),
@@ -2327,7 +2327,7 @@
     } catch (err) {
       // The engine is defensive by design, but a bug here must never take the
       // forecast down with it: the card simply stays hidden.
-      console.warn('WeatherAtlas: the Weather Assistant could not be analysed', err);
+      console.warn('WeatherOrbit: the Weather Assistant could not be analysed', err);
       return null;
     }
 
@@ -2342,7 +2342,7 @@
    * recomputed - the six tiles above it cannot change and are not re-painted.
    */
   function getAdviceRecommendations(profile, windowKey) {
-    if (!window.WeatherAtlasAdvice || !profile) return null;
+    if (!window.WeatherOrbitAdvice || !profile) return null;
 
     const cache = state.adviceCache;
      if (cache && cache.windowKey === windowKey && cache.recommendations && cache.lang === (window.I18n ? window.I18n.getLanguage() : 'en')) {
@@ -2351,9 +2351,9 @@
 
     let built = null;
     try {
-      built = window.WeatherAtlasAdvice.getRecommendations(profile, windowKey);
+      built = window.WeatherOrbitAdvice.getRecommendations(profile, windowKey);
     } catch (err) {
-      console.warn('WeatherAtlas: the Weather Assistant could not be calculated', err);
+      console.warn('WeatherOrbit: the Weather Assistant could not be calculated', err);
       return null;
     }
 
@@ -2394,7 +2394,7 @@
     // --- Tiles --------------------------------------------------------------
     const grid = elements.assistantGrid;
     grid.innerHTML = '';
-    window.WeatherAtlasAdvice.ADVICE_ORDER.forEach((key) => {
+    window.WeatherOrbitAdvice.ADVICE_ORDER.forEach((key) => {
       const tile = recommendations.decisions[key];
       if (!tile) return;
 
@@ -2438,10 +2438,10 @@
 
   function renderAssistantWindowTabs() {
     const container = elements.assistantWindowTabs;
-    if (!container || !window.WeatherAtlasAdvice) return;
+    if (!container || !window.WeatherOrbitAdvice) return;
 
     container.innerHTML = '';
-    window.WeatherAtlasAdvice.RAIN_WINDOWS.forEach((w) => {
+    window.WeatherOrbitAdvice.RAIN_WINDOWS.forEach((w) => {
       const tab = document.createElement('button');
       tab.type = 'button';
       tab.className = 'assistant-window-tab';
@@ -2582,7 +2582,7 @@
   // recipient can see what was shared first and keep exploring afterwards.
   // ==========================================================================
   function shareEngine() {
-    return window.WeatherAtlasShare || null;
+    return window.WeatherOrbitShare || null;
   }
 
   /** Card key -> its section element. One key, one element, both directions. */
@@ -2798,7 +2798,7 @@
     if (payload.unit === 'f' && elements.unitF) elements.unitF.click();
     if (payload.unit === 'c' && elements.unitC) elements.unitC.click();
 
-    const windows = window.WeatherAtlasAdvice && window.WeatherAtlasAdvice.RAIN_WINDOWS;
+    const windows = window.WeatherOrbitAdvice && window.WeatherOrbitAdvice.RAIN_WINDOWS;
     const knownWindow = windows && windows.some(function (w) { return w.key === payload.windowKey; });
     if (knownWindow) state.adviceWindowKey = payload.windowKey;
 
@@ -2832,7 +2832,7 @@
 // Accounts & favorite cities
 // --------------------------------------------------------------------------
 // Favorites are stored on the account, not in this browser, so that the same
-// person sees the same cities on every device. That needs the WeatherAtlas
+// person sees the same cities on every device. That needs the WeatherOrbit
 // server (`node server.js`); when the app is opened as a plain static file the
 // engine half still loads, but the account panel explains, once, that there is
 // nothing to sign in to - rather than failing silently.
@@ -2841,11 +2841,11 @@
 // the rename-migrated keys: accounts did not exist before the rename, so there
 // is nothing to migrate.
 // ==========================================================================
-  const AUTH_STORAGE_KEY = 'WeatherAtlas_auth';
+  const AUTH_STORAGE_KEY = 'WeatherOrbit_auth';
   const FAVORITES_MAX = 24;
 
   function favoritesEngine() {
-    return window.WeatherAtlasFavorites || null;
+    return window.WeatherOrbitFavorites || null;
   }
 
   /** The Node API client, or null before the engine has loaded. */
@@ -2886,7 +2886,7 @@
   }
 
   /**
-   * The account client the app talks to. It prefers the WeatherAtlas server,
+   * The account client the app talks to. It prefers the WeatherOrbit server,
    * but a static host (GitHub Pages, `file://`) has no server to answer, so a
    * new sign-up/sign-in falls through to this browser's own store. A stored
    * session's token says which half owns it, so every later call is routed
@@ -3005,8 +3005,8 @@
       'username-taken': 'That username is already taken.',
       unauthorized: 'Your session has expired. Please sign in again.',
       'rate-limited': 'Too many attempts. Please wait a moment and try again.',
-      network: 'Could not reach the WeatherAtlas server.',
-      unavailable: 'Accounts need the WeatherAtlas server (run "node server.js").',
+      network: 'Could not reach the WeatherOrbit server.',
+      unavailable: 'Accounts need the WeatherOrbit server (run "node server.js").',
       invalid: 'That request was not valid. Please try again.',
       server: 'Something went wrong on the server. Please try again.',
     };
@@ -3114,7 +3114,7 @@
       if (noteKey) {
         elements.authNote.textContent = t(noteKey, null, noteKey === 'account.localNote'
           ? 'Saved in this browser only - your favorites will not follow you to other devices.'
-          : 'Accounts and favorites need the WeatherAtlas server. Start it with "node server.js" and open the app through it.');
+          : 'Accounts and favorites need the WeatherOrbit server. Start it with "node server.js" and open the app through it.');
         elements.authNote.classList.remove('hidden');
       } else {
         elements.authNote.textContent = '';
@@ -3491,7 +3491,7 @@
   // Weather Alerts
   // --------------------------------------------------------------------------
   // A rule belongs to the account, like a favorite, but it answers a different
-  // question: *when should WeatherAtlas speak up?* The verdicts are recomputed
+  // question: *when should WeatherOrbit speak up?* The verdicts are recomputed
   // here from the forecast the page already fetches - for the city on screen it
   // reuses `state.weatherData`, and for every other saved city it fetches once
   // and caches the payload for a few minutes. A triggered rule is listed in the
@@ -3513,7 +3513,7 @@
   const ALERT_WINDOW_FALLBACK = { today: 'Today', tomorrow: 'Tomorrow', d3: 'Next 3 days', d7: 'Next 7 days' };
 
   function alertsEngine() {
-    return window.WeatherAtlasAlerts || null;
+    return window.WeatherOrbitAlerts || null;
   }
 
   function cityKeyOf(city) {
@@ -3725,7 +3725,7 @@
         const title = t('alerts.notificationTitle', { city: entry.cityName }, `Weather alert for ${entry.cityName}`);
         const notification = new window.Notification(title, {
           body: alertEntryText(entry),
-          tag: 'WeatherAtlas-alert-' + entry.rule.id,
+          tag: 'WeatherOrbit-alert-' + entry.rule.id,
         });
         notification.onclick = function () { try { window.focus(); } catch (err) { /* ignore */ } };
       } catch (err) {
@@ -4524,7 +4524,7 @@ ${CAMERA_PANEL_HTML}
   //  * **Polite refresh.** Snapshot feeds are polled at the cadence the source
   //    itself publishes, and only while the card is on screen and unpaused.
   // ==========================================================================
-  const CAMERA_PREFERENCE_KEY = 'WeatherAtlas_city_cameras';
+  const CAMERA_PREFERENCE_KEY = 'WeatherOrbit_city_cameras';
   const CAMERA_REGISTRY_URL = 'https://datumfeed.com/api/registries';
   /** Registry cadences change on the order of months; a few hours is ample. */
   const CAMERA_REGISTRY_TTL = 6 * 60 * 60 * 1000;
@@ -4591,8 +4591,8 @@ ${CAMERA_PANEL_HTML}
   }
 
   function cameraEngine() {
-    return window.WeatherAtlasCameras && typeof window.WeatherAtlasCameras.findCameras === 'function'
-      ? window.WeatherAtlasCameras
+    return window.WeatherOrbitCameras && typeof window.WeatherOrbitCameras.findCameras === 'function'
+      ? window.WeatherOrbitCameras
       : null;
   }
 
@@ -5729,7 +5729,7 @@ ${CAMERA_PANEL_HTML}
    * publishes genuine live streams for many European places, but its terms allow
    * embedding live video only for camera hosts; other sites may share links and
    * use its separately supplied five-minute photogram embed. Its pages also send
-   * `X-Frame-Options: SAMEORIGIN`, so an iframe in WeatherAtlas is blocked. These
+   * `X-Frame-Options: SAMEORIGIN`, so an iframe in WeatherOrbit is blocked. These
    * entries therefore open the official live player in a new tab - no scraped
    * HLS URLs, copied frames, or player circumvention - while the selected city's
    * climate remains visible here.
@@ -7000,7 +7000,7 @@ ${CAMERA_PANEL_HTML}
 
   /** The engine, or null if the script failed to load. */
   function compareEngine() {
-    return window.WeatherAtlasCompare || null;
+    return window.WeatherOrbitCompare || null;
   }
 
   /** Slot captions: "Location A" ... "Location D". */
@@ -8284,8 +8284,8 @@ const icon = document.createElement('span');
     // The app lives at one URL, so report the section as a virtual pageview.
     // Repeated calls (a language change re-applies the active mode) are
     // de-duplicated by analytics.js, not here.
-    if (window.WeatherAtlasAnalytics && window.WeatherAtlasAnalytics.trackSection) {
-      window.WeatherAtlasAnalytics.trackSection(mode);
+    if (window.WeatherOrbitAnalytics && window.WeatherOrbitAnalytics.trackSection) {
+      window.WeatherOrbitAnalytics.trackSection(mode);
     }
     if (mode !== 'cameras' && cameraState.openCameraCity) closeCameraCitySurface();
 

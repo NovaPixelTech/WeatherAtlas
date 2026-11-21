@@ -1,5 +1,5 @@
 /**
- * WeatherAtlas Weather Assistant - Recommendation Engine
+ * WeatherOrbit Weather Assistant - Recommendation Engine
  * =========================================================================
  * Turns the hourly Open-Meteo forecast the dashboard *already* has into short,
  * human-readable guidance ("Will I need an umbrella?", "Best time for a walk?").
@@ -12,7 +12,7 @@
  *  * **No unit logic of its own.** Every temperature, wind and precipitation
  *    value is emitted through caller-injected formatters (app.js passes its own
  *    `formatTemp` / `formatWindSpeed` / `formatPrecip`), so the whole assistant
- *    follows the active °C / °F toggle exactly like the rest of WeatherAtlas. All
+ *    follows the active °C / °F toggle exactly like the rest of WeatherOrbit. All
  *    thresholds below are stored in the Open-Meteo units - Celsius, km/h, mm.
  *  * **Never guesses.** Every getter degrades to a `notEnoughData()` result
  *    when the readings it needs are missing, and `getAdviceBundle()` isolates
@@ -20,7 +20,7 @@
  *    the dashboard or hide the other recommendations.
  *
  * Loading contract: plain classic script (no build step). It publishes
- * `window.WeatherAtlasAdvice`, and also supports `module.exports` for the tests.
+ * `window.WeatherOrbitAdvice`, and also supports `module.exports` for the tests.
  */
 
 (function (root, factory) {
@@ -31,7 +31,7 @@
   if (typeof module === 'object' && module !== null && typeof module.exports === 'object') {
     module.exports = api;
   }
-  if (root) root.WeatherAtlasAdvice = api;
+  if (root) root.WeatherOrbitAdvice = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 
@@ -157,7 +157,7 @@
 
   /**
    * Time windows offered by the "Rain during your day?" control. These are
-   * ordinary clock windows - WeatherAtlas stores no commute, home or work address,
+   * ordinary clock windows - WeatherOrbit stores no commute, home or work address,
    * so nothing here is personal data. The selection lives in memory only and is
    * never written to localStorage or sessionStorage.
    */
@@ -1268,7 +1268,7 @@
       // A malformed or hostile payload must degrade the whole section, not
       // break the dashboard: every tile falls back to its empty state.
       if (typeof console !== 'undefined' && console.warn) {
-        console.warn('WeatherAtlas advice: the forecast could not be analysed', err);
+        console.warn('WeatherOrbit advice: the forecast could not be analysed', err);
       }
       profile = null;
     }
@@ -1307,7 +1307,7 @@
       } catch (err) {
         // Never let one recommendation break the rest of the dashboard.
         if (typeof console !== 'undefined' && console.warn) {
-          console.warn(`WeatherAtlas advice: "${key}" could not be calculated`, err);
+          console.warn(`WeatherOrbit advice: "${key}" could not be calculated`, err);
         }
         decisions[key] = notEnoughData(ADVICE_META[key], 'This recommendation could not be calculated from the current forecast.');
       }
@@ -1318,7 +1318,7 @@
       rainWindow = getRainWindowAdvice(profile, windowKey || RAIN_WINDOWS[0].key);
     } catch (err) {
       if (typeof console !== 'undefined' && console.warn) {
-        console.warn('WeatherAtlas advice: the time-window answer could not be calculated', err);
+        console.warn('WeatherOrbit advice: the time-window answer could not be calculated', err);
       }
       rainWindow = getRainWindowAdvice(null, windowKey || RAIN_WINDOWS[0].key);
     }
@@ -1328,7 +1328,7 @@
       summary = getDaySummary(profile, decisions);
     } catch (err) {
       if (typeof console !== 'undefined' && console.warn) {
-        console.warn('WeatherAtlas advice: the daily summary could not be calculated', err);
+        console.warn('WeatherOrbit advice: the daily summary could not be calculated', err);
       }
       summary = notEnoughData(
         { id: 'summary', icon: '⛅', label: "Today's advice" },

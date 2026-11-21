@@ -1,5 +1,5 @@
 /**
- * WeatherAtlas "Today at a Glance" - summary engine tests
+ * WeatherOrbit "Today at a Glance" - summary engine tests
  * =========================================================================
  * Zero-dependency tests for `glance.js`, run with the Node test runner:
  *

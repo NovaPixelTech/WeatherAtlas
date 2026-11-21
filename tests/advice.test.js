@@ -1,5 +1,5 @@
 /**
- * WeatherAtlas Weather Assistant - recommendation engine tests
+ * WeatherOrbit Weather Assistant - recommendation engine tests
  * =========================================================================
  * Zero-dependency tests for `advice.js`, run with the Node test runner:
  *

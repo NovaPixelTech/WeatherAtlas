@@ -1,6 +1,6 @@
 'use strict';
 /**
- * WeatherAtlas Accounts & Favorites - wiring tests
+ * WeatherOrbit Accounts & Favorites - wiring tests
  * =========================================================================
  * The favorites engine (`favorites.js`) and the server are covered by their
  * own suites. What this file protects is the glue that no engine test can see:
@@ -39,7 +39,7 @@ function loadAsBrowserGlobal() {
   sandbox.globalThis = sandbox;
   vm.createContext(sandbox);
   vm.runInContext(read('favorites.js'), sandbox);
-  return sandbox.WeatherAtlasFavorites || sandbox.window.WeatherAtlasFavorites;
+  return sandbox.WeatherOrbitFavorites || sandbox.window.WeatherOrbitFavorites;
 }
 
 const Favorites = loadAsBrowserGlobal();
@@ -48,7 +48,7 @@ const Favorites = loadAsBrowserGlobal();
 // 1. Script loading
 // ==========================================================================
 test('favorites.js registers itself as a browser global for the app to use', () => {
-  assert.ok(Favorites, 'WeatherAtlasFavorites global is missing');
+  assert.ok(Favorites, 'WeatherOrbitFavorites global is missing');
   assert.equal(typeof Favorites.createClient, 'function');
   assert.equal(typeof Favorites.isFavorite, 'function');
   assert.equal(typeof Favorites.cityKey, 'function');

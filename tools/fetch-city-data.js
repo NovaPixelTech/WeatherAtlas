@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * WeatherAtlas - city data fetcher
+ * WeatherOrbit - city data fetcher
  * ==========================================================================
  * Turns `tools/city-seeds.json` into a static dataset in `data/city-climate.json`.
  *

@@ -1,6 +1,6 @@
 'use strict';
 /**
- * WeatherAtlas Compare Locations - comparison engine tests
+ * WeatherOrbit Compare Locations - comparison engine tests
  * =========================================================================
  * `compare.js` is pure by design (no DOM, no network, no clock), so it can be
  * driven directly here with realistic Open-Meteo payloads.

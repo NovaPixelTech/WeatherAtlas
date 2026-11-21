@@ -1,9 +1,9 @@
 'use strict';
 /**
- * WeatherAtlas storage keys - the rename migration tests
+ * WeatherOrbit storage keys - the rename migration tests
  * =========================================================================
  * The app was called SkyCast and kept its unit and last city under
- * `skycast_*` localStorage keys. Those keys are now `WeatherAtlas_*`, and the
+ * `skycast_*` localStorage keys. Those keys are now `WeatherOrbit_*`, and the
  * one thing this suite exists to prove is that the rename did not quietly cost
  * anyone their settings: a pre-rename value has to be adopted, and a value
  * written after the rename has to win over any stale legacy value left behind.
@@ -77,9 +77,9 @@ function boot(seed = {}) {
 // 1. The rename itself
 // ==========================================================================
 test('the persisted keys carry the new name', () => {
-  assert.match(appSource, /unit:\s*'WeatherAtlas_unit'/, 'the unit key was not renamed');
-  assert.match(appSource, /lastCity:\s*'WeatherAtlas_last_city'/, 'the last-city key was not renamed');
-  assert.match(appSource, /globalCache:\s*'WeatherAtlas_global_cache'/, 'the session cache key was not renamed');
+  assert.match(appSource, /unit:\s*'WeatherOrbit_unit'/, 'the unit key was not renamed');
+  assert.match(appSource, /lastCity:\s*'WeatherOrbit_last_city'/, 'the last-city key was not renamed');
+  assert.match(appSource, /globalCache:\s*'WeatherOrbit_global_cache'/, 'the session cache key was not renamed');
 });
 
 test('a pre-rename key is named in exactly one place', () => {
@@ -108,7 +108,7 @@ test('a pre-rename key is named in exactly one place', () => {
 // ==========================================================================
 test('a SkyCast visitor keeps their Fahrenheit preference', () => {
   const { local } = boot({ skycast_unit: 'fahrenheit' });
-  assert.equal(local.get('WeatherAtlas_unit'), 'fahrenheit', 'the unit was not carried over');
+  assert.equal(local.get('WeatherOrbit_unit'), 'fahrenheit', 'the unit was not carried over');
   assert.equal(local.has('skycast_unit'), false, 'the legacy unit key was left behind');
 });
 
@@ -123,7 +123,7 @@ test('a SkyCast visitor keeps their last city', () => {
     'init() does not read the last city through the migration helper'
   );
   assert.equal(
-    (appSource.match(/localStorage\.getItem\('WeatherAtlas_last_city'\)/g) || []).length,
+    (appSource.match(/localStorage\.getItem\('WeatherOrbit_last_city'\)/g) || []).length,
     0,
     'init() bypasses the migration helper'
   );
@@ -144,9 +144,9 @@ test('the in-session 72-city cache is migrated too', () => {
 test('a value written after the rename beats a stale legacy one', () => {
   const { local } = boot({
     skycast_unit: 'celsius',
-    WeatherAtlas_unit: 'fahrenheit',
+    WeatherOrbit_unit: 'fahrenheit',
   });
-  assert.equal(local.get('WeatherAtlas_unit'), 'fahrenheit', 'the newer choice was overwritten');
+  assert.equal(local.get('WeatherOrbit_unit'), 'fahrenheit', 'the newer choice was overwritten');
   assert.equal(local.has('skycast_unit'), false, 'the stale legacy key was left behind');
 });
 

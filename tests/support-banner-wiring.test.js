@@ -105,7 +105,7 @@ test('every banner string exists in all six languages', () => {
 test('the banner keeps its appeal in every language', () => {
   const english = dict('en');
   assert.match(english['banner.eyebrow'], /100% free/i);
-  assert.match(english['banner.support'], /Keep WeatherAtlas free/i);
+  assert.match(english['banner.support'], /Keep WeatherOrbit free/i);
   // The supporting note must make optionality explicit so the ask never reads
   // as a paywall.
   assert.match(english['banner.note'], /optional/i);

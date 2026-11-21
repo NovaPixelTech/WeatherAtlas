@@ -1,6 +1,6 @@
 'use strict';
 /**
- * WeatherAtlas free live city cameras - glue tests
+ * WeatherOrbit free live city cameras - glue tests
  * =========================================================================
  * `cameras.test.js` covers the pure engine. What can still break here is the
  * glue between it and the page, and it is the glue that carries the promises:

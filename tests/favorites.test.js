@@ -1,6 +1,6 @@
 'use strict';
 /**
- * WeatherAtlas Favorites - engine & API-client tests
+ * WeatherOrbit Favorites - engine & API-client tests
  * =========================================================================
  * `favorites.js` is the one place that decides what a saved city is allowed to
  * be, and the server requires the very same file. So this suite pins down two
@@ -30,7 +30,7 @@ function loadAsBrowserGlobal() {
   sandbox.globalThis = sandbox;
   vm.createContext(sandbox);
   vm.runInContext(source, sandbox);
-  return sandbox.WeatherAtlasFavorites || sandbox.window.WeatherAtlasFavorites;
+  return sandbox.WeatherOrbitFavorites || sandbox.window.WeatherOrbitFavorites;
 }
 
 const F = require(path.join(ROOT, 'favorites.js'));
@@ -40,7 +40,7 @@ const BrowserF = loadAsBrowserGlobal();
 // 0. Loading contract
 // ==========================================================================
 test('favorites.js registers itself as a browser global and as a module', () => {
-  assert.ok(BrowserF, 'WeatherAtlasFavorites global is missing');
+  assert.ok(BrowserF, 'WeatherOrbitFavorites global is missing');
   assert.equal(typeof BrowserF.normalizeCity, 'function');
   assert.equal(typeof BrowserF.createClient, 'function');
   assert.equal(typeof F.addFavorite, 'function', 'the server must be able to require it');

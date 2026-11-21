@@ -45,7 +45,7 @@ function rawCamera(overrides) {
 }
 
 test('cameras.js registers itself as a browser global', () => {
-  assert.match(SOURCE, /window\.WeatherAtlasCameras/);
+  assert.match(SOURCE, /window\.WeatherOrbitCameras/);
   assert.match(SOURCE, /module\.exports/);
 });
 

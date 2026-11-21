@@ -1,6 +1,6 @@
 'use strict';
 /**
- * WeatherAtlas Compare Locations - wiring tests
+ * WeatherOrbit Compare Locations - wiring tests
  * =========================================================================
  * `compare.js` is pure, so what can still break is the glue: the browser
  * global, the script order, the element ids the app binds, the third tab, and
@@ -32,7 +32,7 @@ function loadAsBrowserGlobal() {
   sandbox.globalThis = sandbox;
   vm.createContext(sandbox);
   vm.runInContext(read('compare.js'), sandbox);
-  return sandbox.WeatherAtlasCompare || sandbox.window.WeatherAtlasCompare;
+  return sandbox.WeatherOrbitCompare || sandbox.window.WeatherOrbitCompare;
 }
 
 const Compare = loadAsBrowserGlobal();
@@ -54,7 +54,7 @@ function compareBlock() {
 // ==========================================================================
 
 test('compare.js registers itself as a browser global', () => {
-  assert.ok(Compare, 'WeatherAtlasCompare global is missing');
+  assert.ok(Compare, 'WeatherOrbitCompare global is missing');
   assert.equal(typeof Compare.buildTable, 'function');
   assert.equal(typeof Compare.buildInsights, 'function');
 });

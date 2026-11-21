@@ -1,21 +1,21 @@
 {
-  "name": "WeatherAtlas",
-  "short_name": "WeatherAtlas",
+  "name": "WeatherOrbit",
+  "short_name": "WeatherOrbit",
   "description": "Climate and city forecasts - search real-time weather by city or climate.",
-  "start_url": "/WeatherAtlas/",
-  "scope": "/WeatherAtlas/",
+  "start_url": "/WeatherOrbit/",
+  "scope": "/WeatherOrbit/",
   "display": "standalone",
   "background_color": "#0b1324",
   "theme_color": "#0b1324",
   "icons": [
     {
-      "src": "/WeatherAtlas/favicon.svg",
+      "src": "/WeatherOrbit/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "/WeatherAtlas/apple-touch-icon.png",
+      "src": "/WeatherOrbit/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "any"
